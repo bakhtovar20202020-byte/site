@@ -521,11 +521,11 @@ function render() {
 }
 function renderTabbar() {
   const items = [
-    { r:'home', ic:'🏠', label:'Главная' },
-    { r:'tournaments', ic:'⚔️', label:'Турниры' },
-    { r:'teams', ic:'👥', label:'Команды' },
-    { r:'chats', ic:'💬', label:'Чаты' },
-    { r:'profile', ic:'👤', label:'Профиль', badge: myPendingInvites().length }
+    { r:'home', ic:'', label:'Главная' },
+    { r:'tournaments', ic:'', label:'Турниры' },
+    { r:'teams', ic:'', label:'Команды' },
+    { r:'chats', ic:'', label:'Чаты' },
+    { r:'profile', ic:'', label:'Профиль', badge: myPendingInvites().length }
   ];
   if (canManage()) items.push({ r:'admin', ic:'🛡️', label:'Админ' });
   $('#tabbar').innerHTML = items.map(i => `
