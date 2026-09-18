@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0a0613">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ThunderStorm — турниры MLBB</title>
+<link rel="icon" href="https://i.ibb.co/QFdPbD1s/86-20260918220103.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0613;--surface:#140c24;--line:rgba(150,110,230,.16);--line-2:rgba(168,85,247,.42);
+  --accent:#a855f7;--accent-2:#7c3aed;--cyan:#22d3ee;--text:#ece7f8;--muted:#9b91b8;
+  --green:#34d399;--red:#f87171;--amber:#fbbf24;
+  --r:18px;--fd:'Space Grotesk',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fb);font-size:15px;line-height:1.5;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(620px 420px at 12% -6%,rgba(168,85,247,.20),transparent 68%),
+             radial-gradient(520px 420px at 102% 8%,rgba(34,211,238,.10),transparent 70%),
+             radial-gradient(760px 520px at 50% 112%,rgba(124,58,237,.14),transparent 70%)}
+body.modal-open{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--fd);margin:0;font-weight:600;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none;user-select:none;-webkit-user-select:none}
+input,textarea{user-select:text;-webkit-user-select:text}
+.app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:calc(var(--safe-t) + 8px) 16px calc(108px + var(--safe-b))}
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;margin-bottom:2px;background:linear-gradient(180deg,rgba(10,6,19,.96) 62%,rgba(10,6,19,0));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:700;font-size:17px}
+.brand-mark{width:32px;height:32px;border-radius:10px;overflow:hidden;flex-shrink:0;display:grid;place-items:center}
+.brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.brand small{display:block;font-family:var(--fb);font-size:9.5px;font-weight:600;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;line-height:1}
+.top-actions{display:flex;gap:6px;align-items:center}
+.icon-badge{position:relative;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text);font-size:16px}
+.icon-badge .dot{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--red);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--bg)}
+.wallet{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;background:rgba(168,85,247,.10);border:1px solid var(--line-2);font-weight:600;font-size:14px}
+.wallet b{color:#d8b4fe;font-weight:700}
+.card{background:linear-gradient(158deg,rgba(32,19,56,.92),rgba(19,11,34,.92));border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.section{margin-top:26px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
+.section-head h2{font-size:16.5px}
+.section-head .link{font-size:13px;color:var(--muted);font-weight:500}
+.muted{color:var(--muted)}.tiny{font-size:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 18px;min-height:44px;border-radius:99px;font-weight:600;font-size:14px;transition:transform .12s,box-shadow .2s,background .2s,opacity .2s;text-decoration:none;white-space:normal;word-break:break-word;text-align:center;line-height:1.25;max-width:100%}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 6px 22px rgba(168,85,247,.35)}
+.btn-ghost{background:rgba(255,255,255,.045);border:1px solid var(--line)}
+.btn-success{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.45);color:#6ee7b7}
+.btn-danger{background:rgba(248,113,113,.13);border:1px solid rgba(248,113,113,.4);color:#fca5a5}
+.btn-amber{background:rgba(251,191,36,.14);border:1px solid rgba(251,191,36,.45);color:#fcd34d}
+.btn-block{width:100%}.btn-sm{padding:9px 14px;font-size:13px;min-height:38px}
+.btn-xs{padding:6px 11px;font-size:12px;min-height:30px;border-radius:99px}
+.btn:disabled{opacity:.45;pointer-events:none}
+.chip{padding:9px 15px;min-height:38px;border-radius:99px;font-size:13px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--line);white-space:nowrap;transition:.18s;display:inline-flex;align-items:center}
+.chip.active{color:#fff;background:rgba(168,85,247,.20);border-color:var(--line-2)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:99px;font-size:11.5px;font-weight:600}
+.badge-green{background:rgba(52,211,153,.13);color:#6ee7b7;border:1px solid rgba(52,211,153,.3)}
+.badge-red{background:rgba(248,113,113,.12);color:#fca5a5;border:1px solid rgba(248,113,113,.28)}
+.badge-amber{background:rgba(251,191,36,.12);color:#fcd34d;border:1px solid rgba(251,191,36,.28)}
+.badge-purple{background:rgba(168,85,247,.15);color:#d8b4fe;border:1px solid var(--line-2)}
+.badge-cyan{background:rgba(34,211,238,.12);color:#67e8f9;border:1px solid rgba(34,211,238,.3)}
+.tag{padding:4px 11px;border-radius:99px;font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#c9bfe4}
+.tg-link{color:#67e8f9;text-decoration:none;font-weight:600}
+.tg-link:hover{text-decoration:underline}
+.row{display:flex;align-items:center;gap:10px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.empty{text-align:center;padding:34px 18px;color:var(--muted);font-size:14px}
+.empty .em{font-size:32px;display:block;margin-bottom:8px;opacity:.6}
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:20px;background:linear-gradient(150deg,rgba(88,28,135,.55),rgba(20,12,36,.95) 62%);border:1px solid var(--line-2)}
+.hero::after{content:'';position:absolute;right:-52px;top:-52px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.42),transparent 70%)}
+.hero-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#d8b4fe;font-weight:700}
+.hero h1{font-size:23px;margin:8px 0 6px;line-height:1.22}
+.hero-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:#c9bfe4;margin:14px 0 16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{padding:13px 10px;border-radius:15px;background:rgba(255,255,255,.035);border:1px solid var(--line);text-align:center}
+.stat b{display:block;font-family:var(--fd);font-size:19px;color:#fff}
+.stat span{font-size:11px;color:var(--muted)}
+.tcard{position:relative;overflow:hidden;border-radius:var(--r);padding:16px;margin-bottom:12px;background:linear-gradient(158deg,rgba(32,19,56,.9),rgba(19,11,34,.9));border:1px solid var(--line);transition:border-color .2s,transform .12s;cursor:pointer}
+.tcard:hover{border-color:var(--line-2)}
+.tcard:active{transform:scale(.99)}
+.tcard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;gap:8px}
+.mode-pill{font-family:var(--fd);font-weight:700;font-size:12px;letter-spacing:.06em;padding:4px 11px;border-radius:8px;background:rgba(168,85,247,.18);color:#d8b4fe;border:1px solid var(--line-2)}
+.tcard h3{font-size:17px;margin-bottom:9px}
+.tcard-meta{display:flex;flex-wrap:wrap;gap:13px;font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.tcard-meta b{color:#c9bfe4;font-weight:600}
+.bar{height:5px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .5s}
+.tcard-foot{display:flex;align-items:center;justify-content:space-between;margin-top:9px;font-size:12px;color:var(--muted);gap:8px}
+.prize{color:#fcd34d;font-weight:600}
+.team-card{display:flex;align-items:flex-start;gap:13px;padding:14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line);margin-bottom:10px}
+.team-logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;font-family:var(--fd);font-weight:700;font-size:15px;color:#fff;background:linear-gradient(135deg,rgba(168,85,247,.35),rgba(34,211,238,.22));border:1px solid var(--line-2)}
+.team-logo.sm{width:34px;height:34px;border-radius:10px;font-size:12px}
+.team-card h4{font-size:15px;margin-bottom:3px}
+.team-members{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.member-dot{font-size:11px;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.05);color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.member-dot b{color:#d8b4fe;font-weight:600}
+.member-dot img{width:16px;height:16px;border-radius:50%;object-fit:cover;object-position:center;flex-shrink:0;display:block}
+.invite-banner{padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(168,85,247,.10));border:1px solid rgba(251,191,36,.4);display:flex;align-items:center;gap:12px;margin-bottom:14px;cursor:pointer}
+.invite-banner .em{font-size:26px}
+.invite-banner b{color:#fcd34d}
+.invite-card{padding:14px;border-radius:16px;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.3);margin-bottom:10px}
+.chat-list-item{display:flex;align-items:center;gap:13px;padding:14px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--line);margin-bottom:10px;cursor:pointer;transition:.18s}
+.chat-list-item:active{border-color:var(--line-2)}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:20px;flex-shrink:0;background:rgba(168,85,247,.14);border:1px solid var(--line-2);overflow:hidden}
+.avatar-sm{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;flex-shrink:0;background:rgba(168,85,247,.14);border:1px solid var(--line);overflow:hidden}
+.chat-wrap{display:flex;flex-direction:column;height:calc(100dvh - 200px - var(--safe-b) - var(--safe-t))}
+.chat-body{flex:1;overflow-y:auto;padding:6px 2px 12px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.msg{display:flex;gap:10px;margin-bottom:14px}
+.msg-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;flex-shrink:0;background:rgba(168,85,247,.14);border:1px solid var(--line);overflow:hidden}
+.msg-name{font-size:12.5px;font-weight:600;color:#d8b4fe;margin-bottom:2px}
+.msg-text{font-size:14px;color:#e2dbf2;word-break:break-word}
+.msg-time{font-size:10.5px;color:var(--muted);margin-top:3px}
+.msg.mine .msg-name{color:var(--cyan)}
+.msg.mine .msg-av{background:rgba(34,211,238,.13);border-color:rgba(34,211,238,.35)}
+.chat-bar{display:flex;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.chat-bar input{flex:1;padding:12px 18px;border-radius:99px;background:rgba(255,255,255,.045);border:1px solid var(--line);outline:none;font-size:15px;min-height:46px}
+.chat-bar input:focus{border-color:var(--line-2)}
+.send-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-size:16px;box-shadow:0 4px 18px rgba(168,85,247,.4);flex-shrink:0}
+.profile-card{position:relative;overflow:hidden;border-radius:22px;border:1px solid var(--line-2);padding:22px 18px;text-align:center}
+.profile-bg{position:absolute;inset:0;z-index:0}
+.profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.35),rgba(10,6,19,.88))}
+.profile-inner{position:relative;z-index:1}
+.p-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:40px;background:rgba(10,6,19,.6);border:2px solid var(--line-2);box-shadow:0 0 34px rgba(168,85,247,.42);overflow:hidden}
+.p-name{font-size:22px;font-family:var(--fd);font-weight:700;margin-bottom:6px}
+.p-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.shop-item{border-radius:16px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);text-align:center}
+.shop-prev{height:56px;border-radius:12px;margin-bottom:9px;border:1px solid var(--line)}
+.shop-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.shop-price{font-size:14px;font-weight:700;color:#d8b4fe;margin-bottom:8px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid var(--line);outline:none;font-size:16px;transition:border-color .18s;min-height:46px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--line-2)}
+.field textarea{resize:vertical;min-height:78px;font-family:var(--fb)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239b91b8' d='M0 0h12L6 8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.field option{background:#1c1133}
+.field .hint{font-size:11.5px;color:var(--muted);margin-top:5px}
+.admin-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.admin-row:last-child{border-bottom:none}
+.modal-backdrop{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(5,2,12,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .18s ease}
+.user-modal-backdrop{z-index:110}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(26px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal{width:100%;max-width:480px;max-height:88dvh;display:flex;flex-direction:column;background:linear-gradient(170deg,#1c1133,#120a22);border:1px solid var(--line-2);border-bottom:none;border-radius:26px 26px 0 0;animation:slideUp .24s cubic-bezier(.2,.8,.3,1);padding-bottom:var(--safe-b)}
+@media(min-width:520px){.modal-backdrop{align-items:center;padding:20px}.modal{border-radius:24px;border-bottom:1px solid var(--line-2);max-height:86dvh}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px 12px}
+.modal-head h3{font-size:17px}
+.icon-btn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:var(--muted);font-size:15px;transition:.18s;flex-shrink:0}
+.icon-btn:active{background:rgba(255,255,255,.12);color:#fff}
+.modal-body{padding:0 20px 8px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-foot{display:flex;gap:10px;padding:14px 20px 20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.modal-foot .btn{flex:1;min-width:120px}
+.tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safe-b));z-index:60;width:calc(100% - 24px);max-width:456px;display:flex;justify-content:space-around;padding:6px 4px;border-radius:24px;background:rgba(18,10,32,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);box-shadow:0 12px 38px rgba(0,0,0,.55)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;min-height:52px;border-radius:16px;color:var(--muted);font-size:10.5px;font-weight:600;transition:.18s;position:relative}
+.nav-item .ic{font-size:19px;line-height:1;filter:grayscale(.55);transition:.18s}
+.nav-item.active{color:#d8b4fe;background:rgba(168,85,247,.13)}
+.nav-item.active .ic{filter:none;transform:translateY(-1px)}
+.nav-item .nbadge{position:absolute;top:6px;right:calc(50% - 22px);min-width:16px;height:16px;padding:0 4px;border-radius:99px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center}
+.toast-host{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(104px + var(--safe-b));z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:calc(100% - 40px);max-width:400px}
+.toast{padding:11px 20px;border-radius:99px;font-size:13.5px;font-weight:600;background:rgba(28,17,51,.97);border:1px solid var(--line-2);color:#e9e2f8;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:slideUp .22s ease;max-width:100%;text-align:center}
+.toast.ok{border-color:rgba(52,211,153,.5);color:#a7f3d0}
+.toast.err{border-color:rgba(248,113,113,.5);color:#fecaca}
+.auth{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(6,3,14,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:calc(24px + var(--safe-t));padding-bottom:calc(24px + var(--safe-b));overflow-y:auto}
+.auth-box{width:100%;max-width:400px;padding:22px 20px;background:linear-gradient(160deg,rgba(28,17,51,.9),rgba(14,8,26,.95));border:1px solid var(--line-2);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.auth-brand{display:flex;flex-direction:column;align-items:center;margin-bottom:18px}
+.auth-brand .brand-mark{width:64px;height:64px;border-radius:18px;margin-bottom:12px;overflow:hidden}
+.auth-brand .brand-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.auth-brand h1{font-size:22px;text-align:center}
+.auth-brand p{color:var(--muted);font-size:13.5px;margin-top:6px;text-align:center}
+.auth-tabs{display:flex;gap:6px;padding:4px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid var(--line);margin-bottom:18px}
+.auth-tab{flex:1;padding:10px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:.18s}
+.auth-tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 4px 14px rgba(168,85,247,.35)}
+.emoji-pick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.emoji-opt{width:52px;height:52px;border-radius:50%;padding:0;overflow:hidden;background:rgba(255,255,255,.05);border:2px solid var(--line);transition:.15s;display:grid;place-items:center}
+.emoji-opt img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.emoji-opt.sel{border-color:var(--accent);background:rgba(168,85,247,.2);transform:scale(1.06);box-shadow:0 0 16px rgba(168,85,247,.5)}
+.demo-hint{margin-top:14px;padding:10px 14px;border-radius:12px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);font-size:12px;color:#fcd34d;line-height:1.6}
+.demo-hint b{color:#fde68a}
+.member-picker{max-height:280px;overflow-y:auto;padding:4px;margin:0 -4px;border-radius:14px}
+.member-pick{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:13px;background:rgba(255,255,255,.03);border:1px solid var(--line);margin-bottom:7px;cursor:pointer;transition:.15s}
+.member-pick:active{background:rgba(168,85,247,.10)}
+.member-pick.checked{background:rgba(168,85,247,.13);border-color:var(--line-2)}
+.member-pick.captain{background:rgba(251,191,36,.10);border-color:rgba(251,191,36,.35);cursor:default}
+.member-pick input{display:none}
+.member-pick .mc{flex:1;min-width:0}
+.member-pick .mc-name{font-weight:600;font-size:14px}
+.member-pick .mc-tg{font-size:11.5px;color:#67e8f9}
+.member-pick .check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;font-size:12px;color:transparent;transition:.15s;flex-shrink:0}
+.member-pick.checked .check{background:var(--accent);border-color:var(--accent);color:#fff}
+.member-pick.captain .check{background:#fbbf24;border-color:#fbbf24;color:#0a0613}
+[data-act="view-user"]{cursor:pointer;transition:filter .15s}
+[data-act="view-user"]:hover{filter:brightness(1.18)}
+.user-hit{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.up-head{position:relative;overflow:hidden;border-radius:18px;padding:22px 16px;text-align:center;margin-bottom:16px;border:1px solid var(--line-2)}
+.up-head .profile-bg{position:absolute;inset:0;z-index:0}
+.up-head .profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.3),rgba(10,6,19,.85))}
+.up-head-inner{position:relative;z-index:1}
+.up-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:34px;background:rgba(10,6,19,.55);border:2px solid var(--line-2);box-shadow:0 0 30px rgba(168,85,247,.4);overflow:hidden}
+.up-name{font-size:20px;font-family:var(--fd);font-weight:700;margin-bottom:8px}
+.up-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.bracket-round{margin-bottom:20px}
+.bracket-round-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-family:var(--fd);font-weight:700;font-size:14px;color:#d8b4fe}
+.bracket-round-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.bracket-match{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:9px;transition:.18s}
+.bracket-match.ready{border-color:var(--line-2)}
+.bracket-match.awaiting{border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.04)}
+.bracket-match.approved{background:rgba(52,211,153,.04);border-color:rgba(52,211,153,.25)}
+.bracket-team{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:14px}
+.bracket-team .score{margin-left:auto;font-family:var(--fd);font-weight:700;font-size:16px;min-width:22px;text-align:center;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,.05)}
+.bracket-team.winner{color:#6ee7b7}
+.bracket-team.winner .score{background:rgba(52,211,153,.18);color:#6ee7b7}
+.bracket-team.bye{opacity:.5;font-style:italic}
+.bracket-team .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.bracket-team .tag-sm{font-size:11px;color:var(--muted);font-family:var(--fd);font-weight:700;padding:2px 6px;border-radius:5px;background:rgba(168,85,247,.15);border:1px solid var(--line-2)}
+.champion-banner{margin-top:16px;padding:18px;border-radius:18px;text-align:center;background:linear-gradient(135deg,rgba(251,191,36,.18),rgba(168,85,247,.12));border:1px solid rgba(251,191,36,.5)}
+.champion-banner .em{font-size:36px;display:block;margin-bottom:6px}
+.champion-banner h3{color:#fcd34d;font-size:18px;margin-bottom:4px}
+.proof-line{font-size:11.5px;color:#67e8f9;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;word-break:break-all}
+.proof-line a{color:#67e8f9;text-decoration:underline;font-weight:600;word-break:break-all}
+.match-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.match-actions .btn-xs{flex:1;min-width:100px}
+.match-actions{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.match-actions .btn-xs{width:100%;min-width:0;flex:none;justify-content:center}
+@media(min-width:440px){.match-actions{flex-direction:row;flex-wrap:wrap}.match-actions .btn-xs{width:auto;flex:1 1 calc(50% - 4px);min-width:0}}
+.bracket-team{min-width:0}
+.bracket-team .nm{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bracket-team .score{flex-shrink:0}
+.bracket-team .tag-sm{flex-shrink:0}
+.btn,.chip,.badge{min-width:0}
+.admin-row .btn-sm{white-space:normal;text-align:center;line-height:1.2;padding:7px 11px;font-size:12px}
+.p-avatar img,.up-avatar img,.avatar img,.avatar-sm img,.msg-av img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:inherit}
+.loading-screen{position:fixed;inset:0;z-index:300;display:grid;place-items:center;background:#0a0613;color:var(--muted);font-size:14px;gap:14px;flex-direction:column}
+.spinner{width:34px;height:34px;border:3px solid rgba(168,85,247,.2);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="spinner"></div>
+  <div>Подключение к базе данных…</div>
+</div>
+
+<div class="app" id="app" style="display:none">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"><img src="https://i.ibb.co/QFdPbD1s/86-20260918220103.png" alt="Logo"></span>
+      <span>ThunderStorm<small>Mobile Legends</small></span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-badge" data-act="open-invites" aria-label="Приглашения" id="invitesBtn" style="display:none">📨<span class="dot" id="invitesDot">0</span></button>
+      <div class="wallet">✦ <b id="coinBal">0</b></div>
+    </div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<nav class="tabbar" id="tabbar"></nav>
+<div class="toast-host" id="toasts"></div>
+<div id="modal-root"></div>
+<div id="user-modal-root"></div>
+<div id="invites-modal-root"></div>
+<div id="auth-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ============================================================
+   ThunderStorm — Supabase версия
+   ============================================================ */
+const SUPABASE_URL  = 'https://fpvbvyqppverkisxl.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_FVYuUqEdNcmyluAT02Ting_CG-y8XRJ';
+const ADMIN_LOGIN = 'nbb';
+const ADMIN_TG = '@nbb5454';
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: { persistSession: true, autoRefreshToken: true }
+});
+
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const uid = () => Math.random().toString(36).slice(2,10);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const plural = (n,a,b,c) => { const m10=n%10,m100=n%100; if(m10===1&&m100!==11)return a; if(m10>=2&&m10<=4&&(m100<10||m100>=20))return b; return c; };
+const fmtNum = n => String(n??0).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const fmtDate = iso => new Date(iso).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+const fmtTime = ts => new Date(ts).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+const untilText = iso => {
+  const diff = new Date(iso) - Date.now();
+  if (diff <= 0) return 'уже начался';
+  const d = Math.floor(diff/864e5), h = Math.floor((diff%864e5)/36e5), m = Math.floor((diff%36e5)/6e4);
+  if (d>0) return `через ${d} ${plural(d,'день','дня','дней')}`;
+  if (h>0) return `через ${h} ч ${m} мин`;
+  return `через ${m} мин`;
+};
+const inDays = (d,h=18,m=0) => { const dt=new Date(); dt.setDate(dt.getDate()+d); dt.setHours(h,m,0,0); return dt.toISOString(); };
+const toLocalInput = d => { const p=n=>String(n).padStart(2,'0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; };
+const vibrate = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch(e){} };
+const hashPass = (pass, salt) => {
+  let h = 5381; const s = (salt||'') + pass;
+  for (let i=0;i<s.length;i++) h = ((h<<5)+h) ^ s.charCodeAt(i);
+  return (h>>>0).toString(36);
+};
+const tgLink = tg => 'https://t.me/' + String(tg||'').replace(/^@/,'');
+const isImgUrl = v => typeof v === 'string' && /^https?:\/\//i.test(v);
+const avatarHTML = v => isImgUrl(v) ? `<img src="${esc(v)}" alt="" loading="lazy">` : esc(v || '👤');
+
+const BACKGROUNDS = [
+  { id:'bg1', name:'Тёмная галактика', price:300,  css:'linear-gradient(145deg,#2d1b4e,#0d031f)' },
+  { id:'bg2', name:'Неоновая бездна',  price:500,  css:'linear-gradient(145deg,#4a1a6b,#12061f)' },
+  { id:'bg3', name:'Киберпространство',price:750,  css:'linear-gradient(145deg,#0b3a5a,#06121f)' },
+  { id:'bg4', name:'Кровавая луна',    price:1000, css:'linear-gradient(145deg,#5c1a3a,#160610)' },
+  { id:'bg5', name:'Золотой трон',     price:1500, css:'linear-gradient(145deg,#5a4310,#1a1206)' }
+];
+const AVATARS = [
+  'https://i.ibb.co/Mk6Vy3ps/83.png',
+  'https://i.ibb.co/xqnzs43p/85.png',
+  'https://i.ibb.co/zhfmz6HL/84.png',
+  'https://i.ibb.co/nNJBzngK/82.png',
+  'https://i.ibb.co/rGj1m78N/81.png',
+  'https://i.ibb.co/bgNwnNXk/76.png',
+  'https://i.ibb.co/bMyjp3JF/77.png',
+  'https://i.ibb.co/7tZJ5yPK/78.png',
+  'https://i.ibb.co/5XJ41tnX/80.png',
+  'https://i.ibb.co/hRzL7MQR/79.png'
+];
+
+let db = { meId:null, profile:null, users:[], teams:[], invites:[], tournaments:[], chats:[] };
+const state = { route:'home', filter:'all', activeChat:null, profile:null, tModalTab:'entries', tModalId:null, msgChannel:null, realtimeChannel:null, authUser:null };
+const me = () => db.profile;
+const userById = id => db.users.find(u => u.id === id) || null;
+const isAdmin = () => db.profile?.role === 'admin';
+const isMod = () => ['admin','moderator'].includes(db.profile?.role);
+const canManage = () => isMod();
+
+function myEntries() {
+  if (!db.meId) return [];
+  return db.tournaments.filter(t => (t.entries||[]).some(e =>
+    e.uid === db.meId || (e.member_ids||[]).includes(db.meId)));
+}
+function myPendingInvites() {
+  if (!db.meId) return [];
+  return db.invites.filter(i => i.to_user === db.meId && i.status === 'pending');
+}
+function entryById(t, id) { return (t.entries||[]).find(e => e.id === id); }
+function entryLabel(t, id) {
+  const e = entryById(t, id);
+  if (!e) return '—';
+  if (e.type === 'team') return `${e.name} [${e.tag||'?'}]`;
+  const u = userById(e.uid);
+  return u ? u.nick : '—';
+}
+function entryIsMine(t, id) {
+  const e = entryById(t, id);
+  if (!e || !db.meId) return false;
+  return e.uid === db.meId || (e.member_ids||[]).includes(db.meId);
+}
+
+function toast(text, type='') {
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.textContent = text;
+  $('#toasts').appendChild(el);
+  setTimeout(() => { el.style.opacity='0'; el.style.transition='opacity .3s'; }, 2300);
+  setTimeout(() => el.remove(), 2700);
+}
+let pendingConfirm = null;
+function openModal({ title, body, footer }) {
+  $('#modal-root').innerHTML = `
+    <div class="modal-backdrop" data-act="close-modal">
+      <div class="modal" role="dialog">
+        <div class="modal-head">
+          <h3>${esc(title)}</h3>
+          <button class="icon-btn" data-act="close-modal" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body">${body}</div>
+        ${footer ? `<div class="modal-foot">${footer}</div>` : ''}
+      </div>
+    </div>`;
+  document.body.classList.add('modal-open');
+}
+function closeModal() { $('#modal-root').innerHTML = ''; checkBodyLock(); pendingConfirm = null; state.tModalId = null; }
+function checkBodyLock() {
+  const anyOpen = $('#modal-root').innerHTML || $('#user-modal-root').innerHTML || $('#invites-modal-root').innerHTML;
+  document.body.classList.toggle('modal-open', !!anyOpen);
+}
+function confirmDialog(title, text, label, cb, danger) {
+  pendingConfirm = cb;
+  openModal({
+    title, body: `<p class="muted" style="font-size:14px">${esc(text)}</p>`,
+    footer: `<button class="btn btn-ghost" data-act="close-modal">Отмена</button>
+             <button class="btn ${danger?'btn-danger':'btn-primary'}" data-act="confirm-ok">${esc(label)}</button>`
+  });
+}
+
+function openInvites() {
+  const invites = myPendingInvites();
+  const teams = invites.map(i => ({ inv: i, team: db.teams.find(t => t.id === i.team_id) })).filter(x => x.team);
+  $('#invites-modal-root').innerHTML = `
+    <div class="modal-backdrop user-modal-backdrop" data-act="close-invites-modal">
+      <div class="modal" role="dialog">
+        <div class="modal-head"><h3>Приглашения в команды</h3>
+          <button class="icon-btn" data-act="close-invites-modal">✕</button></div>
+        <div class="modal-body">
+          ${teams.length ? teams.map(({inv, team}) => {
+            const captain = userById(team.captain);
+            return `
+            <div class="invite-card">
+              <div class="row" style="align-items:flex-start">
+                <div class="team-logo">${esc(team.tag||'??')}</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-weight:700;font-size:15px">${esc(team.name)}</div>
+                  <div class="tiny muted" style="margin-top:3px">От: ${captain ? `<b>${esc(captain.nick)}</b>` : '—'}
+                    ${captain?.telegram ? `· <a class="tg-link" href="${tgLink(captain.telegram)}" target="_blank">${esc(captain.telegram)}</a>` : ''}</div>
+                </div>
+              </div>
+              <div class="row" style="gap:8px;margin-top:12px">
+                <button class="btn btn-success btn-sm" style="flex:1" data-act="accept-invite" data-id="${inv.id}">Принять</button>
+                <button class="btn btn-ghost btn-sm" style="flex:1" data-act="decline-invite" data-id="${inv.id}">Отклонить</button>
+              </div>
+            </div>`;
+          }).join('') : '<div class="empty"><span class="em">📭</span>Нет новых приглашений</div>'}
+        </div>
+        <div class="modal-foot"><button class="btn btn-ghost btn-block" data-act="close-invites-modal">Закрыть</button></div>
+      </div>
+    </div>`;
+  document.body.classList.add('modal-open');
+}
+function closeInvites() { $('#invites-modal-root').innerHTML = ''; checkBodyLock(); }
+
+function openUserProfile(userId) {
+  const u = userById(userId);
+  if (!u) return;
+  const bg = BACKGROUNDS.find(b => b.id === u.bg) || BACKGROUNDS[0];
+  const roleLabel = { player:'Игрок', moderator:'Модератор', admin:'Главный админ' }[u.role] || 'Игрок';
+  const roleClass = { player:'badge-purple', moderator:'badge-cyan', admin:'badge-amber' }[u.role] || 'badge-purple';
+  const tours = db.tournaments.filter(t => (t.entries||[]).some(e =>
+    e.uid === u.id || (e.member_ids||[]).includes(u.id)));
+  const teams = db.teams.filter(t => (t.member_ids||[]).includes(u.id));
+  const isMe = u.id === db.meId;
+  const canDelete = isAdmin() && !isMe;
+  const tourList = tours.length ? tours.slice(0,3).map(t => `
+    <div class="admin-row" style="cursor:pointer" data-act="open-tournament-from-user" data-id="${t.id}">
+      <div style="min-width:0;flex:1"><div style="font-weight:600;font-size:13.5px">${esc(t.title)}</div>
+        <div class="tiny muted">${esc(fmtDate(t.date))}</div></div>
+      <span class="mode-pill" style="font-size:10.5px;padding:3px 8px">${t.mode==='1v1'?'1 × 1':'5 × 5'}</span>
+    </div>`).join('') : '<p class="muted tiny" style="padding:8px 0">Пока ни в одном турнире</p>';
+  const teamList = teams.length ? teams.map(t => `
+    <div class="admin-row"><div class="row" style="min-width:0;flex:1">
+      <div class="team-logo sm">${esc(t.tag||'??')}</div>
+      <div style="min-width:0"><div style="font-weight:600;font-size:13.5px">${esc(t.name)}</div>
+        <div class="tiny muted">${t.captain === u.id ? 'Капитан' : 'Участник'}</div></div>
+    </div></div>`).join('') : '<p class="muted tiny" style="padding:8px 0">Не состоит в командах</p>';
+  $('#user-modal-root').innerHTML = `
+    <div class="modal-backdrop user-modal-backdrop" data-act="close-user-modal">
+      <div class="modal" role="dialog">
+        <div class="modal-head"><h3>Профиль игрока</h3>
+          <button class="icon-btn" data-act="close-user-modal">✕</button></div>
+        <div class="modal-body">
+          <div class="up-head">
+            <div class="profile-bg" style="background:${bg.css}"></div>
+            <div class="up-head-inner">
+              <div class="up-avatar">${avatarHTML(u.avatar)}</div>
+              <div class="up-name">${esc(u.nick)} ${isMe?'<span class="muted tiny" style="font-weight:400">· вы</span>':''}</div>
+              <span class="badge ${roleClass}">${roleLabel}</span>
+              <div class="p-tags" style="margin-top:12px">
+                ${(u.heroes||[]).map(h => `<span class="tag">${esc(h)}</span>`).join('')}
+                ${(u.lines||[]).map(l => `<span class="tag" style="border-color:var(--line-2);color:#d8b4fe">${esc(l)}</span>`).join('')}
+              </div>
+              <div style="margin-top:14px"><a class="tg-link" href="${tgLink(u.telegram)}" target="_blank" style="font-size:14px">📨 ${esc(u.telegram||'—')}</a></div>
+            </div>
+          </div>
+          <div class="up-stats">
+            <div class="stat"><span>Ранг</span><b style="font-size:15px;margin-top:4px">${esc(u.rank||'—')}</b></div>
+            <div class="stat"><span>В игре с</span><b style="font-size:14px;margin-top:4px">${u.created ? new Date(u.created).toLocaleDateString('ru-RU') : '—'}</b></div>
+          </div>
+          <div class="up-stats" style="margin-top:10px">
+            <div class="stat"><span>Турниров</span><b style="margin-top:4px">${tours.length}</b></div>
+            <div class="stat"><span>Команд</span><b style="margin-top:4px">${teams.length}</b></div>
+          </div>
+          <div class="section-head" style="margin-top:18px;margin-bottom:6px"><h2 style="font-size:13.5px">Турниры</h2></div>
+          ${tourList}
+          <div class="section-head" style="margin-top:14px;margin-bottom:6px"><h2 style="font-size:13.5px">Команды</h2></div>
+          ${teamList}
+        </div>
+        <div class="modal-foot">
+          ${canDelete ? `<button class="btn btn-danger" data-act="admin-del-user" data-id="${u.id}">Удалить</button>` : ''}
+          <a class="btn btn-primary" href="${tgLink(u.telegram)}" target="_blank">Написать в TG</a>
+          <button class="btn btn-ghost" data-act="close-user-modal">Закрыть</button>
+        </div>
+      </div>
+    </div>`;
+  document.body.classList.add('modal-open');
+}
+function closeUserModal() { $('#user-modal-root').innerHTML = ''; checkBodyLock(); }
+
+function render() {
+  state.profile = me();
+  $('#coinBal').textContent = state.profile ? fmtNum(state.profile.coins||0) : '0';
+  const inviteCount = myPendingInvites().length;
+  const ib = $('#invitesBtn');
+  if (ib) {
+    ib.style.display = state.profile && inviteCount > 0 ? '' : 'none';
+    $('#invitesDot').textContent = inviteCount;
+  }
+  if (!state.profile) { $('#view').innerHTML=''; $('#tabbar').innerHTML=''; return; }
+  const views = { home: viewHome, tournaments: viewTournaments, teams: viewTeams, chats: viewChats, profile: viewProfile, admin: viewAdmin };
+  $('#view').innerHTML = (views[state.route] || viewHome)();
+  renderTabbar();
+  const body = $('#chatBody');
+  if (body) body.scrollTop = body.scrollHeight;
+}
+function renderTabbar() {
+  const items = [
+    { r:'home', ic:'🏠', label:'Главная' },
+    { r:'tournaments', ic:'⚔️', label:'Турниры' },
+    { r:'teams', ic:'👥', label:'Команды' },
+    { r:'chats', ic:'💬', label:'Чаты' },
+    { r:'profile', ic:'👤', label:'Профиль', badge: myPendingInvites().length }
+  ];
+  if (canManage()) items.push({ r:'admin', ic:'🛡️', label:'Админ' });
+  $('#tabbar').innerHTML = items.map(i => `
+    <button class="nav-item ${state.route===i.r?'active':''}" data-act="nav" data-route="${i.r}">
+      <span class="ic">${i.ic}</span><span>${i.label}</span>
+      ${i.badge ? `<span class="nbadge">${i.badge}</span>` : ''}
+    </button>`).join('');
+}
+function userChip(u, opts) {
+  if (!u) return '';
+  const o = opts || {};
+  const cls = o.cls || 'member-dot';
+  const av = isImgUrl(u.avatar) ? `<img src="${esc(u.avatar)}" alt="" loading="lazy">` : `<span>${esc(u.avatar||'👤')}</span>`;
+  return `<span class="${cls}" data-act="view-user" data-id="${u.id}" title="Открыть профиль">
+    ${av} <b>${esc(u.nick)}</b>
+    ${u.telegram ? `<a class="tg-link" href="${tgLink(u.telegram)}" target="_blank" onclick="event.stopPropagation()" style="font-size:11px">${esc(u.telegram)}</a>` : ''}
+  </span>`;
+}
+
+function viewHome() {
+  const upcoming = db.tournaments.filter(t => new Date(t.date) > new Date() && t.status !== 'done').sort((a,b) => new Date(a.date) - new Date(b.date));
+  const next = upcoming[0];
+  const mine = myEntries().filter(t => new Date(t.date) > new Date()).sort((a,b) => new Date(a.date) - new Date(b.date));
+  const invites = myPendingInvites();
+  const inviteBanner = invites.length ? `
+    <div class="invite-banner" data-act="open-invites">
+      <span class="em">📨</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:14px">У вас <b>${invites.length}</b> ${plural(invites.length,'приглашение','приглашения','приглашений')}</div>
+        <div class="tiny muted">Нажмите, чтобы посмотреть</div>
+      </div>
+      <span style="color:#fcd34d;font-size:20px">→</span>
+    </div>` : '';
+  const heroBlock = next ? `
+    <div class="hero" data-act="open-tournament" data-id="${next.id}" style="cursor:pointer">
+      <div class="hero-tag">Следующий · ${next.mode==='1v1'?'1 × 1':'5 × 5'}</div>
+      <h1>${esc(next.title)}</h1>
+      <div class="hero-meta">
+        <span>📅 ${esc(fmtDate(next.date))}</span>
+        <span>⏳ ${esc(untilText(next.date))}</span>
+        <span>🏆 ${fmtNum(next.prize)} ✦</span>
+      </div>
+      <div class="bar"><i style="width:${Math.min(100,(next.entries||[]).filter(e=>e.status==='approved').length)/next.max_teams*100}%"></i></div>
+      <div class="tcard-foot">
+        <span>${(next.entries||[]).filter(e=>e.status==='approved').length} / ${next.max_teams} слотов</span>
+        <span class="prize">Регистрация открыта</span>
+      </div>
+    </div>` : `<div class="hero"><div class="hero-tag">Пока тихо</div><h1>Турниры скоро появятся</h1>
+      <p class="muted" style="font-size:14px">Следите за анонсами в общем чате.</p></div>`;
+  const myBlock = mine.length ? `
+    <section class="section">
+      <div class="section-head"><h2>Мои турниры</h2>
+      <span class="link" data-act="nav" data-route="tournaments" style="cursor:pointer">Все →</span></div>
+      ${mine.slice(0,3).map(tCardHTML).join('')}
+    </section>` : '';
+  const openList = upcoming.slice(0,2).map(tCardHTML).join('') || `<div class="empty"><span class="em">📭</span>Открытых турниров нет</div>`;
+  return `
+    <div style="margin-bottom:16px">
+      <p class="muted tiny" style="letter-spacing:.1em;text-transform:uppercase">Добро пожаловать</p>
+      <h2 style="font-size:21px;margin-top:4px">${esc(me()?.nick||'Игрок')}</h2>
+      <p class="tiny muted" style="margin-top:3px">Telegram:
+        <a class="tg-link" href="${tgLink(me()?.telegram)}" target="_blank">${esc(me()?.telegram||'—')}</a></p>
+    </div>
+    ${inviteBanner}
+    ${heroBlock}
+    <div class="stats">
+      <div class="stat"><b>${mine.length}</b><span>Мои турниры</span></div>
+      <div class="stat"><b>${db.teams.length}</b><span>Команд</span></div>
+      <div class="stat"><b>${db.users.length}</b><span>Игроков</span></div>
+    </div>
+    ${myBlock}
+    <section class="section">
+      <div class="section-head"><h2>Открытая регистрация</h2>
+      <span class="link" data-act="nav" data-route="tournaments" style="cursor:pointer">Все →</span></div>
+      ${openList}
+    </section>`;
+}
+
+function myEntryIn(t) { if (!db.meId) return null; return (t.entries||[]).find(e => e.uid === db.meId || (e.member_ids||[]).includes(db.meId)); }
+function tCardHTML(t) {
+  const filled = (t.entries||[]).filter(e => e.status === 'approved').length;
+  const total = (t.entries||[]).length;
+  const pct = Math.min(100, filled / t.max_teams * 100);
+  const full = filled >= t.max_teams;
+  const badge = t.status === 'closed' || full ? `<span class="badge badge-red">Закрыта</span>` : `<span class="badge badge-green">Открыта</span>`;
+  const hasBracket = t.bracket && t.bracket.rounds && t.bracket.rounds.length > 0;
+  let mineBadge = '';
+  const myE = myEntryIn(t);
+  if (myE) {
+    if (myE.status === 'approved') mineBadge = '<span class="badge badge-amber">Вы в игре</span>';
+    else if (myE.status === 'pending') mineBadge = '<span class="badge badge-cyan">⏳ Ожидает</span>';
+    else if (myE.status === 'rejected') mineBadge = '<span class="badge badge-red">Отклонена</span>';
+  }
+  const bracketBadge = hasBracket ? '<span class="badge badge-purple">Сетка</span>' : '';
+  return `
+  <article class="tcard" data-act="open-tournament" data-id="${t.id}">
+    <div class="tcard-top">
+      <div class="row" style="gap:6px;flex-wrap:wrap">
+        <span class="mode-pill">${t.mode==='1v1'?'1 × 1':'5 × 5'}</span>
+        ${badge}${mineBadge}${bracketBadge}
+      </div>
+    </div>
+    <h3>${esc(t.title)}</h3>
+    <div class="tcard-meta">
+      <span>📅 <b>${esc(fmtDate(t.date))}</b></span>
+      <span>⏳ ${esc(untilText(t.date))}</span>
+    </div>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="tcard-foot">
+      <span>${filled} / ${t.max_teams}${total > filled ? ` · <span class="muted">${total-filled} на рассмотрении</span>` : ''}</span>
+      <span class="prize">🏆 ${fmtNum(t.prize)} ✦</span>
+    </div>
+  </article>`;
+}
+function viewTournaments() {
+  let list = db.tournaments.slice().sort((a,b) => new Date(a.date) - new Date(b.date));
+  if (state.filter === '1v1') list = list.filter(t => t.mode === '1v1');
+  if (state.filter === '5v5') list = list.filter(t => t.mode === '5v5');
+  if (state.filter === 'open') list = list.filter(t => t.status === 'open' && (t.entries||[]).filter(e => e.status==='approved').length < t.max_teams);
+  if (state.filter === 'mine') list = myEntries();
+  const myCount = myEntries().length;
+  const chips = [['all','Все'],['1v1','1 × 1'],['5v5','5 × 5'],['open','Открытые'],['mine','Мои'+(myCount?' · '+myCount:'')]]
+    .map(([k,l]) => `<button class="chip ${state.filter===k?'active':''}" data-act="filter" data-val="${k}">${l}</button>`).join('');
+  const body = list.length ? list.map(tCardHTML).join('') :
+    `<div class="empty"><span class="em">${state.filter==='mine'?'📭':'🔍'}</span>${state.filter==='mine'?'Вы ещё нигде не участвуете':'По этому фильтру турниров нет'}</div>`;
+  return `
+    <div class="section-head" style="margin-bottom:14px">
+      <h2 style="font-size:19px">Турниры</h2>
+      ${canManage() ? `<button class="btn btn-primary btn-sm" data-act="nav" data-route="admin">+ Создать</button>` : ''}
+    </div>
+    <div class="chips">${chips}</div>
+    ${body}`;
+}
+
+function renderBracket(t) {
+  if (!t.bracket || !t.bracket.rounds || !t.bracket.rounds.length) {
+    return `<div class="empty"><span class="em">📭</span>Сетка ещё не создана</div>`;
+  }
+  const champ = t.bracket.champion;
+  const roundsHTML = t.bracket.rounds.map((round) => {
+    const matchesHTML = round.matches.map(m => {
+      const aId = m.teamA, bId = m.teamB;
+      const aLabel = aId ? entryLabel(t, aId) : '—';
+      const bLabel = bId ? entryLabel(t, bId) : '—';
+      const aTag = aId ? (entryById(t, aId)?.tag || '') : '';
+      const bTag = bId ? (entryById(t, bId)?.tag || '') : '';
+      const aWin = m.winner && m.winner === aId;
+      const bWin = m.winner && m.winner === bId;
+      const isBye = bId === null;
+      const canSubmit = m.status === 'ready' && (entryIsMine(t, aId) || entryIsMine(t, bId));
+      const canReview = canManage() && m.status === 'awaiting';
+
+      let statusBadge = '';
+      if (m.status === 'awaiting') statusBadge = '<span class="badge badge-amber">⏳ Ждёт проверки</span>';
+      else if (m.status === 'approved' && m.winner) statusBadge = '<span class="badge badge-green">✅ Завершён</span>';
+      else if (m.status === 'ready') statusBadge = '<span class="badge badge-cyan">Готов</span>';
+
+      const proofLine = m.proofLink
+        ? `<div class="proof-line">
+             Пруф: <a href="${esc(m.proofLink)}" target="_blank">${esc(m.proofLink).slice(0,55)}${esc(m.proofLink).length>55?'…':''}</a>
+             ${m.submittedBy ? `от ${esc(userById(m.submittedBy)?.nick||'—')}` : ''}
+           </div>` : '';
+
+      const actions = [];
+      if (canSubmit) actions.push(`<button class="btn btn-primary btn-xs" data-act="submit-result" data-tid="${t.id}" data-mid="${m.id}">📤 Отправить результат</button>`);
+      if (canReview) {
+        if (m.reportedWinner === aId) actions.push(`<button class="btn btn-success btn-xs" data-act="approve-match" data-tid="${t.id}" data-mid="${m.id}" data-winner="${aId}">✓ Принять: ${esc(aLabel)}</button>`);
+        if (m.reportedWinner === bId) actions.push(`<button class="btn btn-success btn-xs" data-act="approve-match" data-tid="${t.id}" data-mid="${m.id}" data-winner="${bId}">✓ Принять: ${esc(bLabel)}</button>`);
+        actions.push(`<button class="btn btn-danger btn-xs" data-act="reject-match" data-tid="${t.id}" data-mid="${m.id}">✕ Отклонить результат</button>`);
+      }
+      if (canManage() && m.status === 'ready') {
+        actions.push(`<button class="btn btn-ghost btn-xs" data-act="set-winner" data-tid="${t.id}" data-mid="${m.id}" data-winner="${aId}">Победил: ${esc(aLabel)}</button>`);
+        actions.push(`<button class="btn btn-ghost btn-xs" data-act="set-winner" data-tid="${t.id}" data-mid="${m.id}" data-winner="${bId}">Победил: ${esc(bLabel)}</button>`);
+      }
+
+      return `
+      <div class="bracket-match ${m.status}">
+        <div class="bracket-team ${aWin?'winner':''} ${isBye?'bye':''}">
+          ${aTag ? `<span class="tag-sm">${esc(aTag)}</span>` : ''}
+          <span class="nm">${esc(aLabel)}</span>
+          <span class="score">${m.scoreA ?? 0}</span>
+        </div>
+        <div class="bracket-team ${bWin?'winner':''} ${isBye?'bye':''}">
+          ${isBye ? '<span class="nm">— bye —</span><span class="score">—</span>'
+            : `${bTag ? `<span class="tag-sm">${esc(bTag)}</span>` : ''}<span class="nm">${esc(bLabel)}</span><span class="score">${m.scoreB ?? 0}</span>`}
+        </div>
+        <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap">${statusBadge}</div>
+        ${proofLine}
+        ${actions.length ? `<div class="match-actions">${actions.join('')}</div>` : ''}
+      </div>`;
+    }).join('');
+    return `
+      <div class="bracket-round">
+        <div class="bracket-round-head">${esc(round.name)}</div>
+        ${matchesHTML}
+      </div>`;
+  }).join('');
+
+  const champHTML = champ ? `
+    <div class="champion-banner">
+      <span class="em">🏆</span>
+      <h3>Чемпион: ${esc(entryLabel(t, champ))}</h3>
+      <p class="tiny muted">Поздравляем победителя турнира!</p>
+    </div>` : '';
+
+  return roundsHTML + champHTML;
+}
+
+function openTournament(id) {
+  const t = db.tournaments.find(x => x.id === id);
+  if (!t) return;
+  state.tModalId = id;
+  const approved = (t.entries||[]).filter(e => e.status === 'approved').length;
+  const total = (t.entries||[]).length;
+  const pending = (t.entries||[]).filter(e => e.status === 'pending').length;
+  const isFull = approved >= t.max_teams;
+  const myE = myEntryIn(t);
+  const closed = t.status === 'closed' || isFull;
+  const hasBracket = t.bracket && t.bracket.rounds && t.bracket.rounds.length > 0;
+
+  const entriesHTML = total ? (t.entries||[]).map((e,i) => {
+    const members = (e.member_ids||[]).map(userById).filter(Boolean);
+    const teamName = e.type==='team' ? `${esc(e.name)} ${e.tag?`<span class="muted tiny">[${esc(e.tag)}]</span>`:''}` : esc(userById(e.uid)?.nick || '—');
+    let statusBadge = '';
+    if (e.status === 'pending') statusBadge = '<span class="badge badge-cyan">⏳ На рассмотрении</span>';
+    else if (e.status === 'approved') statusBadge = '<span class="badge badge-green">✅ Принята</span>';
+    else if (e.status === 'rejected') statusBadge = '<span class="badge badge-red">❌ Отклонена</span>';
+    const canReview = canManage();
+    return `
+    <div class="admin-row" style="align-items:flex-start">
+      <div style="display:flex;gap:11px;min-width:0;flex:1">
+        <span class="muted tiny" style="width:16px;padding-top:2px">${i+1}</span>
+        <div style="min-width:0;flex:1">
+          <div style="font-weight:600;font-size:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+            ${teamName} ${statusBadge}</div>
+          <div class="tiny muted" style="margin-top:5px;display:flex;flex-wrap:wrap;gap:5px">
+            ${members.map(u => userChip(u)).join('')}</div>
+        </div>
+      </div>
+      <div class="row" style="gap:4px;flex-shrink:0">
+        ${canReview && e.status === 'pending' ? `
+          <button class="btn btn-success btn-xs" data-act="approve-entry" data-tid="${t.id}" data-eid="${e.id}">✓</button>
+          <button class="btn btn-danger btn-xs" data-act="reject-entry" data-tid="${t.id}" data-eid="${e.id}">✕</button>` : ''}
+        ${canReview && e.status === 'approved' ? `
+          <button class="btn btn-danger btn-xs" data-act="reject-entry" data-tid="${t.id}" data-eid="${e.id}">✕</button>` : ''}
+        ${canReview && e.status === 'rejected' ? `
+          <button class="icon-btn" data-act="del-entry" data-tid="${t.id}" data-eid="${e.id}">🗑</button>` : ''}
+        ${(isAdmin() || e.uid === db.meId) && e.status !== 'rejected' ? `
+          <button class="icon-btn" data-act="del-entry" data-tid="${t.id}" data-eid="${e.id}">🗑</button>` : ''}
+      </div>
+    </div>`;
+  }).join('') : `<p class="muted tiny" style="padding:10px 0">Пока никто не зарегистрировался — будьте первым.</p>`;
+
+  let actionBtn;
+  if (myE) {
+    if (myE.status === 'pending') actionBtn = `<button class="btn btn-ghost" disabled>Заявка на рассмотрении</button>`;
+    else if (myE.status === 'approved') actionBtn = `<button class="btn btn-ghost" disabled>Вы приняты</button>`;
+    else actionBtn = `<button class="btn btn-primary" data-act="apply" data-id="${t.id}">Подать заново</button>`;
+  } else if (closed) {
+    actionBtn = `<button class="btn btn-ghost" disabled>Регистрация закрыта</button>`;
+  } else {
+    actionBtn = `<button class="btn btn-primary" data-act="apply" data-id="${t.id}">Подать заявку</button>`;
+  }
+
+  const bracketBtn = canManage() && !hasBracket && approved >= 2
+    ? `<button class="btn btn-amber" data-act="create-bracket" data-id="${t.id}">Создать сетку</button>` : '';
+  const regenBtn = canManage() && hasBracket
+    ? `<button class="btn btn-ghost" data-act="regen-bracket" data-id="${t.id}">Пересоздать сетку</button>` : '';
+  const reviewHint = canManage() && pending
+    ? `<div class="card" style="margin-bottom:12px;border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06)">
+        <div class="tiny" style="color:#67e8f9">💡 У заявок есть кнопки ✓ и ✕ для подтверждения.</div></div>` : '';
+
+  const tabs = [
+    { k:'entries', label:`Заявки (${total})` },
+    { k:'bracket', label:'Сетка' }
+  ];
+  const activeTab = state.tModalTab || 'entries';
+  const tabsHTML = `<div class="chips" style="margin-bottom:14px">
+    ${tabs.map(tb => `<button class="chip ${activeTab===tb.k?'active':''}" data-act="t-modal-tab" data-tab="${tb.k}">${tb.label}</button>`).join('')}
+  </div>`;
+  const body = activeTab === 'entries' ? (reviewHint + entriesHTML) : renderBracket(t);
+
+  const footBtns = [];
+  if (bracketBtn) footBtns.push(bracketBtn);
+  if (regenBtn) footBtns.push(regenBtn);
+  if (actionBtn) footBtns.push(actionBtn);
+  if (!footBtns.length) footBtns.push(`<button class="btn btn-ghost" data-act="close-modal">Закрыть</button>`);
+
+  openModal({
+    title: t.title,
+    body: `
+      <div class="row" style="gap:8px;margin-bottom:14px;flex-wrap:wrap">
+        <span class="badge badge-purple">${t.mode==='1v1'?'1 × 1':'5 × 5'}</span>
+        ${t.status==='closed'||isFull?'<span class="badge badge-red">Закрыт</span>':'<span class="badge badge-green">Открыт</span>'}
+        <span class="badge badge-amber">🏆 ${fmtNum(t.prize)} ✦</span>
+      </div>
+      <div class="grid-2" style="margin-bottom:16px">
+        <div class="stat" style="text-align:left"><span>Дата</span><b style="font-size:14px;margin-top:3px">${esc(fmtDate(t.date))}</b></div>
+        <div class="stat" style="text-align:left"><span>Утверждено</span><b style="font-size:14px;margin-top:3px">${approved} / ${t.max_teams}</b></div>
+      </div>
+      <p class="muted" style="font-size:13.5px;line-height:1.6;margin-bottom:14px">${esc(t.desc || 'Описание не указано.')}</p>
+      ${tabsHTML}
+      ${body}`,
+    footer: footBtns.join('')
+  });
+}
+
+function generateBracket(t) {
+  const approved = (t.entries||[]).filter(e => e.status === 'approved');
+  if (approved.length < 2) { toast('Нужно минимум 2 утверждённые заявки', 'err'); return null; }
+  const shuffled = [...approved].sort(() => Math.random() - 0.5);
+  const matches = [];
+  for (let i = 0; i < shuffled.length; i += 2) {
+    const a = shuffled[i];
+    const b = shuffled[i+1] || null;
+    matches.push({
+      id: uid(), teamA: a.id, teamB: b ? b.id : null,
+      scoreA: 0, scoreB: 0,
+      winner: b ? null : a.id,
+      status: b ? 'ready' : 'approved',
+      proofLink: null, reportedWinner: null,
+      submittedBy: null, submittedAt: null,
+      approvedBy: b ? null : db.meId,
+      approvedAt: b ? null : Date.now()
+    });
+  }
+  return { rounds: [{ id: uid(), name: 'Раунд 1', matches }], champion: null };
+}
+async function createBracket(tid) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  confirmDialog('Создать сетку?', 'Все утверждённые команды будут случайно распределены по парам.', 'Создать', async () => {
+    const b = generateBracket(t);
+    if (!b) return;
+    const { error } = await sb.from('tournaments').update({ bracket: b }).eq('id', tid);
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    vibrate(20); state.tModalTab = 'bracket'; openTournament(tid);
+    toast('Сетка создана', 'ok');
+  });
+}
+async function regenBracket(tid) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  confirmDialog('Пересоздать сетку?', 'Текущий прогресс матчей будет потерян.', 'Пересоздать', async () => {
+    const b = generateBracket(t);
+    if (!b) return;
+    const { error } = await sb.from('tournaments').update({ bracket: b }).eq('id', tid);
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    vibrate(20); state.tModalTab = 'bracket'; openTournament(tid);
+    toast('Сетка пересоздана', 'ok');
+  }, true);
+}
+function advanceBracketIfReady(t) {
+  if (!t.bracket) return;
+  const rounds = t.bracket.rounds;
+  const last = rounds[rounds.length - 1];
+  const allDone = last.matches.every(m => m.status === 'approved' && m.winner);
+  if (!allDone) return;
+  const winners = last.matches.map(m => m.winner).filter(Boolean);
+  if (winners.length <= 1) { t.bracket.champion = winners[0] || null; return; }
+  const newMatches = [];
+  for (let i = 0; i < winners.length; i += 2) {
+    const a = winners[i];
+    const b = winners[i+1] || null;
+    newMatches.push({
+      id: uid(), teamA: a, teamB: b ? b : null,
+      scoreA: 0, scoreB: 0,
+      winner: b ? null : a,
+      status: b ? 'ready' : 'approved',
+      proofLink: null, reportedWinner: null,
+      submittedBy: null, submittedAt: null,
+      approvedBy: b ? null : db.meId,
+      approvedAt: b ? null : Date.now()
+    });
+  }
+  rounds.push({ id: uid(), name: `Раунд ${rounds.length + 1}`, matches: newMatches });
+  advanceBracketIfReady(t);
+}
+function findMatch(t, mid) {
+  if (!t.bracket || !t.bracket.rounds) return null;
+  for (const r of t.bracket.rounds) {
+    const m = r.matches.find(x => x.id === mid);
+    if (m) return m;
+  }
+  return null;
+}
+function openSubmitResult(tid, mid) {
+  const t = db.tournaments.find(x => x.id === tid);
+  const m = findMatch(t, mid);
+  if (!m) return;
+  const aLabel = entryLabel(t, m.teamA);
+  const bLabel = entryLabel(t, m.teamB);
+  const aTag = entryById(t, m.teamA)?.tag || '';
+  const bTag = entryById(t, m.teamB)?.tag || '';
+  openModal({
+    title: 'Результат матча',
+    body: `<form data-form="submit-result" data-tid="${t.id}" data-mid="${m.id}">
+      <p class="muted" style="font-size:13.5px;margin-bottom:14px">
+        Укажите счёт и ссылку на пост с пруфом в вашем ТГ-канале.
+        Модератор проверит и подтвердит победителя.
+      </p>
+      <div class="grid-2">
+        <div class="field"><label>${esc(aLabel)} ${aTag?`[${esc(aTag)}]`:''}</label>
+          <input name="scoreA" type="number" min="0" max="99" value="0" required></div>
+        <div class="field"><label>${esc(bLabel)} ${bTag?`[${esc(bTag)}]`:''}</label>
+          <input name="scoreB" type="number" min="0" max="99" value="0" required></div>
+      </div>
+      <div class="field"><label>Кто победил?</label>
+        <select name="winner" required>
+          <option value="${m.teamA}">${esc(aLabel)}</option>
+          <option value="${m.teamB}">${esc(bLabel)}</option>
+        </select>
+      </div>
+      <div class="field"><label>Ссылка на пруф в ТГ</label>
+        <input name="proof" type="url" placeholder="https://t.me/вашканал/123" required>
+        <div class="hint">Ссылка на сообщение в канале с итогами боя</div>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Отправить на проверку</button>
+    </form>`
+  });
+}
+async function submitResult(tid, mid, scoreA, scoreB, winner, proof) {
+  const t = db.tournaments.find(x => x.id === tid);
+  const m = findMatch(t, mid);
+  if (!m) return;
+  const updated = JSON.parse(JSON.stringify(t.bracket));
+  const target = findMatchInBracket(updated, mid);
+  if (!target) return;
+  target.scoreA = parseInt(scoreA)||0;
+  target.scoreB = parseInt(scoreB)||0;
+  target.reportedWinner = winner;
+  target.proofLink = proof;
+  target.submittedBy = db.meId;
+  target.submittedAt = Date.now();
+  target.status = 'awaiting';
+  const { error } = await sb.from('tournaments').update({ bracket: updated }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  closeModal(); vibrate(20);
+  state.tModalTab = 'bracket';
+  setTimeout(() => openTournament(tid), 60);
+  toast('Отправлено модератору на проверку', 'ok');
+}
+function findMatchInBracket(bracket, mid) {
+  for (const r of bracket.rounds) {
+    const m = r.matches.find(x => x.id === mid);
+    if (m) return m;
+  }
+  return null;
+}
+async function approveMatch(tid, mid, winner) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  const updated = JSON.parse(JSON.stringify(t.bracket));
+  const m = findMatchInBracket(updated, mid);
+  if (!m) return;
+  m.winner = winner;
+  m.status = 'approved';
+  m.approvedBy = db.meId;
+  m.approvedAt = Date.now();
+  advanceBracketIfReady({ bracket: updated });
+  const { error } = await sb.from('tournaments').update({ bracket: updated }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  state.tModalTab = 'bracket';
+  openTournament(tid);
+  toast('Победитель подтверждён', 'ok');
+}
+async function rejectMatch(tid, mid) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  const updated = JSON.parse(JSON.stringify(t.bracket));
+  const m = findMatchInBracket(updated, mid);
+  if (!m) return;
+  m.reportedWinner = null; m.proofLink = null; m.submittedBy = null; m.submittedAt = null;
+  m.scoreA = 0; m.scoreB = 0;
+  m.status = 'ready';
+  const { error } = await sb.from('tournaments').update({ bracket: updated }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  state.tModalTab = 'bracket';
+  openTournament(tid);
+  toast('Результат отклонён');
+}
+async function setWinnerDirect(tid, mid, winner) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  const updated = JSON.parse(JSON.stringify(t.bracket));
+  const m = findMatchInBracket(updated, mid);
+  if (!m) return;
+  m.winner = winner;
+  m.status = 'approved';
+  m.approvedBy = db.meId;
+  m.approvedAt = Date.now();
+  advanceBracketIfReady({ bracket: updated });
+  const { error } = await sb.from('tournaments').update({ bracket: updated }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  state.tModalTab = 'bracket';
+  openTournament(tid);
+  toast('Победитель установлен', 'ok');
+}
+
+function viewTeams() {
+  const list = db.teams.slice().sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  const invites = myPendingInvites();
+  const invitesBlock = invites.length ? `
+    <section class="section" style="margin-top:0">
+      <div class="section-head"><h2>Приглашения</h2><span class="muted tiny">${invites.length}</span></div>
+      ${invites.map(i => {
+        const team = db.teams.find(t => t.id === i.team_id);
+        if (!team) return '';
+        const captain = userById(team.captain);
+        return `
+        <div class="invite-card">
+          <div class="row" style="align-items:flex-start">
+            <div class="team-logo">${esc(team.tag||'??')}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:700;font-size:15px">${esc(team.name)}</div>
+              <div class="tiny muted" style="margin-top:3px">От: ${captain ? `<b>${esc(captain.nick)}</b>` : '—'}
+                ${captain?.telegram ? `· <a class="tg-link" href="${tgLink(captain.telegram)}" target="_blank">${esc(captain.telegram)}</a>` : ''}</div>
+            </div>
+          </div>
+          <div class="row" style="gap:8px;margin-top:12px">
+            <button class="btn btn-success btn-sm" style="flex:1" data-act="accept-invite" data-id="${i.id}">Принять</button>
+            <button class="btn btn-ghost btn-sm" style="flex:1" data-act="decline-invite" data-id="${i.id}">Отклонить</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </section>` : '';
+  const body = list.length ? list.map(t => {
+    const members = (t.member_ids||[]).map(userById).filter(Boolean);
+    const captain = userById(t.captain);
+    const pendingCount = db.invites.filter(i => i.team_id === t.id && i.status === 'pending').length;
+    return `
+    <div class="team-card">
+      <div class="team-logo">${esc(t.tag||'??')}</div>
+      <div style="flex:1;min-width:0">
+        <h4>${esc(t.name)} ${pendingCount ? `<span class="badge badge-cyan" style="font-size:10px;padding:2px 8px">+${pendingCount} ожид.</span>` : ''}</h4>
+        <div class="tiny muted" style="display:flex;flex-wrap:wrap;gap:5px;align-items:center">
+          Капитан: ${captain ? userChip(captain, { cls:'member-dot' }) : '<span class="muted">—</span>'}</div>
+        <div class="team-members">
+          ${members.length ? members.map(u => userChip(u)).join('') : '<span class="member-dot">Состав не заполнен</span>'}</div>
+      </div>
+      ${(t.captain === db.meId || isAdmin()) ? `<button class="icon-btn" data-act="del-team" data-id="${t.id}" title="Удалить">🗑</button>` : ''}
+    </div>`;
+  }).join('') : `<div class="empty"><span class="em">👥</span>Команд пока нет. Создайте первую!</div>`;
+  return `
+    <div class="section-head" style="margin-bottom:14px">
+      <h2 style="font-size:19px">Команды</h2>
+      <button class="btn btn-primary btn-sm" data-act="new-team">+ Создать</button>
+    </div>
+    ${invitesBlock}
+    ${body}`;
+}
+
+function viewChats() {
+  if (state.activeChat) {
+    const chat = db.chats.find(c => c.id === state.activeChat);
+    if (!chat) { state.activeChat = null; return viewChats(); }
+    const msgs = chat.messages || [];
+    return `
+      <div class="row" style="margin-bottom:14px">
+        <button class="icon-btn" data-act="chat-back" aria-label="Назад">←</button>
+        <div><h2 style="font-size:17px">${esc(chat.title)}</h2>
+        <div class="tiny muted">${msgs.length} ${plural(msgs.length,'сообщение','сообщения','сообщений')}</div></div>
+      </div>
+      <div class="chat-wrap">
+        <div class="chat-body" id="chatBody">
+          ${msgs.map(m => {
+            const author = userById(m.author_id);
+            const av = `<div class="msg-av" ${author?`data-act="view-user" data-id="${author.id}"`:''}>${avatarHTML(m.avatar || '👤')}</div>`;
+            const name = author ? `<span data-act="view-user" data-id="${author.id}" class="user-hit" style="color:inherit">${esc(m.author)}</span>` : esc(m.author);
+            return `
+            <div class="msg ${m.author_id === db.meId ? 'mine' : ''}">
+              ${av}
+              <div>
+                <div class="msg-name">${name}
+                  ${author?.telegram ? `<a class="tg-link" href="${tgLink(author.telegram)}" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;margin-left:6px">${esc(author.telegram)}</a>` : ''}</div>
+                <div class="msg-text">${esc(m.text)}</div>
+                <div class="msg-time">${esc(fmtTime(m.ts))}</div>
+              </div>
+            </div>`;
+          }).join('') || '<div class="empty"><span class="em">💬</span>Сообщений пока нет</div>'}
+        </div>
+        <form class="chat-bar" data-form="send-msg" data-id="${chat.id}">
+          <input name="text" placeholder="Введите сообщение..." autocomplete="off" maxlength="300" enterkeyhint="send">
+          <button class="send-btn" type="submit" aria-label="Отправить">➤</button>
+        </form>
+      </div>`;
+  }
+  return `
+    <div class="section-head" style="margin-bottom:14px"><h2 style="font-size:19px">Чаты</h2></div>
+    ${db.chats.map(c => {
+      const last = (c.messages||[])[c.messages.length-1];
+      return `
+      <div class="chat-list-item" data-act="open-chat" data-id="${c.id}">
+        <div class="avatar">${esc(c.avatar || '💬')}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:600;font-size:15px">${esc(c.title)}</div>
+          <div class="tiny muted" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+            ${last ? esc(last.author + ': ' + last.text) : 'Нет сообщений'}</div>
+        </div>
+        ${last ? `<span class="tiny muted">${esc(fmtTime(last.ts))}</span>` : ''}
+      </div>`;
+    }).join('')}`;
+}
+
+function viewProfile() {
+  const u = me();
+  if (!u) return '';
+  const bg = BACKGROUNDS.find(b => b.id === u.bg) || BACKGROUNDS[0];
+  const roleLabel = { player:'Игрок', moderator:'Модератор', admin:'Главный админ' }[u.role] || 'Игрок';
+  const roleClass = { player:'badge-purple', moderator:'badge-cyan', admin:'badge-amber' }[u.role] || 'badge-purple';
+  const mine = myEntries();
+  const invites = myPendingInvites();
+  const invitesBlock = invites.length ? `
+    <section class="section">
+      <div class="section-head"><h2>Приглашения</h2><span class="muted tiny">${invites.length}</span></div>
+      ${invites.map(i => {
+        const team = db.teams.find(t => t.id === i.team_id);
+        if (!team) return '';
+        const captain = userById(team.captain);
+        return `
+        <div class="invite-card">
+          <div class="row" style="align-items:flex-start">
+            <div class="team-logo">${esc(team.tag||'??')}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:700;font-size:15px">${esc(team.name)}</div>
+              <div class="tiny muted" style="margin-top:3px">От: ${captain ? `<b>${esc(captain.nick)}</b>` : '—'}</div>
+            </div>
+          </div>
+          <div class="row" style="gap:8px;margin-top:12px">
+            <button class="btn btn-success btn-sm" style="flex:1" data-act="accept-invite" data-id="${i.id}">Принять</button>
+            <button class="btn btn-ghost btn-sm" style="flex:1" data-act="decline-invite" data-id="${i.id}">Отклонить</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </section>` : '';
+  return `
+    <div class="profile-card">
+      <div class="profile-bg" style="background:${bg.css}"></div>
+      <div class="profile-inner">
+        <div class="p-avatar">${avatarHTML(u.avatar)}</div>
+        <div class="p-name">${esc(u.nick)}</div>
+        <span class="badge ${roleClass}">${roleLabel}</span>
+        <div class="p-tags">
+          ${(u.heroes||[]).map(h => `<span class="tag">${esc(h)}</span>`).join('')}
+          ${(u.lines||[]).map(l => `<span class="tag" style="border-color:var(--line-2);color:#d8b4fe">${esc(l)}</span>`).join('')}
+        </div>
+        <div style="margin-top:14px"><a class="tg-link" href="${tgLink(u.telegram)}" target="_blank" style="font-size:13.5px">📨 ${esc(u.telegram)}</a></div>
+        <div class="stats" style="margin-top:18px">
+          <div class="stat"><b>${mine.length}</b><span>Турниров</span></div>
+          <div class="stat"><b>${fmtNum(u.coins||0)}</b><span>Монет</span></div>
+          <div class="stat"><b>${db.teams.filter(t => (t.member_ids||[]).includes(u.id)).length}</b><span>Команд</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="gap:10px;margin-top:16px">
+      <button class="btn btn-primary" style="flex:1" data-act="edit-profile">Редактировать</button>
+      <button class="btn btn-ghost" style="flex:1" data-act="logout">Выйти</button>
+    </div>
+    ${invitesBlock}
+    ${mine.length ? `
+    <section class="section">
+      <div class="section-head"><h2>Мои турниры</h2><span class="muted tiny">${mine.length}</span></div>
+      ${mine.map(tCardHTML).join('')}
+    </section>` : ''}
+    <section class="section">
+      <div class="section-head"><h2>Магазин фонов</h2><span class="muted tiny">${(u.owned||[]).length} куплено</span></div>
+      <div class="grid-2">
+        ${BACKGROUNDS.map(b => {
+          const owned = (u.owned||[]).includes(b.id);
+          const active = u.bg === b.id;
+          return `
+          <div class="shop-item">
+            <div class="shop-prev" style="background:${b.css}"></div>
+            <div class="shop-name">${esc(b.name)}</div>
+            <div class="shop-price">✦ ${fmtNum(b.price)}</div>
+            ${active ? `<button class="btn btn-ghost btn-sm btn-block" disabled>Активен</button>`
+              : owned ? `<button class="btn btn-ghost btn-sm btn-block" data-act="set-bg" data-id="${b.id}">Применить</button>`
+              : `<button class="btn btn-primary btn-sm btn-block" data-act="buy-bg" data-id="${b.id}">Купить</button>`}
+          </div>`;
+        }).join('')}
+      </div>
+    </section>`;
+}
+
+function viewAdmin() {
+  if (!canManage()) return `<div class="empty"><span class="em">🔒</span>Недостаточно прав</div>`;
+  const tList = db.tournaments.slice().sort((a,b) => new Date(b.date) - new Date(a.date));
+  const pendingCount = db.tournaments.reduce((s,t) => s + (t.entries||[]).filter(e => e.status === 'pending').length, 0);
+  const awaitingMatches = db.tournaments.reduce((s,t) => {
+    if (!t.bracket || !t.bracket.rounds) return s;
+    return s + t.bracket.rounds.reduce((s2,r) => s2 + r.matches.filter(m => m.status === 'awaiting').length, 0);
+  }, 0);
+  const defaultDate = toLocalInput(new Date(Date.now() + 3*864e5));
+  return `
+    <div class="section-head" style="margin-bottom:14px">
+      <h2 style="font-size:19px">Панель управления</h2>
+      <span class="badge ${isAdmin()?'badge-amber':'badge-cyan'}">${isAdmin()?'Гл. админ':'Модератор'}</span>
+    </div>
+    ${pendingCount ? `
+      <div class="card" style="margin-bottom:12px;border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06)">
+        <div style="font-size:14px;color:#67e8f9">📥 <b>${pendingCount}</b> ${plural(pendingCount,'заявка ждёт','заявки ждут','заявок ждут')} рассмотрения</div>
+      </div>` : ''}
+    ${awaitingMatches ? `
+      <div class="card" style="margin-bottom:16px;border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.06)">
+        <div style="font-size:14px;color:#fcd34d">🎮 <b>${awaitingMatches}</b> ${plural(awaitingMatches,'результат матча ждёт','результата матчей ждут','результатов матчей ждут')} проверки</div>
+        <div class="tiny muted" style="margin-top:4px">Откройте турнир → вкладка «Сетка» → проверьте пруф и примите победителя.</div>
+      </div>` : ''}
+
+    <section class="card" style="margin-bottom:20px">
+      <h3 style="font-size:15px;margin-bottom:14px">Создать турнир</h3>
+      <form data-form="create-tournament">
+        <div class="field"><label>Название</label><input name="title" maxlength="40" placeholder="Кубок Теней" required></div>
+        <div class="grid-2">
+          <div class="field"><label>Формат</label>
+            <select name="mode"><option value="1v1">1 × 1</option><option value="5v5" selected>5 × 5</option></select>
+          </div>
+          <div class="field"><label>Макс. команд</label><input name="maxTeams" type="number" min="2" max="128" value="16" required></div>
+        </div>
+        <div class="grid-2">
+          <div class="field"><label>Дата и время</label><input name="date" type="datetime-local" value="${defaultDate}" required></div>
+          <div class="field"><label>Призовой фонд ✦</label><input name="prize" type="number" min="0" step="100" value="5000" required></div>
+        </div>
+        <div class="field"><label>Описание и правила</label><textarea name="desc" maxlength="500" placeholder="Формат матчей, драфт, ограничения..."></textarea></div>
+        <button class="btn btn-primary btn-block" type="submit">Опубликовать турнир</button>
+      </form>
+    </section>
+
+    ${isAdmin() ? `
+    <section class="card" style="margin-bottom:20px;border-color:var(--line-2)">
+      <h3 style="font-size:15px;margin-bottom:14px">👑 Создать модератора</h3>
+      <form data-form="create-moderator">
+        <div class="grid-2">
+          <div class="field"><label>Логин</label><input name="login" autocapitalize="off" maxlength="20" placeholder="mod_name" required></div>
+          <div class="field"><label>Пароль</label><input name="password" minlength="4" placeholder="****" required></div>
+        </div>
+        <div class="field"><label>Ник</label><input name="nick" maxlength="20" placeholder="Moderator" required></div>
+        <div class="field"><label>Telegram</label><input name="telegram" maxlength="32" placeholder="@username" required></div>
+        <div class="field"><label>Аватар</label>
+          <div class="emoji-pick" id="modEmoji">
+            ${AVATARS.map((a,i) => `<button type="button" class="emoji-opt ${i===0?'sel':''}" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
+          </div>
+          <input type="hidden" name="avatar" id="modAvatar" value="${esc(AVATARS[0])}">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Создать модератора</button>
+      </form>
+    </section>` : ''}
+
+    <section class="section" style="margin-top:0">
+      <div class="section-head"><h2>Все турниры</h2><span class="muted tiny">${tList.length}</span></div>
+      ${tList.map(t => {
+        const pend = (t.entries||[]).filter(e => e.status === 'pending').length;
+        const appr = (t.entries||[]).filter(e => e.status === 'approved').length;
+        const aw = t.bracket && t.bracket.rounds ? t.bracket.rounds.reduce((s,r) => s + r.matches.filter(m => m.status === 'awaiting').length, 0) : 0;
+        const hasB = t.bracket && t.bracket.rounds && t.bracket.rounds.length;
+        return `
+        <div class="admin-row" style="align-items:flex-start">
+          <div style="min-width:0;flex:1">
+            <div style="font-weight:600;font-size:14.5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center">
+              ${esc(t.title)}
+              ${pend?`<span class="badge badge-cyan" style="font-size:10px;padding:2px 8px">+${pend} заявок</span>`:''}
+              ${aw?`<span class="badge badge-amber" style="font-size:10px;padding:2px 8px">${aw} матч</span>`:''}
+              ${hasB?`<span class="badge badge-purple" style="font-size:10px;padding:2px 8px">Сетка</span>`:''}
+            </div>
+            <div class="tiny muted" style="margin-top:3px">${t.mode==='1v1'?'1 × 1':'5 × 5'} · ${esc(fmtDate(t.date))} · ${appr}/${t.max_teams} утв.</div>
+          </div>
+          <div class="row" style="gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
+            <button class="btn btn-ghost btn-sm" data-act="open-tournament" data-id="${t.id}">Открыть</button>
+            <button class="btn btn-ghost btn-sm" data-act="toggle-status" data-id="${t.id}">${t.status==='closed'?'Открыть':'Закрыть'}</button>
+            <button class="icon-btn" data-act="del-tournament" data-id="${t.id}" title="Удалить">🗑</button>
+          </div>
+        </div>`;
+      }).join('') || '<div class="empty">Турниров нет</div>'}
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>Пользователи</h2><span class="muted tiny">${db.users.length}</span></div>
+      <div class="card" style="padding:6px 16px">
+        ${db.users.map(u => `
+          <div class="admin-row">
+            <div class="row" style="min-width:0;flex:1" data-act="view-user" data-id="${u.id}">
+              <div class="avatar-sm" style="width:28px;height:28px">${avatarHTML(u.avatar)}</div>
+              <div style="min-width:0">
+                <div style="font-weight:600;font-size:14px">${esc(u.nick)}
+                  ${u.id===db.meId?'<span class="muted tiny">· вы</span>':''}</div>
+                <div class="tiny muted">
+                  <a class="tg-link" href="${tgLink(u.telegram)}" target="_blank" onclick="event.stopPropagation()">${esc(u.telegram||'—')}</a>
+                  · @${esc(u.login||'—')}</div>
+              </div>
+            </div>
+            ${isAdmin() ? `
+            <div class="row" style="gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
+              <select data-act="set-role" data-id="${u.id}" ${u.id===db.meId?'disabled':''} style="padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;min-height:36px">
+                <option value="player" ${u.role==='player'?'selected':''}>Игрок</option>
+                <option value="moderator" ${u.role==='moderator'?'selected':''}>Модератор</option>
+                <option value="admin" ${u.role==='admin'?'selected':''}>Гл. админ</option>
+              </select>
+              ${u.id===db.meId ? '' : `<button class="icon-btn" data-act="admin-del-user" data-id="${u.id}" title="Удалить">🗑</button>`}
+            </div>` : `<span class="tiny muted">${u.role}</span>`}
+          </div>`).join('')}
+      </div>
+    </section>
+
+    ${isAdmin() ? `
+    <section class="section">
+      <div class="card">
+        <button class="btn btn-danger btn-block btn-sm" data-act="reset-all">Сбросить все данные</button>
+      </div>
+    </section>` : ''}`;
+}
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const act = el.dataset.act;
+
+  if (act === 'close-invites-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeInvites(); return; }
+  if (act === 'open-invites') { openInvites(); return; }
+  if (act === 'accept-invite') { acceptInvite(el.dataset.id); return; }
+  if (act === 'decline-invite') { declineInvite(el.dataset.id); return; }
+  if (act === 'close-user-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeUserModal(); return; }
+  if (act === 'view-user') { openUserProfile(el.dataset.id); return; }
+  if (act === 'open-tournament-from-user') { const id = el.dataset.id; closeUserModal(); setTimeout(() => openTournament(id), 50); return; }
+  if (act === 'close-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeModal(); return; }
+  if (act === 'confirm-ok') { const cb = pendingConfirm; closeModal(); if (cb) cb(); return; }
+  if (act === 'nav') { state.route = el.dataset.route; state.activeChat = null; render(); return; }
+  if (act === 'nav-close') { closeModal(); state.route = el.dataset.route; state.activeChat = null; render(); return; }
+  if (act === 'filter') { state.filter = el.dataset.val; render(); return; }
+  if (act === 'open-tournament') { closeModal(); setTimeout(()=>{ state.tModalTab='entries'; openTournament(el.dataset.id); },30); return; }
+  if (act === 'apply') { applyToTournament(el.dataset.id); return; }
+  if (act === 'apply-team') { applyTeam(el.dataset.tid, el.dataset.team); return; }
+  if (act === 'approve-entry') { reviewEntry(el.dataset.tid, el.dataset.eid, 'approved'); return; }
+  if (act === 'reject-entry') { reviewEntry(el.dataset.tid, el.dataset.eid, 'rejected'); return; }
+  if (act === 'del-entry') { deleteEntry(el.dataset.tid, el.dataset.eid); return; }
+  if (act === 't-modal-tab') { state.tModalTab = el.dataset.tab; const tid = state.tModalId; if (tid) openTournament(tid); return; }
+  if (act === 'create-bracket') { createBracket(el.dataset.id); return; }
+  if (act === 'regen-bracket') { regenBracket(el.dataset.id); return; }
+  if (act === 'submit-result') { openSubmitResult(el.dataset.tid, el.dataset.mid); return; }
+  if (act === 'approve-match') { approveMatch(el.dataset.tid, el.dataset.mid, el.dataset.winner); return; }
+  if (act === 'reject-match') { rejectMatch(el.dataset.tid, el.dataset.mid); return; }
+  if (act === 'set-winner') { setWinnerDirect(el.dataset.tid, el.dataset.mid, el.dataset.winner); return; }
+  if (act === 'new-team') { newTeamModal(); return; }
+  if (act === 'del-team') { delTeam(el.dataset.id); return; }
+  if (act === 'open-chat') { state.activeChat = el.dataset.id; render(); return; }
+  if (act === 'chat-back') { state.activeChat = null; render(); return; }
+  if (act === 'edit-profile') { editProfileModal(); return; }
+  if (act === 'pick-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#avatarVal'); if (inp) inp.value = el.dataset.emoji; return; }
+  if (act === 'pick-mod-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#modAvatar'); if (inp) inp.value = el.dataset.emoji; return; }
+  if (act === 'buy-bg') { buyBg(el.dataset.id); return; }
+  if (act === 'set-bg') { setBg(el.dataset.id); return; }
+  if (act === 'toggle-status') { toggleStatus(el.dataset.id); return; }
+  if (act === 'del-tournament') { delTournament(el.dataset.id); return; }
+  if (act === 'admin-del-user') { adminDelUser(el.dataset.id); return; }
+  if (act === 'logout') {
+    confirmDialog('Выйти из аккаунта?', 'Вы сможете войти снова.', 'Выйти', () => {
+      sb.auth.signOut(); db.meId = null; db.profile = null; state.route = 'home'; state.activeChat = null;
+      closeModal(); closeUserModal(); closeInvites(); render(); showAuth('login');
+    });
+    return;
+  }
+  if (act === 'reset-all') {
+    confirmDialog('Полный сброс', 'Все данные будут удалены.', 'Сбросить', async () => {
+      await sb.from('messages').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      await sb.from('chats').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      await sb.from('invites').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      await sb.from('teams').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      await sb.from('tournaments').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      await sb.from('users').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      sb.auth.signOut(); db.meId = null; db.profile = null; state.route = 'home'; state.activeChat = null;
+      closeModal(); closeUserModal(); closeInvites(); render(); showAuth('login');
+    }, true);
+    return;
+  }
+  if (act === 'toggle-member') {
+    const pick = el.closest('.member-pick');
+    if (!pick || pick.classList.contains('captain')) return;
+    pick.classList.toggle('checked');
+    const cb = pick.querySelector('input[type="checkbox"]');
+    if (cb) cb.checked = pick.classList.contains('checked');
+    updateTeamCounter();
+    return;
+  }
+});
+
+document.addEventListener('change', async e => {
+  const el = e.target.closest('[data-act="set-role"]');
+  if (!el || !isAdmin()) return;
+  const u = db.users.find(x => x.id === el.dataset.id);
+  if (!u || u.id === db.meId) return;
+  const { error } = await sb.from('users').update({ role: el.value }).eq('id', u.id);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  toast('Роль обновлена', 'ok');
+});
+
+function updateTeamCounter() {
+  const box = $('#teamCounter');
+  if (!box) return;
+  const checked = $$('.member-pick.checked').length;
+  box.textContent = `Выбрано: ${checked} / 5`;
+  box.style.color = checked >= 5 ? '#6ee7b7' : 'var(--muted)';
+}
+
+document.addEventListener('submit', async e => {
+  const f = e.target.closest('form[data-form]');
+  if (!f) return;
+  e.preventDefault();
+  const fd = new FormData(f);
+  const type = f.dataset.form;
+
+  if (type === 'login') {
+    const login = (fd.get('login')||'').toString().trim().toLowerCase();
+    const pass = (fd.get('password')||'').toString();
+    if (!login || !pass) return;
+    const { data: users, error } = await sb.from('users').select('*').eq('login', login).limit(1);
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    const u = users && users[0];
+    if (!u) return toast('Логин не найден', 'err');
+    if (u.pass_hash !== hashPass(pass, u.salt)) return toast('Неверный пароль', 'err');
+    db.meId = u.id;
+    db.profile = u;
+    hideAuth(); state.route = 'home'; render(); vibrate(20);
+    toast('Добро пожаловать, ' + u.nick, 'ok');
+    return;
+  }
+  if (type === 'register') {
+    const login = (fd.get('login')||'').toString().trim().toLowerCase();
+    const pass = (fd.get('password')||'').toString();
+    const nick = (fd.get('nick')||'').toString().trim();
+    const telegram = (fd.get('telegram')||'').toString().trim();
+    const avatar = (fd.get('avatar')||'').toString() || AVATARS[0];
+    if (!login || !pass || !nick || !telegram) return;
+    if (!/^[a-z0-9_]{3,20}$/.test(login)) return toast('Логин: 3-20 символов, латиница/цифры/_', 'err');
+    if (pass.length < 4) return toast('Пароль минимум 4 символа', 'err');
+    if (!/^@?[a-zA-Z0-9_]{3,32}$/.test(telegram)) return toast('Telegram: например @username', 'err');
+    const { data: existing } = await sb.from('users').select('id').or(`login.eq.${login},nick.eq.${nick}`);
+    if (existing && existing.length) return toast('Логин или ник уже заняты', 'err');
+    const tg = telegram.startsWith('@') ? telegram : '@' + telegram;
+    const isAdminReg = login === ADMIN_LOGIN && tg.toLowerCase() === ADMIN_TG;
+    const salt = 's' + uid();
+    const userId = crypto.randomUUID();
+    const { error } = await sb.from('users').insert({
+      id: userId, login, salt, pass_hash: hashPass(pass, salt), nick, avatar, telegram: tg,
+      role: isAdminReg ? 'admin' : 'player',
+      rank: isAdminReg ? 'Мифический почёт' : 'Эпик',
+      heroes: [], lines: [], coins: isAdminReg ? 100000 : 1250, owned: ['bg1'], bg: 'bg1'
+    });
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    db.meId = userId;
+    const { data: u } = await sb.from('users').select('*').eq('id', userId).single();
+    db.profile = u;
+    hideAuth(); state.route = 'home'; render(); vibrate(20);
+    toast(isAdminReg ? '👑 Аккаунт главного админа создан!' : 'Аккаунт создан', 'ok');
+    return;
+  }
+  if (type === 'create-moderator') {
+    if (!isAdmin()) return;
+    const login = (fd.get('login')||'').toString().trim().toLowerCase();
+    const pass = (fd.get('password')||'').toString();
+    const nick = (fd.get('nick')||'').toString().trim();
+    const telegram = (fd.get('telegram')||'').toString().trim();
+    const avatar = (fd.get('avatar')||'').toString() || AVATARS[0];
+    if (!login || !pass || !nick || !telegram) return;
+    if (!/^[a-z0-9_]{3,20}$/.test(login)) return toast('Логин: 3-20 символов, латиница/цифры/_', 'err');
+    if (pass.length < 4) return toast('Пароль минимум 4 символа', 'err');
+    const { data: existing } = await sb.from('users').select('id').or(`login.eq.${login},nick.eq.${nick}`);
+    if (existing && existing.length) return toast('Логин или ник заняты', 'err');
+    const tg = telegram.startsWith('@') ? telegram : '@' + telegram;
+    const salt = 's' + uid();
+    const { error } = await sb.from('users').insert({
+      id: crypto.randomUUID(), login, salt, pass_hash: hashPass(pass, salt), nick, avatar, telegram: tg,
+      role: 'moderator', rank: 'Мифический', heroes: [], lines: [], coins: 5000, owned: ['bg1'], bg: 'bg1'
+    });
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    toast('Модератор ' + nick + ' создан', 'ok');
+    f.reset();
+    return;
+  }
+  if (type === 'apply-solo') {
+    const t = db.tournaments.find(x => x.id === f.dataset.id);
+    if (!t) return;
+    if ((t.entries||[]).some(x => x.uid === db.meId)) { toast('У вас уже есть заявка', 'err'); return; }
+    const entries = [...(t.entries||[]), { id: uid(), type:'solo', uid: db.meId, member_ids: [db.meId], status: 'pending', ts: Date.now() }];
+    const { error } = await sb.from('tournaments').update({ entries }).eq('id', t.id);
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    closeModal(); vibrate(20); toast('Заявка отправлена на рассмотрение', 'ok');
+    return;
+  }
+  if (type === 'create-team') {
+    const name = (fd.get('name')||'').toString().trim();
+    const tag = (fd.get('tag')||'').toString().trim().toUpperCase();
+    if (!name || !tag) return;
+    const checked = $$('.member-pick.checked input[type="checkbox"]').map(cb => cb.value).filter(id => id && id !== db.meId);
+    const teamId = crypto.randomUUID();
+    const { error } = await sb.from('teams').insert({
+      id: teamId, name, tag, captain: db.meId, member_ids: [db.meId]
+    });
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    for (const uidTo of checked) {
+      await sb.from('invites').insert({ team_id: teamId, from_user: db.meId, to_user: uidTo, status: 'pending' });
+    }
+    closeModal(); vibrate(20);
+    toast(checked.length ? `Команда создана, отправлено приглашений: ${checked.length}` : 'Команда создана', 'ok');
+    return;
+  }
+  if (type === 'send-msg') {
+    const chatId = f.dataset.id;
+    const text = (fd.get('text')||'').toString().trim();
+    if (!text) return;
+    const msg = { chat_id: chatId, author: db.profile.nick, avatar: db.profile.avatar, author_id: db.meId, text };
+    f.reset();
+    const { error } = await sb.from('messages').insert(msg);
+    if (error) return toast('Ошибка отправки', 'err');
+    await sb.from('chats').update({ last_message: db.profile.nick + ': ' + text }).eq('id', chatId);
+    return;
+  }
+  if (type === 'edit-profile') {
+    const u = db.profile;
+    const patch = {
+      avatar: ($('#avatarVal')?.value) || u.avatar,
+      nick: (fd.get('nick')||'').toString().trim() || u.nick,
+      rank: (fd.get('rank')||'').toString() || u.rank,
+      heroes: (fd.get('heroes')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,4),
+      lines: (fd.get('lines')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,3)
+    };
+    const tg = (fd.get('telegram')||'').toString().trim();
+    if (tg) patch.telegram = tg.startsWith('@') ? tg : '@' + tg;
+    const { error } = await sb.from('users').update(patch).eq('id', db.meId);
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    closeModal(); toast('Профиль обновлён', 'ok');
+    return;
+  }
+  if (type === 'create-tournament') {
+    const title = (fd.get('title')||'').toString().trim();
+    const dateRaw = (fd.get('date')||'').toString();
+    if (!title || !dateRaw) return;
+    const { error } = await sb.from('tournaments').insert({
+      title, mode: fd.get('mode'),
+      max_teams: Math.max(2, parseInt(fd.get('maxTeams'))||8),
+      prize: Math.max(0, parseInt(fd.get('prize'))||0),
+      date: new Date(dateRaw).toISOString(),
+      desc: (fd.get('desc')||'').toString().trim(),
+      status: 'open', created_by: db.meId, entries: [], bracket: null
+    });
+    if (error) return toast('Ошибка: ' + error.message, 'err');
+    vibrate(20); toast('Турнир опубликован', 'ok');
+    f.reset();
+    return;
+  }
+  if (type === 'submit-result') {
+    const scoreA = fd.get('scoreA');
+    const scoreB = fd.get('scoreB');
+    const winner = fd.get('winner');
+    const proof = (fd.get('proof')||'').toString().trim();
+    if (!proof || !/^https?:\/\//.test(proof)) return toast('Нужна корректная ссылка на пруф', 'err');
+    submitResult(f.dataset.tid, f.dataset.mid, scoreA, scoreB, winner, proof);
+    return;
+  }
+});
+
+async function acceptInvite(id) {
+  const inv = db.invites.find(i => i.id === id);
+  if (!inv || inv.status !== 'pending') return;
+  const team = db.teams.find(t => t.id === inv.team_id);
+  if (!team) { toast('Команда не найдена', 'err'); return; }
+  if ((team.member_ids||[]).length >= 5) { toast('В команде уже 5 игроков', 'err'); return; }
+  if (!team.member_ids.includes(inv.to_user)) team.member_ids.push(inv.to_user);
+  const { error } = await sb.from('teams').update({ member_ids: team.member_ids }).eq('id', inv.team_id);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  await sb.from('invites').delete().eq('id', id);
+  if ($('#invites-modal-root').innerHTML) openInvites();
+  vibrate(20); toast('Вы вступили в ' + team.name, 'ok');
+}
+async function declineInvite(id) {
+  await sb.from('invites').delete().eq('id', id);
+  if ($('#invites-modal-root').innerHTML) openInvites();
+  toast('Приглашение отклонено');
+}
+async function reviewEntry(tid, eid, status) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t || !canManage()) return;
+  const entries = JSON.parse(JSON.stringify(t.entries||[]));
+  const entry = entries.find(e => e.id === eid);
+  if (!entry) return;
+  if (status === 'approved') {
+    const approvedCount = entries.filter(e => e.status === 'approved' && e.id !== eid).length;
+    if (approvedCount >= t.max_teams) { toast('Все слоты заняты', 'err'); return; }
+  }
+  entry.status = status;
+  entry.reviewedBy = db.meId;
+  entry.reviewedAt = Date.now();
+  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  state.tModalTab = 'entries';
+  openTournament(tid);
+  toast(status === 'approved' ? 'Заявка принята' : 'Заявка отклонена', status === 'approved' ? 'ok' : '');
+}
+async function deleteEntry(tid, eid) {
+  const t = db.tournaments.find(x => x.id === tid);
+  if (!t) return;
+  const entries = (t.entries||[]).filter(x => x.id !== eid);
+  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  if (state.route === 'admin') render();
+  state.tModalTab = 'entries';
+  openTournament(tid);
+  toast('Заявка удалена');
+}
+function applyToTournament(id) {
+  const t = db.tournaments.find(x => x.id === id);
+  if (!t) return;
+  const approved = (t.entries||[]).filter(e => e.status === 'approved').length;
+  if (approved >= t.max_teams) return toast('Свободных слотов нет', 'err');
+  const myE = myEntryIn(t);
+  if (myE && myE.status !== 'rejected') return toast('У вас уже есть заявка', 'err');
+  if (t.mode === '1v1') {
+    openModal({
+      title: 'Заявка 1 × 1',
+      body: `<p class="muted" style="font-size:13.5px;margin-bottom:16px">
+        Вы участвуете как <b>${esc(db.profile.nick)}</b>. С вами свяжутся в Telegram:
+        <a class="tg-link" href="${tgLink(db.profile.telegram)}" target="_blank">${esc(db.profile.telegram)}</a></p>
+      <p class="tiny muted" style="margin-bottom:16px">После отправки заявку рассмотрит модератор.</p>
+      <form data-form="apply-solo" data-id="${t.id}">
+        <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
+      </form>`
+    });
+  } else {
+    const myTeams = db.teams.filter(tm => tm.captain === db.meId && (tm.member_ids||[]).length > 0);
+    if (!myTeams.length) {
+      openModal({
+        title: 'Нужна команда',
+        body: `<p class="muted" style="font-size:13.5px;line-height:1.6">Для 5 × 5 нужна команда, где вы капитан.</p>`,
+        footer: `<button class="btn btn-ghost" data-act="close-modal">Позже</button>
+                 <button class="btn btn-primary" data-act="nav-close" data-route="teams">Создать команду</button>`
+      });
+      return;
+    }
+    openModal({
+      title: 'Выбор состава',
+      body: `<p class="muted" style="font-size:13.5px;margin-bottom:14px">От какой команды подать заявку?</p>` +
+        myTeams.map(tm => {
+          const members = (tm.member_ids||[]).map(userById).filter(Boolean);
+          return `
+          <button class="team-card" style="width:100%;text-align:left" data-act="apply-team" data-tid="${t.id}" data-team="${tm.id}">
+            <div class="team-logo">${esc(tm.tag||'??')}</div>
+            <div style="flex:1;min-width:0">
+              <h4>${esc(tm.name)}</h4>
+              <div class="team-members">${members.map(u => `<span class="member-dot">${esc(u.avatar)} ${esc(u.nick)}</span>`).join('')}</div>
+            </div>
+          </button>`;
+        }).join('')
+    });
+  }
+}
+async function applyTeam(tid, teamId) {
+  const t = db.tournaments.find(x => x.id === tid);
+  const team = db.teams.find(x => x.id === teamId);
+  if (!t || !team) return;
+  if ((t.entries||[]).some(x => x.uid === db.meId)) { toast('У вас уже есть заявка', 'err'); return; }
+  const approved = (t.entries||[]).filter(e => e.status === 'approved').length;
+  if (approved >= t.max_teams) { toast('Свободных слотов нет', 'err'); return; }
+  const entries = [...(t.entries||[]), {
+    id: uid(), type:'team', captain_id: team.captain, name: team.name, tag: team.tag,
+    member_ids: [...(team.member_ids||[])], uid: db.meId, status: 'pending', ts: Date.now()
+  }];
+  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
+  closeModal(); vibrate(20); toast('Заявка отправлена на рассмотрение', 'ok');
+}
+function delTeam(id) {
+  const t = db.teams.find(x => x.id === id);
+  confirmDialog('Удалить команду?', `Команда «${t.name}» будет удалена.`, 'Удалить', async () => {
+    await sb.from('invites').delete().eq('team_id', id);
+    const { error } = await sb.from('teams').delete().eq('id', id);
+    if (error) return toast('Ошибка', 'err');
+    toast('Команда удалена');
+  }, true);
+}
+async function toggleStatus(id) {
+  const t = db.tournaments.find(x => x.id === id);
+  if (!t) return;
+  const newStatus = t.status === 'closed' ? 'open' : 'closed';
+  const { error } = await sb.from('tournaments').update({ status: newStatus }).eq('id', id);
+  if (error) return toast('Ошибка', 'err');
+  toast(newStatus === 'closed' ? 'Регистрация закрыта' : 'Регистрация открыта');
+}
+function delTournament(id) {
+  const t = db.tournaments.find(x => x.id === id);
+  confirmDialog('Удалить турнир?', `«${t.title}» будет удалён.`, 'Удалить', async () => {
+    const { error } = await sb.from('tournaments').delete().eq('id', id);
+    if (error) return toast('Ошибка', 'err');
+    toast('Турнир удалён');
+  }, true);
+}
+function adminDelUser(userId) {
+  if (!isAdmin()) return;
+  const u = userById(userId);
+  if (!u || u.id === db.meId) return;
+  confirmDialog('Удалить пользователя?',
+    `«${u.nick}» будет удалён со всеми данными.`,
+    'Удалить', async () => {
+      for (const t of db.teams) {
+        if (t.captain === userId) {
+          await sb.from('teams').delete().eq('id', t.id);
+        } else if ((t.member_ids||[]).includes(userId)) {
+          const newM = t.member_ids.filter(id => id !== userId);
+          await sb.from('teams').update({ member_ids: newM }).eq('id', t.id);
+        }
+      }
+      await sb.from('invites').delete().or(`from_user.eq.${userId},to_user.eq.${userId}`);
+      for (const t of db.tournaments) {
+        const entries = (t.entries||[]).filter(e => !(e.type === 'solo' && e.uid === userId) && !(e.type === 'team' && e.captain_id === userId));
+        if (entries.length !== (t.entries||[]).length) {
+          await sb.from('tournaments').update({ entries }).eq('id', t.id);
+        }
+      }
+      await sb.from('users').delete().eq('id', userId);
+      closeUserModal(); toast('Пользователь удалён');
+    }, true);
+}
+async function buyBg(bid) {
+  const u = db.profile;
+  const b = BACKGROUNDS.find(x => x.id === bid);
+  if (!b || !u) return;
+  if ((u.coins||0) < b.price) { toast('Недостаточно монет', 'err'); return; }
+  const { error } = await sb.from('users').update({
+    coins: u.coins - b.price, owned: [...(u.owned||[]), b.id], bg: b.id
+  }).eq('id', db.meId);
+  if (error) return toast('Ошибка', 'err');
+  vibrate(15); toast('Фон приобретён', 'ok');
+}
+async function setBg(bid) {
+  await sb.from('users').update({ bg: bid }).eq('id', db.meId);
+  toast('Фон применён', 'ok');
+}
+
+function newTeamModal() {
+  const others = db.users.filter(u => u.id !== db.meId);
+  const captainRow = `
+    <div class="member-pick captain checked">
+      <div class="avatar-sm">${avatarHTML(db.profile.avatar)}</div>
+      <div class="mc"><div class="mc-name">${esc(db.profile.nick)} <span class="badge badge-amber" style="font-size:10px;padding:2px 8px">Капитан</span></div>
+        <div class="mc-tg">${esc(db.profile.telegram)}</div></div>
+      <div class="check">✓</div>
+    </div>`;
+  const othersRows = others.length ? others.map(u => `
+    <div class="member-pick" data-act="toggle-member">
+      <div class="avatar-sm">${avatarHTML(u.avatar)}</div>
+      <div class="mc"><div class="mc-name">${esc(u.nick)}</div><div class="mc-tg">${esc(u.telegram)}</div></div>
+      <div class="check">✓</div>
+      <input type="checkbox" value="${u.id}">
+    </div>`).join('') : '<p class="muted tiny" style="padding:10px 4px">Других игроков пока нет</p>';
+  openModal({
+    title: 'Новая команда',
+    body: `<form data-form="create-team">
+      <div class="field"><label>Название</label><input name="name" maxlength="24" placeholder="Феникс" required></div>
+      <div class="field"><label>Тег (до 4 символов)</label><input name="tag" maxlength="4" placeholder="PHX" required></div>
+      <div class="field">
+        <label>Пригласить игроков <span id="teamCounter" class="muted tiny" style="margin-left:6px;font-weight:400">Выбрано: 1 / 5</span></label>
+        <div class="member-picker">${captainRow}${othersRows}</div>
+        <div class="hint">Каждому отправленному игроку придёт приглашение — он должен его принять.</div>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Создать команду</button>
+    </form>`
+  });
+}
+function editProfileModal() {
+  const u = db.profile;
+  openModal({
+    title: 'Редактировать профиль',
+    body: `<form data-form="edit-profile">
+      <div class="field"><label>Аватар</label>
+        <div class="emoji-pick" id="emojiPick">
+          ${AVATARS.map(a => `<button type="button" class="emoji-opt ${a===u.avatar?'sel':''}" data-act="pick-emoji" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
+        </div>
+        <input type="hidden" name="avatar" id="avatarVal" value="${esc(u.avatar)}">
+      </div>
+      <div class="field"><label>Никнейм</label><input name="nick" value="${esc(u.nick)}" maxlength="20" required></div>
+      <div class="field"><label>Telegram</label><input name="telegram" value="${esc(u.telegram)}" maxlength="32" required></div>
+      <div class="field"><label>Ранг</label>
+        <select name="rank">${['Эпик','Легенда','Мифический','Мифическая слава','Мифический почёт'].map(r => `<option ${r===u.rank?'selected':''}>${r}</option>`).join('')}</select></div>
+      <div class="field"><label>Герои (через запятую)</label><input name="heroes" value="${esc((u.heroes||[]).join(', '))}" placeholder="Ланселот, Гвиневра"></div>
+      <div class="field"><label>Позиции (через запятую)</label><input name="lines" value="${esc((u.lines||[]).join(', '))}" placeholder="Лес, Мид"></div>
+      <button class="btn btn-primary btn-block" type="submit">Сохранить</button>
+    </form>`
+  });
+}
+
+function showAuth(tab = 'login') {
+  const root = $('#auth-root');
+  const renderTab = () => {
+    if (tab === 'login') {
+      return `
+        <form data-form="login">
+          <div class="field"><label>Логин</label><input name="login" autocomplete="username" autocapitalize="off" required></div>
+          <div class="field"><label>Пароль</label><input name="password" type="password" autocomplete="current-password" required></div>
+          <button class="btn btn-primary btn-block" type="submit">Войти</button>
+        </form>`;
+    }
+    return `
+      <form data-form="register">
+        <div class="field"><label>Логин для входа</label>
+          <input name="login" autocapitalize="off" autocomplete="username" maxlength="20" placeholder="например night" required>
+          <div class="hint">Латиница, цифры, подчёркивание.</div></div>
+        <div class="field"><label>Пароль</label>
+          <input name="password" type="password" autocomplete="new-password" minlength="4" required></div>
+        <div class="field"><label>Игровой ник</label>
+          <input name="nick" maxlength="20" placeholder="NightRaven" required></div>
+        <div class="field"><label>Telegram (обязательно)</label>
+          <input name="telegram" maxlength="32" placeholder="@username" required>
+          <div class="hint">С тобой свяжутся по турниру.</div></div>
+        <div class="field"><label>Аватар</label>
+          <div class="emoji-pick" id="regEmoji">
+            ${AVATARS.map((a,i) => `<button type="button" class="emoji-opt ${i===0?'sel':''}" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
+          </div>
+          <input type="hidden" name="avatar" id="regAvatar" value="${esc(AVATARS[0])}"></div>
+        <button class="btn btn-primary btn-block" type="submit">Создать аккаунт</button>
+      </form>`;
+  };
+  root.innerHTML = `
+    <div class="auth">
+      <div class="auth-box">
+        <div class="auth-brand">
+          <div class="brand-mark"><img src="https://i.ibb.co/QFdPbD1s/86-20260918220103.png" alt="Logo"></div>
+          <h1>ThunderStorm</h1>
+          <p>Турниры Mobile Legends: Bang Bang</p>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab ${tab==='login'?'active':''}" data-act="auth-tab" data-tab="login">Вход</button>
+          <button class="auth-tab ${tab==='register'?'active':''}" data-act="auth-tab" data-tab="register">Регистрация</button>
+        </div>
+        <div id="authBody">${renderTab()}</div>
+      </div>
+    </div>`;
+  $('#regEmoji')?.addEventListener('click', e => {
+    const b = e.target.closest('.emoji-opt'); if (!b) return;
+    $$('.emoji-opt', $('#regEmoji')).forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel'); $('#regAvatar').value = b.dataset.emoji;
+  });
+  root.querySelectorAll('[data-act="auth-tab"]').forEach(btn => {
+    btn.addEventListener('click', () => showAuth(btn.dataset.tab));
+  });
+}
+function hideAuth() { $('#auth-root').innerHTML = ''; }
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('#modEmoji .emoji-opt');
+  if (!el) return;
+  $$('#modEmoji .emoji-opt').forEach(x => x.classList.remove('sel'));
+  el.classList.add('sel');
+  const inp = $('#modAvatar'); if (inp) inp.value = el.dataset.emoji;
+});
+
+/* ============================================================
+   ЗАГРУЗКА ДАННЫХ + REALTIME
+   ============================================================ */
+async function loadAll() {
+  const [t, tm, ch, us, inv, msgs] = await Promise.all([
+    sb.from('tournaments').select('*').order('date'),
+    sb.from('teams').select('*').order('created_at', { ascending:false }),
+    sb.from('chats').select('*').order('created_at'),
+    sb.from('users').select('*'),
+    sb.from('invites').select('*'),
+    sb.from('messages').select('*').order('ts').limit(500)
+  ]);
+  db.tournaments = (t.data || []).map(x => ({ ...x, desc: x.desc || x['desc'] || '' }));
+  db.teams = tm.data || [];
+  db.chats = (ch.data || []).map(c => ({
+    ...c,
+    messages: (msgs.data || []).filter(m => m.chat_id === c.id)
+  }));
+  db.users = us.data || [];
+  db.invites = inv.data || [];
+}
+
+function subscribeRealtime() {
+  if (state.realtimeChannel) sb.removeChannel(state.realtimeChannel);
+  state.realtimeChannel = sb.channel('realtime-all')
+    .on('postgres_changes', { event:'*', schema:'public', table:'tournaments' }, () => loadAll().then(render))
+    .on('postgres_changes', { event:'*', schema:'public', table:'teams' }, () => loadAll().then(render))
+    .on('postgres_changes', { event:'*', schema:'public', table:'chats' }, () => loadAll().then(render))
+    .on('postgres_changes', { event:'*', schema:'public', table:'messages' }, () => {
+      loadAll().then(() => { if (state.activeChat) render(); });
+    })
+    .on('postgres_changes', { event:'*', schema:'public', table:'users' }, () => loadAll().then(render))
+    .on('postgres_changes', { event:'*', schema:'public', table:'invites' }, () => loadAll().then(render))
+    .subscribe();
+}
+
+async function boot() {
+  if (SUPABASE_URL.includes('ВСТАВЬ') || SUPABASE_ANON.includes('ВСТАВЬ')) {
+    $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">⚠️ Не вставлены ключи Supabase.<br><br>Открой файл и заполни SUPABASE_URL и SUPABASE_ANON.</div>';
+    return;
+  }
+  try {
+    let session = (await sb.auth.getSession()).data.session;
+    if (!session) {
+      const { error } = await sb.auth.signInAnonymously();
+      if (error) {
+        $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">Ошибка входа: ' + esc(error.message) + '<br><br>Проверь, что Anonymous Sign-Ins включён в Supabase → Authentication → Providers.</div>';
+        return;
+      }
+    }
+    state.authUser = (await sb.auth.getUser()).data.user;
+    await loadAll();
+    subscribeRealtime();
+    if (db.chats.length === 0) {
+      await sb.from('chats').insert({ title:'Общий чат', avatar:'💬', type:'global', last_message:'' });
+      await loadAll();
+    }
+    db.meId = null; db.profile = null;
+    $('#loadingScreen').style.display = 'none';
+    $('#app').style.display = '';
+    render();
+    showAuth('login');
+  } catch(e) {
+    $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">Ошибка: ' + esc(e.message) + '</div>';
+  }
+}
+
+boot();
+</script>
+</body>
+</html>
