@@ -337,6 +337,27 @@ const tgLink = tg => 'https://t.me/' + String(tg||'').replace(/^@/,'');
 const isImgUrl = v => typeof v === 'string' && /^https?:\/\//i.test(v);
 const avatarHTML = v => isImgUrl(v) ? `<img src="${esc(v)}" alt="" loading="lazy" onerror="this.src=''">` : esc(v || '👤');
 
+const BACKGROUNDS = [
+  { id:'bg1', name:'Тёмная галактика', price:300,  css:'linear-gradient(145deg,#2d1b4e,#0d031f)' },
+  { id:'bg2', name:'Неоновая бездна',  price:500,  css:'linear-gradient(145deg,#4a1a6b,#12061f)' },
+  { id:'bg3', name:'Киберпространство',price:750,  css:'linear-gradient(145deg,#0b3a5a,#06121f)' },
+  { id:'bg4', name:'Кровавая луна',    price:1000, css:'linear-gradient(145deg,#5c1a3a,#160610)' },
+  { id:'bg5', name:'Золотой трон',     price:1500, css:'linear-gradient(145deg,#5a4310,#1a1206)' }
+];
+
+const AVATARS = [
+  'https://i.ibb.co/Mk6Vy3ps/83.png',
+  'https://i.ibb.co/xqnzs43p/85.png',
+  'https://i.ibb.co/zhfmz6HL/84.png',
+  'https://i.ibb.co/nNJBzngK/82.png',
+  'https://i.ibb.co/rGj1m78N/81.png',
+  'https://i.ibb.co/bgNwnNXk/76.png',
+  'https://i.ibb.co/bMyjp3JF/77.png',
+  'https://i.ibb.co/7tZJ5yPK/78.png',
+  'https://i.ibb.co/5XJ41tnX/80.png',
+  'https://i.ibb.co/hRzL7MQR/79.png'
+];
+
 let db = { meId:null, profile:null, users:[], teams:[], invites:[], tournaments:[], chats:[], medals:[], userMedals:[], shopItems:[], userItems:[] };
 const state = { route:'home', filter:'all', activeChat:null, profile:null, tModalTab:'entries', tModalId:null, msgChannel:null, realtimeChannel:null, authUser:null };
 const me = () => db.profile;
