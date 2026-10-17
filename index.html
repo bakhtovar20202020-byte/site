@@ -43,6 +43,11 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .icon-badge .dot{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--red);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--bg)}
 .wallet{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;background:rgba(168,85,247,.10);border:1px solid var(--line-2);font-weight:600;font-size:14px}
 .wallet b{color:#d8b4fe;font-weight:700}
+.wallet img{width:16px;height:16px;object-fit:contain}
+/* Иконки */
+.nav-img{width:24px;height:24px;object-fit:contain;margin-bottom:2px}
+.nav-img.sm{width:18px;height:18px}
+/* Основные стили */
 .card{background:linear-gradient(158deg,rgba(32,19,56,.92),rgba(19,11,34,.92));border:1px solid var(--line);border-radius:var(--r);padding:16px}
 .section{margin-top:26px}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
@@ -132,7 +137,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .profile-bg{position:absolute;inset:0;z-index:0}
 .profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.35),rgba(10,6,19,.88))}
 .profile-inner{position:relative;z-index:1}
-.p-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:40px;background:rgba(10,6,19,.6);border:2px solid var(--line-2);box-shadow:0 0 34px rgba(168,85,247,.42);overflow:hidden}
+.p-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:40px;background:rgba(10,6,19,.6);border:2px solid var(--line-2);box-shadow:0 0 34px rgba(168,85,247,.42);overflow:hidden;position:relative}
 .p-name{font-size:22px;font-family:var(--fd);font-weight:700;margin-bottom:6px}
 .p-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
 .shop-item{border-radius:16px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);text-align:center}
@@ -164,9 +169,10 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .modal-foot .btn{flex:1;min-width:120px}
 .tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + var(--safe-b));z-index:60;width:calc(100% - 24px);max-width:456px;display:flex;justify-content:space-around;padding:6px 4px;border-radius:24px;background:rgba(18,10,32,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);box-shadow:0 12px 38px rgba(0,0,0,.55)}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px;min-height:52px;border-radius:16px;color:var(--muted);font-size:10.5px;font-weight:600;transition:.18s;position:relative}
-.nav-item .ic{font-size:19px;line-height:1;filter:grayscale(.55);transition:.18s}
+.nav-item .ic{font-size:19px;line-height:1;filter:grayscale(.55);transition:.18s;display:flex;align-items:center;justify-content:center;height:24px}
+.nav-item .ic img{width:22px;height:22px;object-fit:contain;filter:grayscale(.55);transition:.18s}
 .nav-item.active{color:#d8b4fe;background:rgba(168,85,247,.13)}
-.nav-item.active .ic{filter:none;transform:translateY(-1px)}
+.nav-item.active .ic img{filter:none;transform:translateY(-1px)}
 .nav-item .nbadge{position:absolute;top:6px;right:calc(50% - 22px);min-width:16px;height:16px;padding:0 4px;border-radius:99px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center}
 .toast-host{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(104px + var(--safe-b));z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:calc(100% - 40px);max-width:400px}
 .toast{padding:11px 20px;border-radius:99px;font-size:13.5px;font-weight:600;background:rgba(28,17,51,.97);border:1px solid var(--line-2);color:#e9e2f8;box-shadow:0 8px 30px rgba(0,0,0,.5);animation:slideUp .22s ease;max-width:100%;text-align:center}
@@ -207,7 +213,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .up-head .profile-bg{position:absolute;inset:0;z-index:0}
 .up-head .profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.3),rgba(10,6,19,.85))}
 .up-head-inner{position:relative;z-index:1}
-.up-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:34px;background:rgba(10,6,19,.55);border:2px solid var(--line-2);box-shadow:0 0 30px rgba(168,85,247,.4);overflow:hidden}
+.up-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:34px;background:rgba(10,6,19,.55);border:2px solid var(--line-2);box-shadow:0 0 30px rgba(168,85,247,.4);overflow:hidden;position:relative}
 .up-name{font-size:20px;font-family:var(--fd);font-weight:700;margin-bottom:8px}
 .up-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
 .bracket-round{margin-bottom:20px}
@@ -244,6 +250,22 @@ input,textarea{user-select:text;-webkit-user-select:text}
 @keyframes spin{to{transform:rotate(360deg)}}
 .team-manage-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
 .team-manage-row:last-child{border-bottom:none}
+/* Медали и магазин */
+.medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.medal-item{text-align:center;cursor:pointer}
+.medal-box{width:100%;aspect-ratio:1;border-radius:12px;background-size:cover;background-position:center;position:relative;display:grid;place-items:center;overflow:hidden;margin-bottom:6px}
+.medal-box img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.medal-name{font-size:11px;color:var(--text);line-height:1.2}
+/* Магазин */
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.shop-card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;display:flex;flex-direction:column}
+.shop-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;margin-bottom:8px;background:rgba(0,0,0,.2)}
+.shop-card .sc-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.shop-card .sc-desc{font-size:11px;color:var(--muted);margin-bottom:6px;flex:1}
+.shop-card .sc-price{font-size:14px;font-weight:700;color:#d8b4fe;margin-bottom:8px}
+.avatar-frame{position:absolute;inset:0;border-radius:50%;pointer-events:none;background-size:contain;background-position:center;background-repeat:no-repeat;z-index:2}
+.avatar-bg{position:absolute;inset:0;border-radius:50%;background-size:cover;background-position:center;z-index:0}
+.avatar-img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
@@ -256,12 +278,19 @@ input,textarea{user-select:text;-webkit-user-select:text}
 <div class="app" id="app" style="display:none">
   <header class="topbar">
     <div class="brand">
-      <span class="brand-mark"><img src="https://i.ibb.co/QFdPbD1s/86-20260918220103.png" alt="Logo"></span>
+      <span class="brand-mark"><img src="https://i.ibb.co/QFdPbD1s/86-20260918220103.png" alt="Logo" onerror="this.src=''"></span>
       <span>ThunderStorm<small>Mobile Legends</small></span>
     </div>
     <div class="top-actions">
-      <button class="icon-badge" data-act="open-invites" aria-label="Приглашения" id="invitesBtn" style="display:none">📨<span class="dot" id="invitesDot">0</span></button>
-      <div class="wallet">✦ <b id="coinBal">0</b></div>
+      <button class="icon-badge" data-act="open-invites" aria-label="Приглашения" id="invitesBtn" style="display:none">
+        <img src="https://ibb.co/3YQd1mDS" style="width:20px;height:20px;object-fit:contain" onerror="this.src='📨'">
+        <span class="dot" id="invitesDot">0</span>
+      </button>
+      <div class="wallet">
+        <img src="https://ibb.co/GNFbdSQ" alt="coin" onerror="this.style.display='none'">
+        <span onerror="this.style.display='inline'">✦</span>
+        <b id="coinBal">0</b>
+      </div>
     </div>
   </header>
   <main id="view"></main>
@@ -277,7 +306,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============================================================
-   ThunderStorm — Supabase версия (все фиксы)
+   ThunderStorm — Supabase версия (Иконки, Медали, Магазин)
    ============================================================ */
 const SUPABASE_URL = 'https://fpvbebvyypppverkisxl.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_FVYuUqEdNcmyluAT02Ting_CG-y8XRJ';
@@ -313,7 +342,7 @@ const hashPass = (pass, salt) => {
 };
 const tgLink = tg => 'https://t.me/' + String(tg||'').replace(/^@/,'');
 const isImgUrl = v => typeof v === 'string' && /^https?:\/\//i.test(v);
-const avatarHTML = v => isImgUrl(v) ? `<img src="${esc(v)}" alt="" loading="lazy">` : esc(v || '👤');
+const avatarHTML = v => isImgUrl(v) ? `<img src="${esc(v)}" alt="" loading="lazy" onerror="this.src=''">` : esc(v || '👤');
 
 const BACKGROUNDS = [
   { id:'bg1', name:'Тёмная галактика', price:300,  css:'linear-gradient(145deg,#2d1b4e,#0d031f)' },
@@ -335,7 +364,7 @@ const AVATARS = [
   'https://i.ibb.co/hRzL7MQR/79.png'
 ];
 
-let db = { meId:null, profile:null, users:[], teams:[], invites:[], tournaments:[], chats:[] };
+let db = { meId:null, profile:null, users:[], teams:[], invites:[], tournaments:[], chats:[], medals:[], userMedals:[], shopItems:[], userItems:[] };
 const state = { route:'home', filter:'all', activeChat:null, profile:null, tModalTab:'entries', tModalId:null, msgChannel:null, realtimeChannel:null, authUser:null };
 const me = () => db.profile;
 const userById = id => db.users.find(u => u.id === id) || null;
@@ -364,6 +393,16 @@ function entryIsMine(t, id) {
   const e = entryById(t, id);
   if (!e || !db.meId) return false;
   return e.uid === db.meId || (e.member_ids||[]).includes(db.meId);
+}
+
+// Получение медалей и предметов игрока
+function getUserMedals(userId) {
+  const userMeds = db.userMedals.filter(um => um.user_id === userId);
+  return userMeds.map(um => db.medals.find(m => m.id === um.medal_id)).filter(Boolean).sort((a,b) => a.priority - b.priority);
+}
+function getUserItems(userId) {
+  const userItems = db.userItems.filter(ui => ui.user_id === userId);
+  return userItems.map(ui => db.shopItems.find(si => si.id === ui.item_id)).filter(Boolean);
 }
 
 function toast(text, type='') {
@@ -438,6 +477,17 @@ function openInvites() {
 }
 function closeInvites() { $('#invites-modal-root').innerHTML = ''; checkBodyLock(); }
 
+function renderAvatarWithFrame(u, size='p') {
+  const avHtml = isImgUrl(u.avatar) ? `<img src="${esc(u.avatar)}" class="avatar-img" onerror="this.src=''">` : esc(u.avatar||'👤');
+  const bgStyle = u.avatar_bg_url ? `background-image:url('${esc(u.avatar_bg_url)}')` : '';
+  const frameStyle = u.avatar_frame_url ? `background-image:url('${esc(u.avatar_frame_url)}')` : '';
+  return `
+    ${u.avatar_bg_url ? `<div class="avatar-bg" style="${bgStyle}"></div>` : ''}
+    <div style="position:relative;z-index:1;width:100%;height:100%;display:grid;place-items:center">${avHtml}</div>
+    ${u.avatar_frame_url ? `<div class="avatar-frame" style="${frameStyle}"></div>` : ''}
+  `;
+}
+
 function openUserProfile(userId) {
   const u = userById(userId);
   if (!u) return;
@@ -447,8 +497,10 @@ function openUserProfile(userId) {
   const tours = db.tournaments.filter(t => (t.entries||[]).some(e =>
     e.uid === u.id || (e.member_ids||[]).includes(u.id)));
   const teams = db.teams.filter(t => (t.member_ids||[]).includes(u.id));
+  const medals = getUserMedals(u.id);
   const isMe = u.id === db.meId;
   const canDelete = isAdmin() && !isMe;
+
   const tourList = tours.length ? tours.slice(0,3).map(t => `
     <div class="admin-row" style="cursor:pointer" data-act="open-tournament-from-user" data-id="${t.id}">
       <div style="min-width:0;flex:1"><div style="font-weight:600;font-size:13.5px">${esc(t.title)}</div>
@@ -461,6 +513,21 @@ function openUserProfile(userId) {
       <div style="min-width:0"><div style="font-weight:600;font-size:13.5px">${esc(t.name)}</div>
         <div class="tiny muted">${t.captain === u.id ? 'Капитан' : 'Участник'}</div></div>
     </div></div>`).join('') : '<p class="muted tiny" style="padding:8px 0">Не состоит в командах</p>';
+  
+  const medalsHTML = medals.length ? `
+    <div class="section-head" style="margin-top:18px;margin-bottom:6px"><h2 style="font-size:13.5px">Достижения</h2></div>
+    <div class="medals-grid">
+      ${medals.map(m => `
+        <div class="medal-item" title="${esc(m.name)}">
+          <div class="medal-box" style="${m.bg_url ? `background-image:url('${esc(m.bg_url)}')` : 'background:#1c1133'}">
+            ${m.icon_url ? `<img src="${esc(m.icon_url)}" alt="">` : '🏆'}
+          </div>
+          <div class="medal-name">${esc(m.name)}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
   $('#user-modal-root').innerHTML = `
     <div class="modal-backdrop user-modal-backdrop" data-act="close-user-modal">
       <div class="modal" role="dialog">
@@ -470,7 +537,7 @@ function openUserProfile(userId) {
           <div class="up-head">
             <div class="profile-bg" style="background:${bg.css}"></div>
             <div class="up-head-inner">
-              <div class="up-avatar">${avatarHTML(u.avatar)}</div>
+              <div class="up-avatar">${renderAvatarWithFrame(u, 'up')}</div>
               <div class="up-name">${esc(u.nick)} ${isMe?'<span class="muted tiny" style="font-weight:400">· вы</span>':''}</div>
               <span class="badge ${roleClass}">${roleLabel}</span>
               <div class="p-tags" style="margin-top:12px">
@@ -488,6 +555,9 @@ function openUserProfile(userId) {
             <div class="stat"><span>Турниров</span><b style="margin-top:4px">${tours.length}</b></div>
             <div class="stat"><span>Команд</span><b style="margin-top:4px">${teams.length}</b></div>
           </div>
+          
+          ${medalsHTML}
+
           <div class="section-head" style="margin-top:18px;margin-bottom:6px"><h2 style="font-size:13.5px">Турниры</h2></div>
           ${tourList}
           <div class="section-head" style="margin-top:14px;margin-bottom:6px"><h2 style="font-size:13.5px">Команды</h2></div>
@@ -521,14 +591,16 @@ function render() {
   if (body) body.scrollTop = body.scrollHeight;
 }
 function renderTabbar() {
+  const profileIcon = isImgUrl(state.profile.avatar) ? `<img src="${esc(state.profile.avatar)}" style="width:22px;height:22px;border-radius:50%;object-fit:cover">` : '👤';
   const items = [
-    { r:'home', ic:'Main', label:'Главная' },
-    { r:'tournaments', ic:'Tournament', label:'Турниры' },
-    { r:'teams', ic:'Team', label:'Команды' },
-    { r:'chats', ic:'💬', label:'Чаты' },
-    { r:'profile', ic:'👤', label:'Профиль', badge: myPendingInvites().length }
+    { r:'home', ic:'<img src="https://ibb.co/NdGqc610" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🏠</span>', label:'Главная' },
+    { r:'tournaments', ic:'<img src="https://ibb.co/4wpF9gt9" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">⚔️</span>', label:'Турниры' },
+    { r:'teams', ic:'<img src="https://ibb.co/Rpd1qnG6" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">👥</span>', label:'Команды' },
+    { r:'chats', ic:'<img src="https://ibb.co/4wwtHS19" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">💬</span>', label:'Чаты' },
+    { r:'profile', ic: profileIcon, label:'Профиль', badge: myPendingInvites().length }
   ];
-  if (canManage()) items.push({ r:'admin', ic:'🛡️', label:'Админ' });
+  if (canManage()) items.push({ r:'admin', ic:'<img src="https://ibb.co/1JT0SBL5" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🛡️</span>', label:'Админ' });
+  
   $('#tabbar').innerHTML = items.map(i => `
     <button class="nav-item ${state.route===i.r?'active':''}" data-act="nav" data-route="${i.r}">
       <span class="ic">${i.ic}</span><span>${i.label}</span>
@@ -1265,6 +1337,9 @@ function viewProfile() {
   const roleClass = { player:'badge-purple', moderator:'badge-cyan', admin:'badge-amber' }[u.role] || 'badge-purple';
   const mine = myEntries();
   const invites = myPendingInvites();
+  const medals = getUserMedals(u.id);
+  const myItems = getUserItems(u.id);
+  
   const invitesBlock = invites.length ? `
     <section class="section">
       <div class="section-head"><h2>Приглашения</h2><span class="muted tiny">${invites.length}</span></div>
@@ -1288,11 +1363,54 @@ function viewProfile() {
         </div>`;
       }).join('')}
     </section>` : '';
+
+  const medalsHTML = medals.length ? `
+    <section class="section">
+      <div class="section-head"><h2>Достижения</h2><span class="muted tiny">${medals.length}</span></div>
+      <div class="medals-grid">
+        ${medals.map(m => `
+          <div class="medal-item" title="${esc(m.description || '')}">
+            <div class="medal-box" style="${m.bg_url ? `background-image:url('${esc(m.bg_url)}')` : 'background:#1c1133'}">
+              ${m.icon_url ? `<img src="${esc(m.icon_url)}" alt="">` : '🏆'}
+            </div>
+            <div class="medal-name">${esc(m.name)}</div>
+          </div>
+        `).join('')}
+      </div>
+    </section>` : '';
+
+  const shopHTML = db.shopItems.length ? `
+    <section class="section">
+      <div class="section-head"><h2>Магазин</h2><span class="muted tiny">${db.shopItems.length} товаров</span></div>
+      <div class="shop-grid">
+        ${db.shopItems.map(si => {
+          const owned = myItems.some(ui => ui.id === si.id);
+          const isActiveAvatar = si.type === 'avatar' && u.avatar === si.image_url;
+          const isActiveBg = si.type === 'bg' && u.avatar_bg_url === si.image_url;
+          const isActiveFrame = si.type === 'frame' && u.avatar_frame_url === si.image_url;
+          const isActive = isActiveAvatar || isActiveBg || isActiveFrame;
+          return `
+          <div class="shop-card">
+            <img src="${esc(si.image_url)}" alt="">
+            <div class="sc-name">${esc(si.name)}</div>
+            <div class="sc-desc">${esc(si.description || '')}</div>
+            <div class="sc-price">✦ ${fmtNum(si.price)}</div>
+            ${owned ? `
+              ${isActive ? `<button class="btn btn-ghost btn-sm btn-block" disabled>Активно</button>` 
+                        : `<button class="btn btn-success btn-sm btn-block" data-act="equip-item" data-id="${si.id}">Применить</button>`}
+            ` : `
+              <button class="btn btn-primary btn-sm btn-block" data-act="buy-item" data-id="${si.id}">Купить</button>
+            `}
+          </div>`;
+        }).join('')}
+      </div>
+    </section>` : '';
+
   return `
     <div class="profile-card">
       <div class="profile-bg" style="background:${bg.css}"></div>
       <div class="profile-inner">
-        <div class="p-avatar">${avatarHTML(u.avatar)}</div>
+        <div class="p-avatar">${renderAvatarWithFrame(u, 'p')}</div>
         <div class="p-name">${esc(u.nick)}</div>
         <span class="badge ${roleClass}">${roleLabel}</span>
         <div class="p-tags">
@@ -1307,16 +1425,22 @@ function viewProfile() {
         </div>
       </div>
     </div>
+    
     <div class="row" style="gap:10px;margin-top:16px">
       <button class="btn btn-primary" style="flex:1" data-act="edit-profile">Редактировать</button>
       <button class="btn btn-ghost" style="flex:1" data-act="logout">Выйти</button>
     </div>
+    
     ${invitesBlock}
+    ${medalsHTML}
+    ${shopHTML}
+    
     ${mine.length ? `
     <section class="section">
       <div class="section-head"><h2>Мои турниры</h2><span class="muted tiny">${mine.length}</span></div>
       ${mine.map(tCardHTML).join('')}
     </section>` : ''}
+    
     <section class="section">
       <div class="section-head"><h2>Магазин фонов</h2><span class="muted tiny">${(u.owned||[]).length} куплено</span></div>
       <div class="grid-2">
@@ -1346,893 +1470,8 @@ function viewAdmin() {
     return s + t.bracket.rounds.reduce((s2,r) => s2 + r.matches.filter(m => m.status === 'awaiting').length, 0);
   }, 0);
   const defaultDate = toLocalInput(new Date(Date.now() + 3*864e5));
+  
   return `
     <div class="section-head" style="margin-bottom:14px">
       <h2 style="font-size:19px">Панель управления</h2>
-      <span class="badge ${isAdmin()?'badge-amber':'badge-cyan'}">${isAdmin()?'Гл. админ':'Модератор'}</span>
-    </div>
-    ${pendingCount ? `
-      <div class="card" style="margin-bottom:12px;border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06)">
-        <div style="font-size:14px;color:#67e8f9">📥 <b>${pendingCount}</b> ${plural(pendingCount,'заявка ждёт','заявки ждут','заявок ждут')} рассмотрения</div>
-      </div>` : ''}
-    ${awaitingMatches ? `
-      <div class="card" style="margin-bottom:16px;border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.06)">
-        <div style="font-size:14px;color:#fcd34d">🎮 <b>${awaitingMatches}</b> ${plural(awaitingMatches,'результат матча ждёт','результата матчей ждут','результатов матчей ждут')} проверки</div>
-        <div class="tiny muted" style="margin-top:4px">Откройте турнир → вкладка «Сетка» → проверьте пруф и примите победителя.</div>
-      </div>` : ''}
-
-    <section class="card" style="margin-bottom:20px">
-      <h3 style="font-size:15px;margin-bottom:14px">Создать турнир</h3>
-      <form data-form="create-tournament">
-        <div class="field"><label>Название</label><input name="title" maxlength="40" placeholder="Кубок Теней" required></div>
-        <div class="grid-2">
-          <div class="field"><label>Формат</label>
-            <select name="mode"><option value="1v1">1 × 1</option><option value="5v5" selected>5 × 5</option></select>
-          </div>
-          <div class="field"><label>Макс. команд</label><input name="maxTeams" type="number" min="2" max="128" value="16" required></div>
-        </div>
-        <div class="grid-2">
-          <div class="field"><label>Дата и время</label><input name="date" type="datetime-local" value="${defaultDate}" required></div>
-          <div class="field"><label>Призовой фонд ✦</label><input name="prize" type="number" min="0" step="100" value="5000" required></div>
-        </div>
-        <div class="field"><label>Описание и правила</label><textarea name="desc" maxlength="500" placeholder="Формат матчей, драфт, ограничения..."></textarea></div>
-        <button class="btn btn-primary btn-block" type="submit">Опубликовать турнир</button>
-      </form>
-    </section>
-
-    ${isAdmin() ? `
-    <section class="card" style="margin-bottom:20px;border-color:var(--line-2)">
-      <h3 style="font-size:15px;margin-bottom:14px">👑 Создать модератора</h3>
-      <form data-form="create-moderator">
-        <div class="grid-2">
-          <div class="field"><label>Логин</label><input name="login" autocapitalize="off" maxlength="20" placeholder="mod_name" required></div>
-          <div class="field"><label>Пароль</label><input name="password" minlength="4" placeholder="****" required></div>
-        </div>
-        <div class="field"><label>Ник</label><input name="nick" maxlength="20" placeholder="Moderator" required></div>
-        <div class="field"><label>Telegram</label><input name="telegram" maxlength="32" placeholder="@username" required></div>
-        <div class="field"><label>Аватар</label>
-          <div class="emoji-pick" id="modEmoji">
-            ${AVATARS.map((a,i) => `<button type="button" class="emoji-opt ${i===0?'sel':''}" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
-          </div>
-          <input type="hidden" name="avatar" id="modAvatar" value="${esc(AVATARS[0])}">
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">Создать модератора</button>
-      </form>
-    </section>` : ''}
-
-    <section class="section" style="margin-top:0">
-      <div class="section-head"><h2>Все турниры</h2><span class="muted tiny">${tList.length}</span></div>
-      ${tList.map(t => {
-        const pend = (t.entries||[]).filter(e => e.status === 'pending').length;
-        const appr = (t.entries||[]).filter(e => e.status === 'approved').length;
-        const aw = t.bracket && t.bracket.rounds ? t.bracket.rounds.reduce((s,r) => s + r.matches.filter(m => m.status === 'awaiting').length, 0) : 0;
-        const hasB = t.bracket && t.bracket.rounds && t.bracket.rounds.length;
-        return `
-        <div class="admin-row" style="align-items:flex-start">
-          <div style="min-width:0;flex:1">
-            <div style="font-weight:600;font-size:14.5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center">
-              ${esc(t.title)}
-              ${pend?`<span class="badge badge-cyan" style="font-size:10px;padding:2px 8px">+${pend} заявок</span>`:''}
-              ${aw?`<span class="badge badge-amber" style="font-size:10px;padding:2px 8px">${aw} матч</span>`:''}
-              ${hasB?`<span class="badge badge-purple" style="font-size:10px;padding:2px 8px">Сетка</span>`:''}
-            </div>
-            <div class="tiny muted" style="margin-top:3px">${t.mode==='1v1'?'1 × 1':'5 × 5'} · ${esc(fmtDate(t.date))} · ${appr}/${t.max_teams} утв.</div>
-          </div>
-          <div class="row" style="gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
-            <button class="btn btn-ghost btn-sm" data-act="open-tournament" data-id="${t.id}">Открыть</button>
-            <button class="btn btn-ghost btn-sm" data-act="toggle-status" data-id="${t.id}">${t.status==='closed'?'Открыть':'Закрыть'}</button>
-            <button class="icon-btn" data-act="del-tournament" data-id="${t.id}" title="Удалить">🗑</button>
-          </div>
-        </div>`;
-      }).join('') || '<div class="empty">Турниров нет</div>'}
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2>Пользователи</h2><span class="muted tiny">${db.users.length}</span></div>
-      <div class="card" style="padding:6px 16px">
-        ${db.users.map(u => `
-          <div class="admin-row">
-            <div class="row" style="min-width:0;flex:1" data-act="view-user" data-id="${u.id}">
-              <div class="avatar-sm" style="width:28px;height:28px">${avatarHTML(u.avatar)}</div>
-              <div style="min-width:0">
-                <div style="font-weight:600;font-size:14px">${esc(u.nick)}
-                  ${u.id===db.meId?'<span class="muted tiny">· вы</span>':''}</div>
-                <div class="tiny muted">
-                  <a class="tg-link" href="${tgLink(u.telegram)}" target="_blank" onclick="event.stopPropagation()">${esc(u.telegram||'—')}</a>
-                  · @${esc(u.login||'—')}</div>
-                <div class="tiny" style="margin-top:4px;color:#fcd34d;font-weight:600">✦ ${fmtNum(u.coins||0)} монет</div>
-              </div>
-            </div>
-            ${isAdmin() ? `
-            <div class="row" style="gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
-              <button class="btn btn-amber btn-sm" data-act="add-coins" data-id="${u.id}">+ ✦</button>
-              <select data-act="set-role" data-id="${u.id}" ${u.id===db.meId?'disabled':''} style="padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;min-height:36px">
-                <option value="player" ${u.role==='player'?'selected':''}>Игрок</option>
-                <option value="moderator" ${u.role==='moderator'?'selected':''}>Модератор</option>
-                <option value="admin" ${u.role==='admin'?'selected':''}>Гл. админ</option>
-              </select>
-              ${u.id===db.meId ? '' : `<button class="icon-btn" data-act="admin-del-user" data-id="${u.id}" title="Удалить">🗑</button>`}
-            </div>` : `<span class="tiny muted">${u.role}</span>`}
-          </div>`).join('')}
-      </div>
-    </section>
-
-    ${isAdmin() ? `
-    <section class="section">
-      <div class="card">
-        <button class="btn btn-danger btn-block btn-sm" data-act="reset-all">Сбросить все данные</button>
-      </div>
-    </section>` : ''}`;
-}
-
-document.addEventListener('click', e => {
-  const el = e.target.closest('[data-act]');
-  if (!el) return;
-  const act = el.dataset.act;
-
-  if (act === 'close-invites-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeInvites(); return; }
-  if (act === 'open-invites') { openInvites(); return; }
-  if (act === 'accept-invite') { acceptInvite(el.dataset.id); return; }
-  if (act === 'decline-invite') { declineInvite(el.dataset.id); return; }
-  if (act === 'close-user-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeUserModal(); return; }
-  if (act === 'view-user') { openUserProfile(el.dataset.id); return; }
-  if (act === 'open-tournament-from-user') { const id = el.dataset.id; closeUserModal(); setTimeout(() => openTournament(id), 50); return; }
-  if (act === 'close-modal') { if (el.classList.contains('modal-backdrop') && e.target !== el) return; closeModal(); return; }
-  if (act === 'confirm-ok') { const cb = pendingConfirm; closeModal(); if (cb) cb(); return; }
-  if (act === 'nav') { state.route = el.dataset.route; state.activeChat = null; render(); return; }
-  if (act === 'nav-close') { closeModal(); state.route = el.dataset.route; state.activeChat = null; render(); return; }
-  if (act === 'filter') { state.filter = el.dataset.val; render(); return; }
-  if (act === 'open-tournament') { closeModal(); setTimeout(()=>{ state.tModalTab='entries'; openTournament(el.dataset.id); },30); return; }
-  if (act === 'apply') { applyToTournament(el.dataset.id); return; }
-  if (act === 'apply-team') { applyTeam(el.dataset.tid, el.dataset.team); return; }
-  if (act === 'approve-entry') { reviewEntry(el.dataset.tid, el.dataset.eid, 'approved'); return; }
-  if (act === 'reject-entry') { reviewEntry(el.dataset.tid, el.dataset.eid, 'rejected'); return; }
-  if (act === 'del-entry') { deleteEntry(el.dataset.tid, el.dataset.eid); return; }
-  if (act === 't-modal-tab') { state.tModalTab = el.dataset.tab; const tid = state.tModalId; if (tid) openTournament(tid); return; }
-  if (act === 'create-bracket') { createBracket(el.dataset.id); return; }
-  if (act === 'regen-bracket') { regenBracket(el.dataset.id); return; }
-  if (act === 'submit-result') { openSubmitResult(el.dataset.tid, el.dataset.mid); return; }
-  if (act === 'approve-match') { approveMatch(el.dataset.tid, el.dataset.mid, el.dataset.winner); return; }
-  if (act === 'reject-match') { rejectMatch(el.dataset.tid, el.dataset.mid); return; }
-  if (act === 'set-winner') { setWinnerDirect(el.dataset.tid, el.dataset.mid, el.dataset.winner); return; }
-  if (act === 'new-team') { newTeamModal(); return; }
-  if (act === 'open-team') { openTeamModal(el.dataset.id); return; }
-  if (act === 'invite-to-team') { inviteToTeamModal(el.dataset.id); return; }
-  if (act === 'rename-team') { renameTeamModal(el.dataset.id); return; }
-  if (act === 'kick-from-team') { kickFromTeam(el.dataset.tid, el.dataset.uid); return; }
-  if (act === 'cancel-invite') { cancelInvite(el.dataset.id); return; }
-  if (act === 'del-team') { delTeam(el.dataset.id); return; }
-  if (act === 'open-chat') { state.activeChat = el.dataset.id; render(); return; }
-  if (act === 'chat-back') { state.activeChat = null; render(); return; }
-  if (act === 'edit-profile') { editProfileModal(); return; }
-  if (act === 'pick-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#avatarVal'); if (inp) inp.value = el.dataset.emoji; return; }
-  if (act === 'pick-mod-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#modAvatar'); if (inp) inp.value = el.dataset.emoji; return; }
-  if (act === 'buy-bg') { buyBg(el.dataset.id); return; }
-  if (act === 'set-bg') { setBg(el.dataset.id); return; }
-  if (act === 'toggle-status') { toggleStatus(el.dataset.id); return; }
-  if (act === 'del-tournament') { delTournament(el.dataset.id); return; }
-  if (act === 'admin-del-user') { adminDelUser(el.dataset.id); return; }
-  if (act === 'add-coins') { addCoinsModal(el.dataset.id); return; }
-  if (act === 'quick-coin') {
-    const inp = $('input[name="amount"]');
-    if (inp) inp.value = el.dataset.val;
-    return;
-  }
-  if (act === 'logout') {
-    confirmDialog('Выйти из аккаунта?', 'Вы сможете войти снова.', 'Выйти', () => {
-      sb.auth.signOut();
-      db.meId = null; db.profile = null; state.route = 'home'; state.activeChat = null;
-      try { localStorage.removeItem('thunderstorm_me_id'); } catch(e) {}
-      closeModal(); closeUserModal(); closeInvites(); render(); showAuth('login');
-    });
-    return;
-  }
-  if (act === 'reset-all') {
-    confirmDialog('Полный сброс', 'Все данные будут удалены.', 'Сбросить', async () => {
-      await sb.from('messages').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      await sb.from('chats').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      await sb.from('invites').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      await sb.from('teams').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      await sb.from('tournaments').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      await sb.from('users').delete().neq('id', '00000000-0000-0000-0000-000000000000');
-      sb.auth.signOut();
-      db.meId = null; db.profile = null; state.route = 'home'; state.activeChat = null;
-      try { localStorage.removeItem('thunderstorm_me_id'); } catch(e) {}
-      closeModal(); closeUserModal(); closeInvites(); render(); showAuth('login');
-    }, true);
-    return;
-  }
-  if (act === 'toggle-member') {
-    const pick = el.closest('.member-pick');
-    if (!pick || pick.classList.contains('captain')) return;
-    pick.classList.toggle('checked');
-    const cb = pick.querySelector('input[type="checkbox"]');
-    if (cb) cb.checked = pick.classList.contains('checked');
-    updateTeamCounter();
-    return;
-  }
-});
-
-document.addEventListener('change', async e => {
-  const el = e.target.closest('[data-act="set-role"]');
-  if (!el || !isAdmin()) return;
-  const u = db.users.find(x => x.id === el.dataset.id);
-  if (!u || u.id === db.meId) return;
-  const { error } = await sb.from('users').update({ role: el.value }).eq('id', u.id);
-  if (error) return toast('Ошибка: ' + error.message, 'err');
-  await loadAll();
-  toast('Роль обновлена', 'ok');
-});
-
-function updateTeamCounter() {
-  const box = $('#teamCounter');
-  if (!box) return;
-  const checked = $$('.member-pick.checked').length;
-  box.textContent = `Выбрано: ${checked} / 5`;
-  box.style.color = checked >= 5 ? '#6ee7b7' : 'var(--muted)';
-}
-
-document.addEventListener('submit', async e => {
-  const f = e.target.closest('form[data-form]');
-  if (!f) return;
-  e.preventDefault();
-  const fd = new FormData(f);
-  const type = f.dataset.form;
-
-  if (type === 'login') {
-    const login = (fd.get('login')||'').toString().trim().toLowerCase();
-    const pass = (fd.get('password')||'').toString();
-    if (!login || !pass) return;
-    const { data: users, error } = await sb.from('users').select('*').eq('login', login).limit(1);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    const u = users && users[0];
-    if (!u) return toast('Логин не найден', 'err');
-    if (u.pass_hash !== hashPass(pass, u.salt)) return toast('Неверный пароль', 'err');
-    db.meId = u.id;
-    db.profile = u;
-    try { localStorage.setItem('thunderstorm_me_id', u.id); } catch(e) {}
-    hideAuth(); state.route = 'home'; render(); vibrate(20);
-    toast('Добро пожаловать, ' + u.nick, 'ok');
-    return;
-  }
-  if (type === 'register') {
-    const login = (fd.get('login')||'').toString().trim().toLowerCase();
-    const pass = (fd.get('password')||'').toString();
-    const nick = (fd.get('nick')||'').toString().trim();
-    const telegram = (fd.get('telegram')||'').toString().trim();
-    const avatar = (fd.get('avatar')||'').toString() || AVATARS[0];
-    if (!login || !pass || !nick || !telegram) return;
-    if (!/^[a-z0-9_]{3,20}$/.test(login)) return toast('Логин: 3-20 символов, латиница/цифры/_', 'err');
-    if (pass.length < 4) return toast('Пароль минимум 4 символа', 'err');
-    if (!/^@?[a-zA-Z0-9_]{3,32}$/.test(telegram)) return toast('Telegram: например @username', 'err');
-    const { data: existing } = await sb.from('users').select('id').or(`login.eq.${login},nick.eq.${nick}`);
-    if (existing && existing.length) return toast('Логин или ник уже заняты', 'err');
-    const tg = telegram.startsWith('@') ? telegram : '@' + telegram;
-    const isAdminReg = login === ADMIN_LOGIN && tg.toLowerCase() === ADMIN_TG;
-    const salt = 's' + uid();
-    const userId = crypto.randomUUID();
-    const { error } = await sb.from('users').insert({
-      id: userId, login, salt, pass_hash: hashPass(pass, salt), nick, avatar, telegram: tg,
-      role: isAdminReg ? 'admin' : 'player',
-      rank: isAdminReg ? 'Мифический почёт' : 'Эпик',
-      heroes: [], lines: [], coins: isAdminReg ? 100000 : 1250, owned: ['bg1'], bg: 'bg1'
-    });
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    db.meId = userId;
-    const { data: u } = await sb.from('users').select('*').eq('id', userId).single();
-    db.profile = u;
-    try { localStorage.setItem('thunderstorm_me_id', userId); } catch(e) {}
-    await loadAll();
-    hideAuth(); state.route = 'home'; render(); vibrate(20);
-    toast(isAdminReg ? '👑 Аккаунт главного админа создан!' : 'Аккаунт создан', 'ok');
-    return;
-  }
-  if (type === 'create-moderator') {
-    if (!isAdmin()) return;
-    const login = (fd.get('login')||'').toString().trim().toLowerCase();
-    const pass = (fd.get('password')||'').toString();
-    const nick = (fd.get('nick')||'').toString().trim();
-    const telegram = (fd.get('telegram')||'').toString().trim();
-    const avatar = (fd.get('avatar')||'').toString() || AVATARS[0];
-    if (!login || !pass || !nick || !telegram) return;
-    if (!/^[a-z0-9_]{3,20}$/.test(login)) return toast('Логин: 3-20 символов, латиница/цифры/_', 'err');
-    if (pass.length < 4) return toast('Пароль минимум 4 символа', 'err');
-    const { data: existing } = await sb.from('users').select('id').or(`login.eq.${login},nick.eq.${nick}`);
-    if (existing && existing.length) return toast('Логин или ник заняты', 'err');
-    const tg = telegram.startsWith('@') ? telegram : '@' + telegram;
-    const salt = 's' + uid();
-    const { error } = await sb.from('users').insert({
-      id: crypto.randomUUID(), login, salt, pass_hash: hashPass(pass, salt), nick, avatar, telegram: tg,
-      role: 'moderator', rank: 'Мифический', heroes: [], lines: [], coins: 5000, owned: ['bg1'], bg: 'bg1'
-    });
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    await loadAll();
-    toast('Модератор ' + nick + ' создан', 'ok');
-    f.reset();
-    return;
-  }
-  if (type === 'add-coins') {
-    if (!isAdmin()) return;
-    const userId = f.dataset.id;
-    const amount = parseInt(fd.get('amount'));
-    if (!amount || isNaN(amount)) return toast('Введи число', 'err');
-    const target = userById(userId);
-    if (!target) return;
-    const newBalance = Math.max(0, (target.coins || 0) + amount);
-    const { error } = await sb.from('users').update({ coins: newBalance }).eq('id', userId);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    target.coins = newBalance;
-    closeModal();
-    toast(amount > 0 ? `Начислено ${fmtNum(amount)} ✦` : `Списано ${fmtNum(-amount)} ✦`, 'ok');
-    render();
-    return;
-  }
-  if (type === 'apply-solo') {
-    const t = db.tournaments.find(x => x.id === f.dataset.id);
-    if (!t) return;
-    if ((t.entries||[]).some(x => x.uid === db.meId)) { toast('У вас уже есть заявка', 'err'); return; }
-    const entries = [...(t.entries||[]), { id: uid(), type:'solo', uid: db.meId, member_ids: [db.meId], status: 'pending', ts: Date.now() }];
-    const { error } = await sb.from('tournaments').update({ entries }).eq('id', t.id);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    await loadAll();
-    closeModal(); vibrate(20); toast('Заявка отправлена на рассмотрение', 'ok');
-    return;
-  }
-  if (type === 'create-team') {
-    const name = (fd.get('name')||'').toString().trim();
-    const tag = (fd.get('tag')||'').toString().trim().toUpperCase();
-    if (!name || !tag) return;
-    const checked = $$('.member-pick.checked input[type="checkbox"]').map(cb => cb.value).filter(id => id && id !== db.meId);
-    const teamId = crypto.randomUUID();
-    const { error } = await sb.from('teams').insert({
-      id: teamId, name, tag, captain: db.meId, member_ids: [db.meId]
-    });
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    for (const uidTo of checked) {
-      await sb.from('invites').insert({ team_id: teamId, from_user: db.meId, to_user: uidTo, status: 'pending' });
-    }
-    await loadAll();
-    closeModal(); vibrate(20);
-    toast(checked.length ? `Команда создана, отправлено приглашений: ${checked.length}` : 'Команда создана', 'ok');
-    return;
-  }
-  if (type === 'invite-team') {
-    const teamId = f.dataset.tid;
-    const team = db.teams.find(t => t.id === teamId);
-    if (!team) return;
-    if (team.captain !== db.meId && !isAdmin()) { toast('Только капитан может приглашать', 'err'); return; }
-    const checked = $$('.member-pick.checked input[type="checkbox"]').map(cb => cb.value).filter(Boolean);
-    if (!checked.length) { toast('Никто не выбран', 'err'); return; }
-    const freeSlots = 5 - (team.member_ids||[]).length;
-    if (checked.length > freeSlots) { toast(`Свободно только ${freeSlots} мест`, 'err'); return; }
-    for (const uidTo of checked) {
-      await sb.from('invites').insert({ team_id: teamId, from_user: db.meId, to_user: uidTo, status: 'pending' });
-    }
-    await loadAll();
-    closeModal();
-    toast(`Отправлено приглашений: ${checked.length}`, 'ok');
-    setTimeout(() => openTeamModal(teamId), 100);
-    return;
-  }
-  if (type === 'rename-team') {
-    const teamId = f.dataset.id;
-    const team = db.teams.find(t => t.id === teamId);
-    if (!team) return;
-    if (team.captain !== db.meId && !isAdmin()) { toast('Только капитан может переименовать', 'err'); return; }
-    const name = (fd.get('name')||'').toString().trim();
-    const tag = (fd.get('tag')||'').toString().trim().toUpperCase();
-    if (!name || !tag) return;
-    const { error } = await sb.from('teams').update({ name, tag }).eq('id', teamId);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    await loadAll();
-    closeModal();
-    toast('Команда обновлена', 'ok');
-    setTimeout(() => openTeamModal(teamId), 100);
-    return;
-  }
-  if (type === 'send-msg') {
-    const chatId = f.dataset.id;
-    const text = (fd.get('text')||'').toString().trim();
-    if (!text) return;
-    const msg = { chat_id: chatId, author: db.profile.nick, avatar: db.profile.avatar, author_id: db.meId, text };
-    f.reset();
-    const { error } = await sb.from('messages').insert(msg);
-    if (error) return toast('Ошибка отправки', 'err');
-    await sb.from('chats').update({ last_message: db.profile.nick + ': ' + text }).eq('id', chatId);
-    await loadAll();
-    render();
-    return;
-  }
-  if (type === 'edit-profile') {
-    const u = db.profile;
-    const patch = {
-      avatar: ($('#avatarVal')?.value) || u.avatar,
-      nick: (fd.get('nick')||'').toString().trim() || u.nick,
-      rank: (fd.get('rank')||'').toString() || u.rank,
-      heroes: (fd.get('heroes')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,4),
-      lines: (fd.get('lines')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,3)
-    };
-    const tg = (fd.get('telegram')||'').toString().trim();
-    if (tg) patch.telegram = tg.startsWith('@') ? tg : '@' + tg;
-    const { error } = await sb.from('users').update(patch).eq('id', db.meId);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    await loadAll();
-    closeModal(); toast('Профиль обновлён', 'ok');
-    return;
-  }
-  if (type === 'create-tournament') {
-    const title = (fd.get('title')||'').toString().trim();
-    const dateRaw = (fd.get('date')||'').toString();
-    if (!title || !dateRaw) return;
-    const { error } = await sb.from('tournaments').insert({
-      title, mode: fd.get('mode'),
-      max_teams: Math.max(2, parseInt(fd.get('maxTeams'))||8),
-      prize: Math.max(0, parseInt(fd.get('prize'))||0),
-      date: new Date(dateRaw).toISOString(),
-      desc: (fd.get('desc')||'').toString().trim(),
-      status: 'open', created_by: db.meId, entries: [], bracket: null
-    });
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-    await loadAll();
-    vibrate(20); toast('Турнир опубликован', 'ok');
-    f.reset();
-    return;
-  }
-  if (type === 'submit-result') {
-    const scoreA = fd.get('scoreA');
-    const scoreB = fd.get('scoreB');
-    const winner = fd.get('winner');
-    const proof = (fd.get('proof')||'').toString().trim();
-    if (!proof || !/^https?:\/\//.test(proof)) return toast('Нужна корректная ссылка на пруф', 'err');
-    submitResult(f.dataset.tid, f.dataset.mid, scoreA, scoreB, winner, proof);
-    return;
-  }
-});
-
-async function acceptInvite(id) {
-  const inv = db.invites.find(i => i.id === id);
-  if (!inv || inv.status !== 'pending') return;
-
-  const teamRes = await sb.from('teams').select('*').eq('id', inv.team_id).single();
-  if (teamRes.error || !teamRes.data) { toast('Команда не найдена', 'err'); return; }
-  const team = teamRes.data;
-
-  if ((team.member_ids||[]).length >= 5 && !team.member_ids.includes(inv.to_user)) {
-    toast('В команде уже 5 игроков', 'err');
-    await sb.from('invites').delete().eq('id', id);
-    await loadAll();
-    return;
-  }
-
-  if (!team.member_ids.includes(inv.to_user)) {
-    const newMembers = [...(team.member_ids||[]), inv.to_user];
-    const { error } = await sb.from('teams').update({ member_ids: newMembers }).eq('id', inv.team_id);
-    if (error) return toast('Ошибка: ' + error.message, 'err');
-  }
-
-  await sb.from('invites').delete().eq('id', id);
-  await loadAll();
-  if ($('#invites-modal-root').innerHTML) openInvites();
-  vibrate(20);
-  toast('Вы вступили в ' + team.name, 'ok');
-}
-async function declineInvite(id) {
-  await sb.from('invites').delete().eq('id', id);
-  await loadAll();
-  if ($('#invites-modal-root').innerHTML) openInvites();
-  toast('Приглашение отклонено');
-}
-async function cancelInvite(id) {
-  const inv = db.invites.find(i => i.id === id);
-  if (!inv) return;
-  await sb.from('invites').delete().eq('id', id);
-  await loadAll();
-  toast('Приглашение отменено');
-  setTimeout(() => openTeamModal(inv.team_id), 100);
-}
-async function kickFromTeam(teamId, userId) {
-  const team = db.teams.find(t => t.id === teamId);
-  if (!team) return;
-  if (team.captain !== db.meId && !isAdmin()) { toast('Только капитан может удалять', 'err'); return; }
-  if (userId === team.captain) { toast('Нельзя удалить капитана', 'err'); return; }
-  const newMembers = (team.member_ids||[]).filter(id => id !== userId);
-  const { error } = await sb.from('teams').update({ member_ids: newMembers }).eq('id', teamId);
-  if (error) return toast('Ошибка: ' + error.message, 'err');
-  await loadAll();
-  toast('Игрок удалён из команды');
-  setTimeout(() => openTeamModal(teamId), 100);
-}
-async function reviewEntry(tid, eid, status) {
-  const t = db.tournaments.find(x => x.id === tid);
-  if (!t || !canManage()) return;
-  const entries = JSON.parse(JSON.stringify(t.entries||[]));
-  const entry = entries.find(e => e.id === eid);
-  if (!entry) return;
-  if (status === 'approved') {
-    const approvedCount = entries.filter(e => e.status === 'approved' && e.id !== eid).length;
-    if (approvedCount >= t.max_teams) { toast('Все слоты заняты', 'err'); return; }
-  }
-  entry.status = status;
-  entry.reviewedBy = db.meId;
-  entry.reviewedAt = Date.now();
-  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
-  if (error) return toast('Ошибка: ' + error.message, 'err');
-  await loadAll();
-  state.tModalTab = 'entries';
-  openTournament(tid);
-  toast(status === 'approved' ? 'Заявка принята' : 'Заявка отклонена', status === 'approved' ? 'ok' : '');
-}
-async function deleteEntry(tid, eid) {
-  const t = db.tournaments.find(x => x.id === tid);
-  if (!t) return;
-  const entries = (t.entries||[]).filter(x => x.id !== eid);
-  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
-  if (error) return toast('Ошибка: ' + error.message, 'err');
-  await loadAll();
-  if (state.route === 'admin') render();
-  state.tModalTab = 'entries';
-  openTournament(tid);
-  toast('Заявка удалена');
-}
-function applyToTournament(id) {
-  const t = db.tournaments.find(x => x.id === id);
-  if (!t) return;
-  const approved = (t.entries||[]).filter(e => e.status === 'approved').length;
-  if (approved >= t.max_teams) return toast('Свободных слотов нет', 'err');
-  const myE = myEntryIn(t);
-  if (myE && myE.status !== 'rejected') return toast('У вас уже есть заявка', 'err');
-  if (t.mode === '1v1') {
-    openModal({
-      title: 'Заявка 1 × 1',
-      body: `<p class="muted" style="font-size:13.5px;margin-bottom:16px">
-        Вы участвуете как <b>${esc(db.profile.nick)}</b>. С вами свяжутся в Telegram:
-        <a class="tg-link" href="${tgLink(db.profile.telegram)}" target="_blank">${esc(db.profile.telegram)}</a></p>
-      <p class="tiny muted" style="margin-bottom:16px">После отправки заявку рассмотрит модератор.</p>
-      <form data-form="apply-solo" data-id="${t.id}">
-        <button class="btn btn-primary btn-block" type="submit">Отправить заявку</button>
-      </form>`
-    });
-  } else {
-    const myTeams = db.teams.filter(tm => tm.captain === db.meId && (tm.member_ids||[]).length > 0);
-    if (!myTeams.length) {
-      openModal({
-        title: 'Нужна команда',
-        body: `<p class="muted" style="font-size:13.5px;line-height:1.6">Для 5 × 5 нужна команда, где вы капитан.</p>`,
-        footer: `<button class="btn btn-ghost" data-act="close-modal">Позже</button>
-                 <button class="btn btn-primary" data-act="nav-close" data-route="teams">Создать команду</button>`
-      });
-      return;
-    }
-    openModal({
-      title: 'Выбор состава',
-      body: `<p class="muted" style="font-size:13.5px;margin-bottom:14px">От какой команды подать заявку?</p>` +
-        myTeams.map(tm => {
-          const members = (tm.member_ids||[]).map(userById).filter(Boolean);
-          return `
-          <button class="team-card" style="width:100%;text-align:left" data-act="apply-team" data-tid="${t.id}" data-team="${tm.id}">
-            <div class="team-logo">${esc(tm.tag||'??')}</div>
-            <div style="flex:1;min-width:0">
-              <h4>${esc(tm.name)}</h4>
-              <div class="team-members">${members.map(u => `<span class="member-dot">${esc(u.avatar)} ${esc(u.nick)}</span>`).join('')}</div>
-            </div>
-          </button>`;
-        }).join('')
-    });
-  }
-}
-async function applyTeam(tid, teamId) {
-  const t = db.tournaments.find(x => x.id === tid);
-  const team = db.teams.find(x => x.id === teamId);
-  if (!t || !team) return;
-  if ((t.entries||[]).some(x => x.uid === db.meId)) { toast('У вас уже есть заявка', 'err'); return; }
-  const approved = (t.entries||[]).filter(e => e.status === 'approved').length;
-  if (approved >= t.max_teams) { toast('Свободных слотов нет', 'err'); return; }
-  const entries = [...(t.entries||[]), {
-    id: uid(), type:'team', captain_id: team.captain, name: team.name, tag: team.tag,
-    member_ids: [...(team.member_ids||[])], uid: db.meId, status: 'pending', ts: Date.now()
-  }];
-  const { error } = await sb.from('tournaments').update({ entries }).eq('id', tid);
-  if (error) return toast('Ошибка: ' + error.message, 'err');
-  await loadAll();
-  closeModal(); vibrate(20); toast('Заявка отправлена на рассмотрение', 'ok');
-}
-function delTeam(id) {
-  const t = db.teams.find(x => x.id === id);
-  if (!t) return;
-  confirmDialog('Удалить команду?', `Команда «${t.name}» будет удалена.`, 'Удалить', async () => {
-    await sb.from('invites').delete().eq('team_id', id);
-    const { error } = await sb.from('teams').delete().eq('id', id);
-    if (error) return toast('Ошибка', 'err');
-    await loadAll();
-    toast('Команда удалена');
-  }, true);
-}
-async function toggleStatus(id) {
-  const t = db.tournaments.find(x => x.id === id);
-  if (!t) return;
-  const newStatus = t.status === 'closed' ? 'open' : 'closed';
-  const { error } = await sb.from('tournaments').update({ status: newStatus }).eq('id', id);
-  if (error) return toast('Ошибка', 'err');
-  await loadAll();
-  toast(newStatus === 'closed' ? 'Регистрация закрыта' : 'Регистрация открыта');
-}
-function delTournament(id) {
-  const t = db.tournaments.find(x => x.id === id);
-  confirmDialog('Удалить турнир?', `«${t.title}» будет удалён.`, 'Удалить', async () => {
-    const { error } = await sb.from('tournaments').delete().eq('id', id);
-    if (error) return toast('Ошибка', 'err');
-    await loadAll();
-    toast('Турнир удалён');
-  }, true);
-}
-function adminDelUser(userId) {
-  if (!isAdmin()) return;
-  const u = userById(userId);
-  if (!u || u.id === db.meId) return;
-  confirmDialog('Удалить пользователя?',
-    `«${u.nick}» будет удалён со всеми данными.`,
-    'Удалить', async () => {
-      for (const t of db.teams) {
-        if (t.captain === userId) {
-          await sb.from('teams').delete().eq('id', t.id);
-        } else if ((t.member_ids||[]).includes(userId)) {
-          const newM = t.member_ids.filter(id => id !== userId);
-          await sb.from('teams').update({ member_ids: newM }).eq('id', t.id);
-        }
-      }
-      await sb.from('invites').delete().or(`from_user.eq.${userId},to_user.eq.${userId}`);
-      for (const t of db.tournaments) {
-        const entries = (t.entries||[]).filter(e => !(e.type === 'solo' && e.uid === userId) && !(e.type === 'team' && e.captain_id === userId));
-        if (entries.length !== (t.entries||[]).length) {
-          await sb.from('tournaments').update({ entries }).eq('id', t.id);
-        }
-      }
-      await sb.from('users').delete().eq('id', userId);
-      await loadAll();
-      closeUserModal(); toast('Пользователь удалён');
-    }, true);
-}
-async function buyBg(bid) {
-  const u = db.profile;
-  const b = BACKGROUNDS.find(x => x.id === bid);
-  if (!b || !u) return;
-  if ((u.coins||0) < b.price) { toast('Недостаточно монет', 'err'); return; }
-  const { error } = await sb.from('users').update({
-    coins: u.coins - b.price, owned: [...(u.owned||[]), b.id], bg: b.id
-  }).eq('id', db.meId);
-  if (error) return toast('Ошибка', 'err');
-  await loadAll();
-  vibrate(15); toast('Фон приобретён', 'ok');
-}
-async function setBg(bid) {
-  await sb.from('users').update({ bg: bid }).eq('id', db.meId);
-  await loadAll();
-  toast('Фон применён', 'ok');
-}
-
-function addCoinsModal(userId) {
-  const u = userById(userId);
-  if (!u) return;
-  openModal({
-    title: 'Начислить монеты',
-    body: `
-      <p class="muted" style="font-size:13.5px;margin-bottom:14px">
-        Игрок: <b>${esc(u.nick)}</b><br>
-        Текущий баланс: <b style="color:#fcd34d">✦ ${fmtNum(u.coins||0)}</b>
-      </p>
-      <form data-form="add-coins" data-id="${userId}">
-        <div class="field">
-          <label>Сколько начислить?</label>
-          <input name="amount" type="number" value="100" min="-1000000" max="1000000" required>
-          <div class="hint">Положительное — добавить. Отрицательное (например -100) — списать.</div>
-        </div>
-        <div class="row" style="gap:6px;margin-bottom:14px;flex-wrap:wrap">
-          <button type="button" class="btn btn-ghost btn-sm" data-act="quick-coin" data-val="100">+100</button>
-          <button type="button" class="btn btn-ghost btn-sm" data-act="quick-coin" data-val="500">+500</button>
-          <button type="button" class="btn btn-ghost btn-sm" data-act="quick-coin" data-val="1000">+1 000</button>
-          <button type="button" class="btn btn-ghost btn-sm" data-act="quick-coin" data-val="5000">+5 000</button>
-        </div>
-        <button class="btn btn-primary btn-block" type="submit">Начислить</button>
-      </form>
-    `
-  });
-}
-
-function newTeamModal() {
-  const others = db.users.filter(u => u.id !== db.meId);
-  const captainRow = `
-    <div class="member-pick captain checked">
-      <div class="avatar-sm">${avatarHTML(db.profile.avatar)}</div>
-      <div class="mc"><div class="mc-name">${esc(db.profile.nick)} <span class="badge badge-amber" style="font-size:10px;padding:2px 8px">Капитан</span></div>
-        <div class="mc-tg">${esc(db.profile.telegram)}</div></div>
-      <div class="check">✓</div>
-    </div>`;
-  const othersRows = others.length ? others.map(u => `
-    <div class="member-pick" data-act="toggle-member">
-      <div class="avatar-sm">${avatarHTML(u.avatar)}</div>
-      <div class="mc"><div class="mc-name">${esc(u.nick)}</div><div class="mc-tg">${esc(u.telegram)}</div></div>
-      <div class="check">✓</div>
-      <input type="checkbox" value="${u.id}">
-    </div>`).join('') : '<p class="muted tiny" style="padding:10px 4px">Других игроков пока нет</p>';
-  openModal({
-    title: 'Новая команда',
-    body: `<form data-form="create-team">
-      <div class="field"><label>Название</label><input name="name" maxlength="24" placeholder="Феникс" required></div>
-      <div class="field"><label>Тег (до 4 символов)</label><input name="tag" maxlength="4" placeholder="PHX" required></div>
-      <div class="field">
-        <label>Пригласить игроков <span id="teamCounter" class="muted tiny" style="margin-left:6px;font-weight:400">Выбрано: 1 / 5</span></label>
-        <div class="member-picker">${captainRow}${othersRows}</div>
-        <div class="hint">Каждому отправленному игроку придёт приглашение — он должен его принять.</div>
-      </div>
-      <button class="btn btn-primary btn-block" type="submit">Создать команду</button>
-    </form>`
-  });
-}
-function editProfileModal() {
-  const u = db.profile;
-  openModal({
-    title: 'Редактировать профиль',
-    body: `<form data-form="edit-profile">
-      <div class="field"><label>Аватар</label>
-        <div class="emoji-pick" id="emojiPick">
-          ${AVATARS.map(a => `<button type="button" class="emoji-opt ${a===u.avatar?'sel':''}" data-act="pick-emoji" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
-        </div>
-        <input type="hidden" name="avatar" id="avatarVal" value="${esc(u.avatar)}">
-      </div>
-      <div class="field"><label>Никнейм</label><input name="nick" value="${esc(u.nick)}" maxlength="20" required></div>
-      <div class="field"><label>Telegram</label><input name="telegram" value="${esc(u.telegram)}" maxlength="32" required></div>
-      <div class="field"><label>Ранг</label>
-        <select name="rank">${['Эпик','Легенда','Мифический','Мифическая слава','Мифический почёт'].map(r => `<option ${r===u.rank?'selected':''}>${r}</option>`).join('')}</select></div>
-      <div class="field"><label>Герои (через запятую)</label><input name="heroes" value="${esc((u.heroes||[]).join(', '))}" placeholder="Ланселот, Гвиневра"></div>
-      <div class="field"><label>Позиции (через запятую)</label><input name="lines" value="${esc((u.lines||[]).join(', '))}" placeholder="Лес, Мид"></div>
-      <button class="btn btn-primary btn-block" type="submit">Сохранить</button>
-    </form>`
-  });
-}
-
-function showAuth(tab = 'login') {
-  const root = $('#auth-root');
-  const renderTab = () => {
-    if (tab === 'login') {
-      return `
-        <form data-form="login">
-          <div class="field"><label>Логин</label><input name="login" autocomplete="username" autocapitalize="off" required></div>
-          <div class="field"><label>Пароль</label><input name="password" type="password" autocomplete="current-password" required></div>
-          <button class="btn btn-primary btn-block" type="submit">Войти</button>
-        </form>`;
-    }
-    return `
-      <form data-form="register">
-        <div class="field"><label>Логин для входа</label>
-          <input name="login" autocapitalize="off" autocomplete="username" maxlength="20" placeholder="например night" required>
-          <div class="hint">Латиница, цифры, подчёркивание.</div></div>
-        <div class="field"><label>Пароль</label>
-          <input name="password" type="password" autocomplete="new-password" minlength="4" required></div>
-        <div class="field"><label>Игровой ник</label>
-          <input name="nick" maxlength="20" placeholder="NightRaven" required></div>
-        <div class="field"><label>Telegram (обязательно)</label>
-          <input name="telegram" maxlength="32" placeholder="@username" required>
-          <div class="hint">С тобой свяжутся по турниру.</div></div>
-        <div class="field"><label>Аватар</label>
-          <div class="emoji-pick" id="regEmoji">
-            ${AVATARS.map((a,i) => `<button type="button" class="emoji-opt ${i===0?'sel':''}" data-emoji="${esc(a)}"><img src="${esc(a)}" alt=""></button>`).join('')}
-          </div>
-          <input type="hidden" name="avatar" id="regAvatar" value="${esc(AVATARS[0])}"></div>
-        <button class="btn btn-primary btn-block" type="submit">Создать аккаунт</button>
-      </form>`;
-  };
-  root.innerHTML = `
-    <div class="auth">
-      <div class="auth-box">
-        <div class="auth-brand">
-          <div class="brand-mark"><img src="https://i.ibb.co/QFdPbD1s/86-20260918220103.png" alt="Logo"></div>
-          <h1>ThunderStorm</h1>
-          <p>Турниры Mobile Legends: Bang Bang</p>
-        </div>
-        <div class="auth-tabs">
-          <button class="auth-tab ${tab==='login'?'active':''}" data-act="auth-tab" data-tab="login">Вход</button>
-          <button class="auth-tab ${tab==='register'?'active':''}" data-act="auth-tab" data-tab="register">Регистрация</button>
-        </div>
-        <div id="authBody">${renderTab()}</div>
-      </div>
-    </div>`;
-  $('#regEmoji')?.addEventListener('click', e => {
-    const b = e.target.closest('.emoji-opt'); if (!b) return;
-    $$('.emoji-opt', $('#regEmoji')).forEach(x => x.classList.remove('sel'));
-    b.classList.add('sel'); $('#regAvatar').value = b.dataset.emoji;
-  });
-  root.querySelectorAll('[data-act="auth-tab"]').forEach(btn => {
-    btn.addEventListener('click', () => showAuth(btn.dataset.tab));
-  });
-}
-function hideAuth() { $('#auth-root').innerHTML = ''; }
-
-document.addEventListener('click', e => {
-  const el = e.target.closest('#modEmoji .emoji-opt');
-  if (!el) return;
-  $$('#modEmoji .emoji-opt').forEach(x => x.classList.remove('sel'));
-  el.classList.add('sel');
-  const inp = $('#modAvatar'); if (inp) inp.value = el.dataset.emoji;
-});
-
-async function loadAll() {
-  const [t, tm, ch, us, inv, msgs] = await Promise.all([
-    sb.from('tournaments').select('*').order('date'),
-    sb.from('teams').select('*').order('created_at', { ascending:false }),
-    sb.from('chats').select('*').order('created_at'),
-    sb.from('users').select('*'),
-    sb.from('invites').select('*'),
-    sb.from('messages').select('*').order('ts').limit(500)
-  ]);
-  db.tournaments = (t.data || []).map(x => ({ ...x, desc: x.desc || x['desc'] || '' }));
-  db.teams = tm.data || [];
-  db.chats = (ch.data || []).map(c => ({
-    ...c,
-    messages: (msgs.data || []).filter(m => m.chat_id === c.id)
-  }));
-  db.users = us.data || [];
-  db.invites = inv.data || [];
-  if (db.meId) {
-    db.profile = db.users.find(u => u.id === db.meId) || db.profile;
-  }
-}
-
-function subscribeRealtime() {
-  if (state.realtimeChannel) sb.removeChannel(state.realtimeChannel);
-  state.realtimeChannel = sb.channel('realtime-all')
-    .on('postgres_changes', { event:'*', schema:'public', table:'tournaments' }, () => loadAll().then(render))
-    .on('postgres_changes', { event:'*', schema:'public', table:'teams' }, () => loadAll().then(render))
-    .on('postgres_changes', { event:'*', schema:'public', table:'chats' }, () => loadAll().then(render))
-    .on('postgres_changes', { event:'*', schema:'public', table:'messages' }, () => {
-      loadAll().then(() => { if (state.activeChat) render(); });
-    })
-    .on('postgres_changes', { event:'*', schema:'public', table:'users' }, () => loadAll().then(render))
-    .on('postgres_changes', { event:'*', schema:'public', table:'invites' }, () => loadAll().then(render))
-    .subscribe();
-}
-
-async function boot() {
-  if (SUPABASE_URL.includes('ВСТАВЬ') || SUPABASE_ANON.includes('ВСТАВЬ')) {
-    $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">⚠️ Не вставлены ключи Supabase.</div>';
-    return;
-  }
-  try {
-    let session = (await sb.auth.getSession()).data.session;
-    if (!session) {
-      const { error } = await sb.auth.signInAnonymously();
-      if (error) {
-        $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">Ошибка входа: ' + esc(error.message) + '<br><br>Проверь, что Anonymous Sign-Ins включён.</div>';
-        return;
-      }
-    }
-    state.authUser = (await sb.auth.getUser()).data.user;
-    await loadAll();
-    subscribeRealtime();
-    if (db.chats.length === 0) {
-      await sb.from('chats').insert({ title:'Общий чат', avatar:'💬', type:'global', last_message:'' });
-      await loadAll();
-    }
-
-    // Автологин: восстанавливаем сессию
-    db.meId = null; db.profile = null;
-    try {
-      const saved = localStorage.getItem('thunderstorm_me_id');
-      if (saved && db.users.find(u => u.id === saved)) {
-        db.meId = saved;
-        db.profile = db.users.find(u => u.id === saved);
-      }
-    } catch(e) {}
-
-    $('#loadingScreen').style.display = 'none';
-    $('#app').style.display = '';
-    render();
-    if (!db.meId) showAuth('login');
-  } catch(e) {
-    $('#loadingScreen').innerHTML = '<div style="padding:20px;text-align:center;max-width:340px;color:#fca5a5">Ошибка: ' + esc(e.message) + '</div>';
-  }
-}
-
-boot();
-</script>
-</body>
-</html>
+      <span class="badge ${isAdmin()?'badge-amber':'badge-cyan'}">${isAdmin()?'Гл. админ
