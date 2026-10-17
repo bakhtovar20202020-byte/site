@@ -44,10 +44,8 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .wallet{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;background:rgba(168,85,247,.10);border:1px solid var(--line-2);font-weight:600;font-size:14px}
 .wallet b{color:#d8b4fe;font-weight:700}
 .wallet img{width:18px;height:18px;object-fit:contain}
-/* Иконки */
 .nav-img{width:24px;height:24px;object-fit:contain;margin-bottom:2px}
 .nav-img.sm{width:18px;height:18px}
-/* Основные стили */
 .card{background:linear-gradient(158deg,rgba(32,19,56,.92),rgba(19,11,34,.92));border:1px solid var(--line);border-radius:var(--r);padding:16px}
 .section{margin-top:26px}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
@@ -250,13 +248,11 @@ input,textarea{user-select:text;-webkit-user-select:text}
 @keyframes spin{to{transform:rotate(360deg)}}
 .team-manage-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
 .team-manage-row:last-child{border-bottom:none}
-/* Медали и магазин */
 .medals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 .medal-item{text-align:center;cursor:pointer}
 .medal-box{width:100%;aspect-ratio:1;border-radius:12px;background-size:cover;background-position:center;position:relative;display:grid;place-items:center;overflow:hidden;margin-bottom:6px}
 .medal-box img{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
 .medal-name{font-size:11px;color:var(--text);line-height:1.2}
-/* Магазин */
 .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .shop-card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;display:flex;flex-direction:column}
 .shop-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;margin-bottom:8px;background:rgba(0,0,0,.2)}
@@ -2458,33 +2454,39 @@ document.addEventListener('click', e => {
 });
 
 async function loadAll() {
-  const [t, tm, ch, us, inv, msgs, meds, umeds, shop, uitems] = await Promise.all([
-    sb.from('tournaments').select('*').order('date'),
-    sb.from('teams').select('*').order('created_at', { ascending:false }),
-    sb.from('chats').select('*').order('created_at'),
-    sb.from('users').select('*'),
-    sb.from('invites').select('*'),
-    sb.from('messages').select('*').order('ts').limit(500),
-    sb.from('medals').select('*'),
-    sb.from('user_medals').select('*'),
-    sb.from('shop_items').select('*').order('created_at', { ascending:false }),
-    sb.from('user_items').select('*')
-  ]);
-  db.tournaments = (t.data || []).map(x => ({ ...x, desc: x.desc || x['desc'] || '' }));
-  db.teams = tm.data || [];
-  db.chats = (ch.data || []).map(c => ({
-    ...c,
-    messages: (msgs.data || []).filter(m => m.chat_id === c.id)
-  }));
-  db.users = us.data || [];
-  db.invites = inv.data || [];
-  db.medals = meds.data || [];
-  db.userMedals = umeds.data || [];
-  db.shopItems = shop.data || [];
-  db.userItems = uitems.data || [];
-  
-  if (db.meId) {
-    db.profile = db.users.find(u => u.id === db.meId) || db.profile;
+  try {
+    const [t, tm, ch, us, inv, msgs, meds, umeds, shop, uitems] = await Promise.all([
+      sb.from('tournaments').select('*').order('date'),
+      sb.from('teams').select('*').order('created_at', { ascending:false }),
+      sb.from('chats').select('*').order('created_at'),
+      sb.from('users').select('*'),
+      sb.from('invites').select('*'),
+      sb.from('messages').select('*').order('ts').limit(500),
+      sb.from('medals').select('*'),
+      sb.from('user_medals').select('*'),
+      sb.from('shop_items').select('*').order('created_at', { ascending:false }),
+      sb.from('user_items').select('*')
+    ]);
+    
+    db.tournaments = (t.data || []).map(x => ({ ...x, desc: x.desc || x['desc'] || '' }));
+    db.teams = tm.data || [];
+    db.chats = (ch.data || []).map(c => ({
+      ...c,
+      messages: (msgs.data || []).filter(m => m.chat_id === c.id)
+    }));
+    db.users = us.data || [];
+    db.invites = inv.data || [];
+    db.medals = meds.data || [];
+    db.userMedals = umeds.data || [];
+    db.shopItems = shop.data || [];
+    db.userItems = uitems.data || [];
+    
+    if (db.meId) {
+      db.profile = db.users.find(u => u.id === db.meId) || db.profile;
+    }
+  } catch (err) {
+    console.error('Ошибка загрузки:', err);
+    toast('Ошибка БД. Проверь, созданы ли таблицы medals, shop_items и т.д.', 'err');
   }
 }
 
@@ -2528,7 +2530,6 @@ async function boot() {
       await loadAll();
     }
 
-    // Автологин: восстанавливаем сессию
     db.meId = null; db.profile = null;
     try {
       const saved = localStorage.getItem('thunderstorm_me_id');
