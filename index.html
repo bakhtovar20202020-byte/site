@@ -47,7 +47,6 @@ input,textarea{user-select:text;-webkit-user-select:text}
 /* Иконки */
 .nav-img{width:24px;height:24px;object-fit:contain;margin-bottom:2px}
 .nav-img.sm{width:18px;height:18px}
-.btn-icon{width:18px;height:18px;object-fit:contain;vertical-align:middle;margin-right:4px}
 /* Основные стили */
 .card{background:linear-gradient(158deg,rgba(32,19,56,.92),rgba(19,11,34,.92));border:1px solid var(--line);border-radius:var(--r);padding:16px}
 .section{margin-top:26px}
@@ -284,7 +283,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
     </div>
     <div class="top-actions">
       <button class="icon-badge" data-act="open-invites" aria-label="Приглашения" id="invitesBtn" style="display:none">
-        <img src="https://i.ibb.co/MxJHFD8z/1000011572-no-bg-preview-carve-photos.png" style="width:20px;height:20px;object-fit:contain" onerror="this.src='📨'">
+        <img src="https://i.ibb.co/Z17Xdznc/Image-1.png" style="width:20px;height:20px;object-fit:contain" onerror="this.src='📨'">
         <span class="dot" id="invitesDot">0</span>
       </button>
       <div class="wallet">
@@ -593,13 +592,13 @@ function render() {
 function renderTabbar() {
   const profileIcon = isImgUrl(state.profile.avatar) ? `<img src="${esc(state.profile.avatar)}" style="width:24px;height:24px;border-radius:50%;object-fit:cover">` : '👤';
   const items = [
-    { r:'home', ic:'<img src="https://i.ibb.co/LDYjqPfV/Image-2.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🏠</span>', label:'Главная' },
-    { r:'tournaments', ic:'<img src="https://i.ibb.co/Z17Xdznc/Image-1.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">⚔️</span>', label:'Турниры' },
-    { r:'teams', ic:'<img src="https://i.ibb.co/DPQ1sgWs/Image.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">👥</span>', label:'Команды' },
-    { r:'chats', ic:'<img src="https://i.ibb.co/yBy3Kk4n/1000011587-no-bg-HD-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">💬</span>', label:'Чаты' },
+    { r:'home', ic:'<img src="https://i.ibb.co/MxJHFD8z/1000011572-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🏠</span>', label:'Главная' },
+    { r:'tournaments', ic:'<img src="https://i.ibb.co/DPQ1sgWs/Image.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">⚔️</span>', label:'Турниры' },
+    { r:'teams', ic:'<img src="https://i.ibb.co/HD30jvLP/1000011578-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">👥</span>', label:'Команды' },
+    { r:'chats', ic:'<img src="https://i.ibb.co/ymmPrk4G/1000011584-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">💬</span>', label:'Чаты' },
     { r:'profile', ic: profileIcon, label:'Профиль', badge: myPendingInvites().length }
   ];
-  if (canManage()) items.push({ r:'admin', ic:'<img src="https://i.ibb.co/ymmPrk4G/1000011584-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🛡️</span>', label:'Админ' });
+  if (canManage()) items.push({ r:'admin', ic:'<img src="https://i.ibb.co/849mhG0p/1000011563-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🛡️</span>', label:'Админ' });
   
   $('#tabbar').innerHTML = items.map(i => `
     <button class="nav-item ${state.route===i.r?'active':''}" data-act="nav" data-route="${i.r}">
@@ -1379,9 +1378,11 @@ function viewProfile() {
       </div>
     </section>` : '';
 
-  const shopHTML = db.shopItems.length ? `
+  // МАГАЗИН ТЕПЕРЬ ВСЕГДА ВИДЕН
+  const shopHTML = `
     <section class="section">
       <div class="section-head"><h2>Магазин</h2><span class="muted tiny">${db.shopItems.length} товаров</span></div>
+      ${db.shopItems.length ? `
       <div class="shop-grid">
         ${db.shopItems.map(si => {
           const owned = myItems.some(ui => ui.id === si.id);
@@ -1407,7 +1408,8 @@ function viewProfile() {
           </div>`;
         }).join('')}
       </div>
-    </section>` : '';
+      ` : '<p class="muted tiny" style="padding:10px 0">Магазин пока пуст. Админ скоро добавит товары!</p>'}
+    </section>`;
 
   return `
     <div class="profile-card">
@@ -1431,7 +1433,7 @@ function viewProfile() {
     
     <div class="row" style="gap:10px;margin-top:16px">
       <button class="btn btn-primary" style="flex:1" data-act="edit-profile">
-        <img src="https://i.ibb.co/849mhG0p/1000011563-no-bg-preview-carve-photos.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'">
+        <img src="https://i.ibb.co/yBy3Kk4n/1000011587-no-bg-HD-carve-photos.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'">
         Редактировать
       </button>
       <button class="btn btn-ghost" style="flex:1" data-act="logout">Выйти</button>
@@ -1557,7 +1559,7 @@ function viewAdmin() {
     </section>
 
     <section class="card" style="margin-bottom:20px;border-color:var(--line-2)">
-      <h3 style="font-size:15px;margin-bottom:14px">Магазин (Товары)</h3>
+      <h3 style="font-size:15px;margin-bottom:14px">🛒 Магазин (Товары)</h3>
       <form data-form="create-shop-item">
         <div class="grid-2">
           <div class="field"><label>Тип</label>
