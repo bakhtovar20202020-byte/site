@@ -122,7 +122,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .avatar-sm{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;flex-shrink:0;background:rgba(168,85,247,.14);border:1px solid var(--line);overflow:hidden}
 .chat-wrap{display:flex;flex-direction:column;height:calc(100dvh - 200px - var(--safe-b) - var(--safe-t))}
 .chat-body{flex:1;overflow-y:auto;padding:6px 2px 12px;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
-.msg{display:flex;gap:10px;margin-bottom:14px}
+.msg{display:flex;gap:10px;margin-bottom:14px;position:relative}
 .msg-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px;flex-shrink:0;background:rgba(168,85,247,.14);border:1px solid var(--line);overflow:hidden}
 .msg-name{font-size:12.5px;font-weight:600;color:#d8b4fe;margin-bottom:2px}
 .msg-text{font-size:14px;color:#e2dbf2;word-break:break-word}
@@ -134,7 +134,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 .chat-bar input:focus{border-color:var(--line-2)}
 .send-btn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-size:16px;box-shadow:0 4px 18px rgba(168,85,247,.4);flex-shrink:0}
 .profile-card{position:relative;overflow:hidden;border-radius:22px;border:1px solid var(--line-2);padding:22px 18px;text-align:center}
-.profile-bg{position:absolute;inset:0;z-index:0}
+.profile-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center}
 .profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.35),rgba(10,6,19,.88))}
 .profile-inner{position:relative;z-index:1}
 .p-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:40px;background:rgba(10,6,19,.6);border:2px solid var(--line-2);box-shadow:0 0 34px rgba(168,85,247,.42);overflow:hidden;position:relative}
@@ -210,7 +210,7 @@ input,textarea{user-select:text;-webkit-user-select:text}
 [data-act="view-user"]:hover{filter:brightness(1.18)}
 .user-hit{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
 .up-head{position:relative;overflow:hidden;border-radius:18px;padding:22px 16px;text-align:center;margin-bottom:16px;border:1px solid var(--line-2)}
-.up-head .profile-bg{position:absolute;inset:0;z-index:0}
+.up-head .profile-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center}
 .up-head .profile-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,19,.3),rgba(10,6,19,.85))}
 .up-head-inner{position:relative;z-index:1}
 .up-avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:34px;background:rgba(10,6,19,.55);border:2px solid var(--line-2);box-shadow:0 0 30px rgba(168,85,247,.4);overflow:hidden;position:relative}
@@ -305,9 +305,6 @@ input,textarea{user-select:text;-webkit-user-select:text}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ============================================================
-   ThunderStorm — Supabase версия (Иконки, Медали, Магазин)
-   ============================================================ */
 const SUPABASE_URL = 'https://fpvbebvyypppverkisxl.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_FVYuUqEdNcmyluAT02Ting_CG-y8XRJ';
 const ADMIN_LOGIN = 'nbb';
@@ -343,26 +340,6 @@ const hashPass = (pass, salt) => {
 const tgLink = tg => 'https://t.me/' + String(tg||'').replace(/^@/,'');
 const isImgUrl = v => typeof v === 'string' && /^https?:\/\//i.test(v);
 const avatarHTML = v => isImgUrl(v) ? `<img src="${esc(v)}" alt="" loading="lazy" onerror="this.src=''">` : esc(v || '👤');
-
-const BACKGROUNDS = [
-  { id:'bg1', name:'Тёмная галактика', price:300,  css:'linear-gradient(145deg,#2d1b4e,#0d031f)' },
-  { id:'bg2', name:'Неоновая бездна',  price:500,  css:'linear-gradient(145deg,#4a1a6b,#12061f)' },
-  { id:'bg3', name:'Киберпространство',price:750,  css:'linear-gradient(145deg,#0b3a5a,#06121f)' },
-  { id:'bg4', name:'Кровавая луна',    price:1000, css:'linear-gradient(145deg,#5c1a3a,#160610)' },
-  { id:'bg5', name:'Золотой трон',     price:1500, css:'linear-gradient(145deg,#5a4310,#1a1206)' }
-];
-const AVATARS = [
-  'https://i.ibb.co/Mk6Vy3ps/83.png',
-  'https://i.ibb.co/xqnzs43p/85.png',
-  'https://i.ibb.co/zhfmz6HL/84.png',
-  'https://i.ibb.co/nNJBzngK/82.png',
-  'https://i.ibb.co/rGj1m78N/81.png',
-  'https://i.ibb.co/bgNwnNXk/76.png',
-  'https://i.ibb.co/bMyjp3JF/77.png',
-  'https://i.ibb.co/7tZJ5yPK/78.png',
-  'https://i.ibb.co/5XJ41tnX/80.png',
-  'https://i.ibb.co/hRzL7MQR/79.png'
-];
 
 let db = { meId:null, profile:null, users:[], teams:[], invites:[], tournaments:[], chats:[], medals:[], userMedals:[], shopItems:[], userItems:[] };
 const state = { route:'home', filter:'all', activeChat:null, profile:null, tModalTab:'entries', tModalId:null, msgChannel:null, realtimeChannel:null, authUser:null };
@@ -490,15 +467,16 @@ function renderAvatarWithFrame(u, size='p') {
 function openUserProfile(userId) {
   const u = userById(userId);
   if (!u) return;
-  const bg = BACKGROUNDS.find(b => b.id === u.bg) || BACKGROUNDS[0];
   const roleLabel = { player:'Игрок', moderator:'Модератор', admin:'Главный админ' }[u.role] || 'Игрок';
   const roleClass = { player:'badge-purple', moderator:'badge-cyan', admin:'badge-amber' }[u.role] || 'badge-purple';
   const tours = db.tournaments.filter(t => (t.entries||[]).some(e =>
     e.uid === u.id || (e.member_ids||[]).includes(u.id)));
   const teams = db.teams.filter(t => (t.member_ids||[]).includes(u.id));
   const medals = getUserMedals(u.id);
+  const items = getUserItems(u.id);
   const isMe = u.id === db.meId;
   const canDelete = isAdmin() && !isMe;
+  const profileBgStyle = u.profile_bg_url ? `background-image:url('${esc(u.profile_bg_url)}');background-size:cover;background-position:center;` : 'background:linear-gradient(145deg,#2d1b4e,#0d031f)';
 
   const tourList = tours.length ? tours.slice(0,3).map(t => `
     <div class="admin-row" style="cursor:pointer" data-act="open-tournament-from-user" data-id="${t.id}">
@@ -527,6 +505,19 @@ function openUserProfile(userId) {
     </div>
   ` : '';
 
+  const itemsHTML = items.length ? `
+    <div class="section-head" style="margin-top:18px;margin-bottom:6px"><h2 style="font-size:13.5px">Коллекция предметов</h2></div>
+    <div class="shop-grid">
+      ${items.map(si => `
+        <div class="shop-card">
+          <img src="${esc(si.image_url)}" alt="">
+          <div class="sc-name">${esc(si.name)}</div>
+          <div class="sc-desc">${esc(si.description || '')}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
   $('#user-modal-root').innerHTML = `
     <div class="modal-backdrop user-modal-backdrop" data-act="close-user-modal">
       <div class="modal" role="dialog">
@@ -534,7 +525,7 @@ function openUserProfile(userId) {
           <button class="icon-btn" data-act="close-user-modal">✕</button></div>
         <div class="modal-body">
           <div class="up-head">
-            <div class="profile-bg" style="background:${bg.css}"></div>
+            <div class="profile-bg" style="${profileBgStyle}"></div>
             <div class="up-head-inner">
               <div class="up-avatar">${renderAvatarWithFrame(u, 'up')}</div>
               <div class="up-name">${esc(u.nick)} ${isMe?'<span class="muted tiny" style="font-weight:400">· вы</span>':''}</div>
@@ -556,6 +547,7 @@ function openUserProfile(userId) {
           </div>
           
           ${medalsHTML}
+          ${itemsHTML}
 
           <div class="section-head" style="margin-top:18px;margin-bottom:6px"><h2 style="font-size:13.5px">Турниры</h2></div>
           ${tourList}
@@ -583,7 +575,7 @@ function render() {
     $('#invitesDot').textContent = inviteCount;
   }
   if (!state.profile) { $('#view').innerHTML=''; $('#tabbar').innerHTML=''; return; }
-  const views = { home: viewHome, tournaments: viewTournaments, teams: viewTeams, chats: viewChats, profile: viewProfile, admin: viewAdmin };
+  const views = { home: viewHome, tournaments: viewTournaments, teams: viewTeams, chats: viewChats, profile: viewProfile, admin: viewAdmin, shop: viewShop };
   $('#view').innerHTML = (views[state.route] || viewHome)();
   renderTabbar();
   const body = $('#chatBody');
@@ -596,6 +588,7 @@ function renderTabbar() {
     { r:'tournaments', ic:'<img src="https://i.ibb.co/DPQ1sgWs/Image.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">⚔️</span>', label:'Турниры' },
     { r:'teams', ic:'<img src="https://i.ibb.co/HD30jvLP/1000011578-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">👥</span>', label:'Команды' },
     { r:'chats', ic:'<img src="https://i.ibb.co/ymmPrk4G/1000011584-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">💬</span>', label:'Чаты' },
+    { r:'shop', ic:'<span style="font-size:22px">🛒</span>', label:'Магазин' },
     { r:'profile', ic: profileIcon, label:'Профиль', badge: myPendingInvites().length }
   ];
   if (canManage()) items.push({ r:'admin', ic:'<img src="https://i.ibb.co/849mhG0p/1000011563-no-bg-preview-carve-photos.png" class="nav-img" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline\'"><span style="display:none">🛡️</span>', label:'Админ' });
@@ -1296,12 +1289,13 @@ function viewChats() {
             return `
             <div class="msg ${m.author_id === db.meId ? 'mine' : ''}">
               ${av}
-              <div>
+              <div style="flex:1">
                 <div class="msg-name">${name}
                   ${author?.telegram ? `<a class="tg-link" href="${tgLink(author.telegram)}" target="_blank" onclick="event.stopPropagation()" style="font-size:11px;margin-left:6px">${esc(author.telegram)}</a>` : ''}</div>
                 <div class="msg-text">${esc(m.text)}</div>
                 <div class="msg-time">${esc(fmtTime(m.ts))}</div>
               </div>
+              ${canManage() ? `<button class="icon-btn" data-act="del-msg" data-id="${m.id}" data-chat="${chat.id}" style="width:24px;height:24px;font-size:10px;flex-shrink:0;align-self:flex-start">✕</button>` : ''}
             </div>`;
           }).join('') || '<div class="empty"><span class="em">💬</span>Сообщений пока нет</div>'}
         </div>
@@ -1328,17 +1322,60 @@ function viewChats() {
     }).join('')}`;
 }
 
+function viewShop() {
+  const u = me();
+  if (!u) return '';
+  const myItems = getUserItems(u.id);
+  const items = db.shopItems;
+  return `
+    <div class="section-head" style="margin-bottom:14px">
+      <h2 style="font-size:19px">Магазин</h2>
+      <span class="badge badge-amber">✦ ${fmtNum(u.coins||0)}</span>
+    </div>
+    ${items.length ? `
+      <div class="shop-grid">
+        ${items.map(si => {
+          const owned = myItems.some(ui => ui.id === si.id);
+          const isActive = (si.type === 'avatar' && u.avatar === si.image_url) ||
+                           (si.type === 'bg' && u.avatar_bg_url === si.image_url) ||
+                           (si.type === 'frame' && u.avatar_frame_url === si.image_url) ||
+                           (si.type === 'profile_bg' && u.profile_bg_url === si.image_url);
+          let btn = '';
+          if (owned) {
+            if (si.type === 'item') btn = `<button class="btn btn-ghost btn-sm btn-block" disabled>В коллекции</button>`;
+            else if (isActive) btn = `<button class="btn btn-ghost btn-sm btn-block" disabled>Активно</button>`;
+            else btn = `<button class="btn btn-success btn-sm btn-block" data-act="equip-item" data-id="${si.id}">Применить</button>`;
+          } else {
+            btn = `<button class="btn btn-primary btn-sm btn-block" data-act="buy-item" data-id="${si.id}">Купить</button>`;
+          }
+          return `
+            <div class="shop-card">
+              <img src="${esc(si.image_url)}" alt="">
+              <div class="sc-name">${esc(si.name)}</div>
+              <div class="sc-desc">${esc(si.description || '')}</div>
+              <div class="sc-price">
+                <img src="https://i.ibb.co/LHv207d/1000011575-no-bg-preview-carve-photos.png" style="width:16px;height:16px;object-fit:contain">
+                ${fmtNum(si.price)}
+              </div>
+              ${btn}
+            </div>`;
+        }).join('')}
+      </div>
+    ` : '<div class="empty"><span class="em">🛒</span>Магазин пока пуст</div>'}
+  `;
+}
+
 function viewProfile() {
   const u = me();
   if (!u) return '';
-  const bg = BACKGROUNDS.find(b => b.id === u.bg) || BACKGROUNDS[0];
   const roleLabel = { player:'Игрок', moderator:'Модератор', admin:'Главный админ' }[u.role] || 'Игрок';
   const roleClass = { player:'badge-purple', moderator:'badge-cyan', admin:'badge-amber' }[u.role] || 'badge-purple';
   const mine = myEntries();
   const invites = myPendingInvites();
   const medals = getUserMedals(u.id);
   const myItems = getUserItems(u.id);
-  
+  const profileBgStyle = u.profile_bg_url ? `background-image:url('${esc(u.profile_bg_url)}');background-size:cover;background-position:center;` : 'background:linear-gradient(145deg,#2d1b4e,#0d031f)';
+
   const invitesBlock = invites.length ? `
     <section class="section">
       <div class="section-head"><h2>Приглашения</h2><span class="muted tiny">${invites.length}</span></div>
@@ -1378,42 +1415,23 @@ function viewProfile() {
       </div>
     </section>` : '';
 
-  // МАГАЗИН ТЕПЕРЬ ВСЕГДА ВИДЕН
-  const shopHTML = `
+  const itemsHTML = myItems.length ? `
     <section class="section">
-      <div class="section-head"><h2>Магазин</h2><span class="muted tiny">${db.shopItems.length} товаров</span></div>
-      ${db.shopItems.length ? `
+      <div class="section-head"><h2>Мои предметы</h2><span class="muted tiny">${myItems.length}</span></div>
       <div class="shop-grid">
-        ${db.shopItems.map(si => {
-          const owned = myItems.some(ui => ui.id === si.id);
-          const isActiveAvatar = si.type === 'avatar' && u.avatar === si.image_url;
-          const isActiveBg = si.type === 'bg' && u.avatar_bg_url === si.image_url;
-          const isActiveFrame = si.type === 'frame' && u.avatar_frame_url === si.image_url;
-          const isActive = isActiveAvatar || isActiveBg || isActiveFrame;
-          return `
+        ${myItems.map(si => `
           <div class="shop-card">
             <img src="${esc(si.image_url)}" alt="">
             <div class="sc-name">${esc(si.name)}</div>
             <div class="sc-desc">${esc(si.description || '')}</div>
-            <div class="sc-price">
-              <img src="https://i.ibb.co/LHv207d/1000011575-no-bg-preview-carve-photos.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'">
-              ${fmtNum(si.price)}
-            </div>
-            ${owned ? `
-              ${isActive ? `<button class="btn btn-ghost btn-sm btn-block" disabled>Активно</button>` 
-                        : `<button class="btn btn-success btn-sm btn-block" data-act="equip-item" data-id="${si.id}">Применить</button>`}
-            ` : `
-              <button class="btn btn-primary btn-sm btn-block" data-act="buy-item" data-id="${si.id}">Купить</button>
-            `}
-          </div>`;
-        }).join('')}
+          </div>
+        `).join('')}
       </div>
-      ` : '<p class="muted tiny" style="padding:10px 0">Магазин пока пуст. Админ скоро добавит товары!</p>'}
-    </section>`;
+    </section>` : '';
 
   return `
     <div class="profile-card">
-      <div class="profile-bg" style="background:${bg.css}"></div>
+      <div class="profile-bg" style="${profileBgStyle}"></div>
       <div class="profile-inner">
         <div class="p-avatar">${renderAvatarWithFrame(u, 'p')}</div>
         <div class="p-name">${esc(u.nick)}</div>
@@ -1441,35 +1459,14 @@ function viewProfile() {
     
     ${invitesBlock}
     ${medalsHTML}
-    ${shopHTML}
+    ${itemsHTML}
     
     ${mine.length ? `
     <section class="section">
       <div class="section-head"><h2>Мои турниры</h2><span class="muted tiny">${mine.length}</span></div>
       ${mine.map(tCardHTML).join('')}
     </section>` : ''}
-    
-    <section class="section">
-      <div class="section-head"><h2>Магазин фонов</h2><span class="muted tiny">${(u.owned||[]).length} куплено</span></div>
-      <div class="grid-2">
-        ${BACKGROUNDS.map(b => {
-          const owned = (u.owned||[]).includes(b.id);
-          const active = u.bg === b.id;
-          return `
-          <div class="shop-item">
-            <div class="shop-prev" style="background:${b.css}"></div>
-            <div class="shop-name">${esc(b.name)}</div>
-            <div class="shop-price">
-              <img src="https://i.ibb.co/LHv207d/1000011575-no-bg-preview-carve-photos.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'">
-              ${fmtNum(b.price)}
-            </div>
-            ${active ? `<button class="btn btn-ghost btn-sm btn-block" disabled>Активен</button>`
-              : owned ? `<button class="btn btn-ghost btn-sm btn-block" data-act="set-bg" data-id="${b.id}">Применить</button>`
-              : `<button class="btn btn-primary btn-sm btn-block" data-act="buy-bg" data-id="${b.id}">Купить</button>`}
-          </div>`;
-        }).join('')}
-      </div>
-    </section>`;
+  `;
 }
 
 function viewAdmin() {
@@ -1563,7 +1560,13 @@ function viewAdmin() {
       <form data-form="create-shop-item">
         <div class="grid-2">
           <div class="field"><label>Тип</label>
-            <select name="type"><option value="avatar">Аватарка</option><option value="bg">Фон аватарки</option><option value="frame">Рамка аватарки</option></select>
+            <select name="type">
+              <option value="avatar">Аватарка</option>
+              <option value="bg">Фон аватарки</option>
+              <option value="frame">Рамка аватарки</option>
+              <option value="profile_bg">Фон профиля (общий)</option>
+              <option value="item">Предмет (коллекция)</option>
+            </select>
           </div>
           <div class="field"><label>Цена (✦)</label><input name="price" type="number" min="0" value="500" required></div>
         </div>
@@ -1693,11 +1696,10 @@ document.addEventListener('click', e => {
   if (act === 'del-team') { delTeam(el.dataset.id); return; }
   if (act === 'open-chat') { state.activeChat = el.dataset.id; render(); return; }
   if (act === 'chat-back') { state.activeChat = null; render(); return; }
+  if (act === 'del-msg') { deleteMessage(el.dataset.id, el.dataset.chat); return; }
   if (act === 'edit-profile') { editProfileModal(); return; }
   if (act === 'pick-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#avatarVal'); if (inp) inp.value = el.dataset.emoji; return; }
   if (act === 'pick-mod-emoji') { $$('.emoji-opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); const inp = $('#modAvatar'); if (inp) inp.value = el.dataset.emoji; return; }
-  if (act === 'buy-bg') { buyBg(el.dataset.id); return; }
-  if (act === 'set-bg') { setBg(el.dataset.id); return; }
   if (act === 'toggle-status') { toggleStatus(el.dataset.id); return; }
   if (act === 'del-tournament') { delTournament(el.dataset.id); return; }
   if (act === 'admin-del-user') { adminDelUser(el.dataset.id); return; }
@@ -1984,7 +1986,8 @@ document.addEventListener('submit', async e => {
       nick: (fd.get('nick')||'').toString().trim() || u.nick,
       rank: (fd.get('rank')||'').toString() || u.rank,
       heroes: (fd.get('heroes')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,4),
-      lines: (fd.get('lines')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,3)
+      lines: (fd.get('lines')||'').toString().split(',').map(s=>s.trim()).filter(Boolean).slice(0,3),
+      profile_bg_url: (fd.get('profile_bg_url')||'').toString().trim()
     };
     const tg = (fd.get('telegram')||'').toString().trim();
     if (tg) patch.telegram = tg.startsWith('@') ? tg : '@' + tg;
@@ -2226,22 +2229,13 @@ function adminDelUser(userId) {
       closeUserModal(); toast('Пользователь удалён');
     }, true);
 }
-async function buyBg(bid) {
-  const u = db.profile;
-  const b = BACKGROUNDS.find(x => x.id === bid);
-  if (!b || !u) return;
-  if ((u.coins||0) < b.price) { toast('Недостаточно монет', 'err'); return; }
-  const { error } = await sb.from('users').update({
-    coins: u.coins - b.price, owned: [...(u.owned||[]), b.id], bg: b.id
-  }).eq('id', db.meId);
-  if (error) return toast('Ошибка', 'err');
+async function deleteMessage(msgId, chatId) {
+  if (!canManage()) return;
+  const { error } = await sb.from('messages').delete().eq('id', msgId);
+  if (error) return toast('Ошибка: ' + error.message, 'err');
   await loadAll();
-  vibrate(15); toast('Фон приобретён', 'ok');
-}
-async function setBg(bid) {
-  await sb.from('users').update({ bg: bid }).eq('id', db.meId);
-  await loadAll();
-  toast('Фон применён', 'ok');
+  render();
+  toast('Сообщение удалено');
 }
 
 function addCoinsModal(userId) {
@@ -2314,6 +2308,8 @@ async function equipShopItem(itemId) {
   if (item.type === 'avatar') patch.avatar = item.image_url;
   else if (item.type === 'bg') patch.avatar_bg_url = item.image_url;
   else if (item.type === 'frame') patch.avatar_frame_url = item.image_url;
+  else if (item.type === 'profile_bg') patch.profile_bg_url = item.image_url;
+  else return;
   const { error } = await sb.from('users').update(patch).eq('id', db.meId);
   if (error) return toast('Ошибка: ' + error.message, 'err');
   await loadAll();
@@ -2366,6 +2362,8 @@ function newTeamModal() {
 }
 function editProfileModal() {
   const u = db.profile;
+  const myItems = getUserItems(u.id);
+  const profileBgs = myItems.filter(i => i.type === 'profile_bg');
   openModal({
     title: 'Редактировать профиль',
     body: `<form data-form="edit-profile">
@@ -2381,6 +2379,14 @@ function editProfileModal() {
         <select name="rank">${['Эпик','Легенда','Мифический','Мифическая слава','Мифический почёт'].map(r => `<option ${r===u.rank?'selected':''}>${r}</option>`).join('')}</select></div>
       <div class="field"><label>Герои (через запятую)</label><input name="heroes" value="${esc((u.heroes||[]).join(', '))}" placeholder="Ланселот, Гвиневра"></div>
       <div class="field"><label>Позиции (через запятую)</label><input name="lines" value="${esc((u.lines||[]).join(', '))}" placeholder="Лес, Мид"></div>
+      ${profileBgs.length ? `
+      <div class="field">
+        <label>Фон профиля</label>
+        <select name="profile_bg_url">
+          <option value="">По умолчанию (тёмный)</option>
+          ${profileBgs.map(i => `<option value="${esc(i.image_url)}" ${u.profile_bg_url === i.image_url ? 'selected' : ''}>${esc(i.name)}</option>`).join('')}
+        </select>
+      </div>` : ''}
       <button class="btn btn-primary btn-block" type="submit">Сохранить</button>
     </form>`
   });
